@@ -147,7 +147,7 @@
   "seo": {
     "metatags": {
       "theme-color": "#fde52f",
-      "og:site_name": "petto.sbs",
+      "og:site_name": "wiki.petto.sbs",
       "og:title": "Petto Documentation",
       "og:description": "Every command, module, and variable Petto supports, with real examples.",
       "og:image": "/og-image.png",
