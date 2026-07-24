@@ -6,14 +6,14 @@ icon: "gift"
 
 ## Overview
 
-Giveaways support role-weighted entries and a claim window so a winner has to actually accept the prize.
+Giveaways support a claim window so a winner has to actually accept the prize, not just be picked and forgotten.
 
 <Steps>
   <Step title="Launch one">
     Use `/giveaway quick` for something fast, or `/giveaway start` to customize every detail.
   </Step>
   <Step title="Reuse a setup">
-    Save a reusable setup with `/giveawaytemplate`, or bonus entries per role with `/giveawaypreset`.
+    Save a reusable setup with `/giveawaytemplate`.
   </Step>
   <Step title="Automatic reroll">
     If a winner doesn't claim in time, Petto rerolls automatically.
@@ -27,13 +27,18 @@ Giveaways support role-weighted entries and a claim window so a winner has to ac
 | giveaway quick / start | `/giveaway <quick\|start> <duration> <winners> [channel] <prize>` | Launch a giveaway, instantly or fully customized. |
 | giveaway template | `/giveaway template <template_name>` | Launch a saved giveaway configuration. |
 | giveaway reroll / end / edit | `/giveaway <reroll\|end\|edit> <message_id>` | Manage a giveaway in progress or after it ends. |
-| giveawaypreset | `/giveawaypreset <add\|remove> <role> <entries>` | Role-based bonus entries and claim time. |
 | giveawaytemplate | `/giveawaytemplate <save\|load> <name>` | Save a full giveaway setup to relaunch later. |
 
-## Bonus-entry presets
+## Entry method
 
-A preset gives certain roles extra entries automatically. Each role's bonus can optionally stack with other matching roles a member has, both for entries and for extended claim time, configurable per role.
+Button or reaction, your choice per giveaway.
 
 ## Custom messages
 
-Every stage has its own configurable message: winner announced, nobody entered, a winner denied their prize, the claim prompt, claim expired, and claim accepted. All support [variables](/resources/scripting/variables).
+Every stage has its own configurable message: winner announced, nobody entered, a winner denied their prize, the claim prompt, claim expired, and claim accepted. All support [variables](/resources/scripting/variables), and can each be a saved [embed](/resources/scripting/embeds) instead of plain text.
+
+## Related
+
+<Card title="Bonus-Entry Presets" icon="star" href="/community/giveaway-presets">
+  Give certain roles extra entries automatically.
+</Card>

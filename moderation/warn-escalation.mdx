@@ -1,0 +1,25 @@
+---
+title: "Warn Escalation"
+description: "Automatic consequences after a member hits a warn count."
+icon: "stairs"
+---
+
+## Overview
+
+Warn escalation rules let reaching a specific warn count trigger an automatic action, no staff follow-up required.
+
+## How it works
+
+Each rule pairs a warn count with an action (mute, tempmute, kick, or ban), and a duration for the timed actions. When `/warn` pushes a member's total to a count that has a rule, Petto applies that action automatically and logs it as its own case.
+
+## Example
+
+| Warn count | Action | Duration |
+| --- | --- | --- |
+| 3 | tempmute | 60 minutes |
+| 5 | kick | - |
+| 7 | ban | - |
+
+<Tip>
+  Rules are configured on the [dashboard](https://petto.sbs/dash)'s Moderation page, add as many thresholds as you want.
+</Tip>

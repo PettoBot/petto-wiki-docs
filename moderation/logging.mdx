@@ -1,12 +1,12 @@
 ---
-title: "Logging & Automod"
+title: "Logging"
 description: "Nine independent categories, each routed to its own channel."
 icon: "notebook"
 ---
 
 ## Overview
 
-Logging routes nine independent event categories to their own channels, so a mod-log channel isn't one unreadable firehose.
+Logging routes independent event categories to their own channels, so a mod-log channel isn't one unreadable firehose.
 
 <Steps>
   <Step title="Route a category">
@@ -15,12 +15,9 @@ Logging routes nine independent event categories to their own channels, so a mod
   <Step title="Style it, if you want">
     Override the embed color per channel with `/logs color` if you want categories visually distinct.
   </Step>
-  <Step title="Configure automod separately">
-    Word filters, spam detection, and anti-raid are configured with `/automod`, independent of logging.
-  </Step>
 </Steps>
 
-## The nine categories
+## The categories
 
 Sanctions, Automod, Verification, Members, Messages, Voice, Roles, Channels, Invites, Emojis, Tickets, and Server changes, each can be routed to its own channel or left off.
 
@@ -31,7 +28,6 @@ Sanctions, Automod, Verification, Members, Messages, Voice, Roles, Channels, Inv
 | logs add / remove | `/logs <add\|remove> <category> <channel>` | Route an event category to a channel. |
 | logs color | `/logs color <category> <hex_color>` | Override an event's embed color per channel. |
 | logs ignore | `/logs ignore <add\|remove> <user\|channel>` | Exclude a user or channel from being logged. |
-| automod | `/automod config [words] [links] [spam]` | Word filters, spam detection, link scanning, anti-raid. |
 
 ## Ignoring specific users or channels
 
@@ -39,6 +35,4 @@ Sanctions, Automod, Verification, Members, Messages, Voice, Roles, Channels, Inv
   A user or channel added to the ignore list is skipped by every logging category at once, not just one, useful for bots or a staff-only channel you don't want cluttering the log.
 </Tip>
 
-## Silent channels
-
-Certain channels can be marked "silent" for automod, meaning a specific automod action (warn, mute, or kick) is suppressed there while the underlying detection still runs, useful for channels where some normally-flagged behavior is expected.
+For word filters, anti-spam, and anti-raid, see [Automod](/moderation/automod).

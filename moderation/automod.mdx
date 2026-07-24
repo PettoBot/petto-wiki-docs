@@ -1,0 +1,43 @@
+---
+title: "Automod"
+description: "Word filters, anti-spam, and anti-raid, configured together."
+icon: "shield-warning"
+---
+
+## Overview
+
+Automod runs three independent checks: a word filter, anti-spam, and anti-raid, each with its own toggle and action.
+
+## Word filter
+
+A list of banned words triggers a configurable action (warn, mute, kick, or ban) when a member's message matches.
+
+## Anti-spam
+
+Flags a member for sending too many mentions in a message (configurable threshold), independent of the word filter.
+
+## Anti-raid
+
+Watches join velocity: if more than a configured number of members join within a time window, it triggers a configurable action (alert staff, kick, or ban the joiners), catching a bot raid before it does damage.
+
+## Anti-alt
+
+Flags accounts younger than a configured minimum age on join, with a configurable action (kick by default).
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| automod | `/automod config [words] [links] [spam]` | Word filters, spam detection, link scanning, anti-raid. |
+
+## Immune roles
+
+Roles on the immune list skip every automod check entirely (word filter, anti-spam, anti-raid), set them on the dashboard's Moderation page. Useful for staff and trusted bots.
+
+## Silent channels
+
+A channel marked silent suppresses one specific automod action (warn, mute, or kick) while detection still runs there, useful where some normally-flagged behavior is expected.
+
+<Tip>
+  All of automod is configured on the [dashboard](https://petto.sbs/dash)'s Moderation page: toggles, thresholds, and actions for all four checks in one place.
+</Tip>

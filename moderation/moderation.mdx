@@ -27,27 +27,30 @@ Moderation gives every sanction a permanent, searchable case instead of a messag
 | ban | `/ban <user> [duration] [reason]` | Ban one or many members, permanent or temporary. |
 | kick | `/kick <user> [reason]` | Kick one or many members. |
 | mute | `/mute <user> [duration] [reason]` | Timeout a member, permanent or temporary, with auto-expiry. |
-| warn | `/warn <user> [reason]` | Log a warning, optionally escalating after N warns. |
+| warn | `/warn <user> [reason]` | Log a warning, optionally escalating after N warns, see [Warn Escalation](/moderation/warn-escalation). |
 | case | `/case <list\|view\|edit\|delete> [case_id]` | List, view, edit, or delete moderation cases. |
 | note | `/note <user> <text>` | Add a non-punitive staff note to a user. |
 | role | `/role <add\|remove> <user> <role>` | Add or remove a role from a member. |
 | channel | `/channel <lock\|unlock\|slowmode\|clear> [duration]` | Lock, unlock, slowmode, or clear a channel. |
 | voice | `/voice <mute\|deafen\|disconnect\|move> <user> [channel]` | Mute, deafen, disconnect, or move members in voice. |
 
-## Warn escalation
+## Mute role vs timeout
 
-<Info>
-  Set rules on the dashboard's Moderation page so that reaching a certain warn count automatically mutes, tempmutes, kicks, or bans, no manual follow-up needed.
-</Info>
+`/mute` uses Discord's native timeout by default, no role setup needed. If you'd rather use a dedicated mute role instead, set it on the dashboard's General page.
 
-## Automod
+## Related
 
-Word filters, anti-spam, and anti-raid are configured separately, see [Logging & Automod](/moderation/logging).
-
-## Anti-nuke
-
-A separate protection layer watches for mass-destructive actions (channel/role deletion sprees, mass bans) and can automatically strip permissions from whoever triggers it. Configure the action threshold and time window, plus a whitelist of trusted IDs, on the dashboard.
-
-## Immune roles
-
-Roles added to the automod immune list skip the word filter, anti-spam, and anti-raid checks entirely, useful for staff and trusted bots.
+<CardGroup cols={2}>
+  <Card title="Automod" icon="shield-warning" href="/moderation/automod">
+    Word filters, anti-spam, anti-raid, anti-alt.
+  </Card>
+  <Card title="Anti-Nuke" icon="shield-exclamation" href="/moderation/anti-nuke">
+    Catches mass-destructive actions automatically.
+  </Card>
+  <Card title="Warn Escalation" icon="stairs" href="/moderation/warn-escalation">
+    Automatic consequences after a warn count.
+  </Card>
+  <Card title="Logging" icon="notebook" href="/moderation/logging">
+    Route every event category to its own channel.
+  </Card>
+</CardGroup>

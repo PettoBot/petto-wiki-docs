@@ -1,0 +1,25 @@
+---
+title: "Reaction Roles"
+description: "Bind a role to an emoji on any message."
+icon: "face-smile"
+---
+
+## Overview
+
+Bind a role to an emoji on any message, members react to get the role.
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| reactionrole | `/reactionrole <add\|remove> <message_id> <emoji> <role>` | Bind an emoji on a message to a role. |
+
+## Modes
+
+<AccordionGroup>
+  <Accordion title="Toggle (default)">Reacting adds the role, reacting again removes it.</Accordion>
+  <Accordion title="Add only">Reacting adds the role, removing the reaction does nothing.</Accordion>
+  <Accordion title="Remove only">Reacting removes the role, useful paired with a role members start with.</Accordion>
+</AccordionGroup>
+
+Set the mode on the dashboard's Automation page when creating one.

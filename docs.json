@@ -21,8 +21,20 @@
         "group": "Moderation",
         "pages": [
           "moderation/moderation",
-          "moderation/logging",
-          "moderation/automation"
+          "moderation/automod",
+          "moderation/anti-nuke",
+          "moderation/warn-escalation",
+          "moderation/logging"
+        ]
+      },
+      {
+        "group": "Automation",
+        "pages": [
+          "automation/reaction-roles",
+          "automation/custom-commands",
+          "automation/autoresponder",
+          "automation/sticky-messages",
+          "automation/disable-commands"
         ]
       },
       {
@@ -30,15 +42,33 @@
         "pages": [
           "community/tickets",
           "community/leveling",
+          "community/leveling-rewards",
           "community/giveaways",
-          "community/community",
-          "community/onboarding"
+          "community/giveaway-presets",
+          "community/reminders",
+          "community/invites",
+          "community/afk",
+          "community/boosterrole",
+          "community/reports"
+        ]
+      },
+      {
+        "group": "Onboarding",
+        "pages": [
+          "onboarding/welcome",
+          "onboarding/leave",
+          "onboarding/boost",
+          "onboarding/bump-reminder",
+          "onboarding/ping-on-join",
+          "onboarding/verification"
         ]
       },
       {
         "group": "Setup",
         "pages": [
-          "setup"
+          "setup/prefix",
+          "setup/bot-appearance",
+          "setup/config-export"
         ]
       },
       {
@@ -53,6 +83,12 @@
             ]
           },
           "resources/utility-commands"
+        ]
+      },
+      {
+        "group": "Common Issues",
+        "pages": [
+          "common-issues/permissions"
         ]
       }
     ]

@@ -1,0 +1,29 @@
+---
+title: "Welcome Messages"
+description: "Automatically greet new members when they join your server."
+icon: "hand-wave"
+---
+
+## Overview
+
+Sent to a channel of your choice whenever a new member joins. Use plain text, [variables](/resources/scripting/variables), or a saved [embed](/resources/scripting/embeds).
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| welcome | `/welcome <channel> [message]` | Channel announcement on join. |
+
+## Example
+
+```
+/welcome channel:#welcome message:Welcome {user} to {server_name}!
+```
+
+<Tip>
+  Point the message at `{embed:name}` to send a saved embed instead of plain text.
+</Tip>
+
+## DM on join
+
+A separate, optional direct message to new members, independent of the channel welcome. See the dashboard's Onboarding page.

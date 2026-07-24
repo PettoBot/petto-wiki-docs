@@ -1,0 +1,36 @@
+---
+title: "Autoresponder"
+description: "Auto-reply when a message matches a trigger."
+icon: "reply"
+---
+
+## Overview
+
+Auto-reply whenever a message matches a trigger word or phrase.
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| autoresponder | `/autoresponder <add\|remove> <trigger> <response>` | Auto-reply when a message matches a trigger. |
+
+## Match modes
+
+<AccordionGroup>
+  <Accordion title="contains">The trigger can appear anywhere in the message.</Accordion>
+  <Accordion title="startsWith / endsWith">The message must start or end with the trigger.</Accordion>
+  <Accordion title="exact">The message must match the trigger exactly.</Accordion>
+  <Accordion title="regex">The trigger is treated as a regular expression.</Accordion>
+</AccordionGroup>
+
+## Scoping to specific channels
+
+By default an autoresponder fires anywhere in the server. Set one or more channels on the dashboard to restrict it, empty means everywhere.
+
+## Deleting the triggering message
+
+Optionally delete the message that triggered the response, useful for keyword-triggered cleanup.
+
+## Sending as an embed
+
+Supports a lightweight inline embed mode (color, title, footer) directly, without needing a full saved [embed](/resources/scripting/embeds) template.

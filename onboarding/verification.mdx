@@ -1,0 +1,23 @@
+---
+title: "Verification"
+description: "A real captcha gate before new members can talk."
+icon: "seal-check"
+---
+
+## Overview
+
+A join-gate backed by an actual Cloudflare Turnstile captcha, not a reaction or a fake "click here" button.
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| verify | `/verify setup [role]` | Cloudflare Turnstile join-gate setup. |
+
+## How it works
+
+1. A new member gets an unverified role on join, restricting what they can see or do.
+2. They complete the Turnstile captcha through a link Petto sends them.
+3. On success, the unverified role is swapped for a verified one.
+
+Set both roles from the dashboard's Onboarding page.

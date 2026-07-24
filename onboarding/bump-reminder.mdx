@@ -1,0 +1,27 @@
+---
+title: "Bump Reminder"
+description: "Reminds the server to bump on Disboard."
+icon: "arrow-up"
+---
+
+## Overview
+
+Reminds the server to `/bump` again once Disboard's cooldown ends, with an optional thank-you message.
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| bumpreminder | `/bumpreminder <channel>` | Reminds the server to bump on Disboard. |
+
+## Configuration
+
+| Setting | Description |
+| --- | --- |
+| Reminder message | What's posted when it's time to bump. |
+| Thank-you message | Posted right after a successful bump. |
+| Ping everyone | Whether the reminder pings `@everyone`. |
+| Auto-lock | Locks the channel between bumps. |
+| Auto-clean | Deletes non-bump chatter in the channel. |
+
+The `{nextBump}` [variable](/resources/scripting/variables) is only available here, a relative time until the next bump is allowed.
