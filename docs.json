@@ -1,0 +1,103 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Petto",
+  "colors": {
+    "primary": "#8399ff",
+    "light": "#5266d6",
+    "dark": "#8399ff"
+  },
+  "favicon": "favicon.png",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Overview",
+        "pages": [
+          "overview/introduction",
+          "overview/getting-started"
+        ]
+      },
+      {
+        "group": "Moderation",
+        "pages": [
+          "moderation/moderation",
+          "moderation/logging",
+          "moderation/automation"
+        ]
+      },
+      {
+        "group": "Community",
+        "pages": [
+          "community/tickets",
+          "community/leveling",
+          "community/giveaways",
+          "community/community",
+          "community/onboarding"
+        ]
+      },
+      {
+        "group": "Setup",
+        "pages": [
+          "setup"
+        ]
+      },
+      {
+        "group": "Resources",
+        "pages": [
+          {
+            "group": "Scripting",
+            "icon": "scroll",
+            "pages": [
+              "resources/scripting/variables",
+              "resources/scripting/embeds"
+            ]
+          },
+          "resources/utility-commands"
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/favicon.png",
+    "dark": "/favicon.png"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support Server",
+        "href": "https://petto.sbs/support"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Add Petto",
+      "href": "https://petto.sbs/invite"
+    }
+  },
+  "seo": {
+    "metatags": {
+      "theme-color": "#8399ff",
+      "og:site_name": "petto.sbs"
+    },
+    "indexing": "navigable"
+  },
+  "footer": {
+    "socials": {
+      "discord": "https://petto.sbs/support"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/invite",
+      "destination": "https://petto.sbs/invite"
+    },
+    {
+      "source": "/discord",
+      "destination": "https://petto.sbs/support"
+    }
+  ]
+}

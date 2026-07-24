@@ -1,0 +1,56 @@
+---
+title: "Embeds"
+description: "Build rich message templates once, use them everywhere."
+icon: "code"
+---
+
+## Overview
+
+Petto's embeds are saved templates: build one (in Discord or on the dashboard), give it a name, then point custom commands, autoresponders, welcome/leave/boost messages, giveaway messages, or ticket panels at it by name. Change the template once and everywhere that uses it updates.
+
+<Tip>
+  The [dashboard's Embeds page](https://petto.sbs/dash) has a full visual builder: a live Discord-accurate preview, up to 10 embeds and 5 rows of link buttons per template, markdown formatting shortcuts, and a searchable [variable](/resources/scripting/variables) reference. Everything below also works from Discord directly.
+</Tip>
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| embed create | `/embed create <name>` | Start building a new saved embed. |
+| embed edit | `/embed edit <name>` | Open the editor for an existing embed. |
+| embed delete | `/embed delete <name>` | Delete a saved embed. |
+| embed list | `/embed list` | List every saved embed in the server. |
+| embed preview | `/embed preview <name>` | Preview a saved embed with variables resolved. |
+| embed send | `/embed send <name> [channel]` | Send a saved embed to a channel right now. |
+
+## What an embed template can have
+
+- Title, description, and a color
+- A title link URL
+- A thumbnail and a full-width image
+- An author line (name, icon, link)
+- A footer (text, icon), optionally with the current time
+- Up to 25 fields, each optionally inline
+- A message content line, alongside the embed
+- Up to 5 rows of link buttons
+
+## Using a saved embed
+
+<AccordionGroup>
+  <Accordion title="In a custom command">
+    Point `/customcommand` at a saved embed instead of plain response text, pick it from the dropdown when creating the command.
+  </Accordion>
+  <Accordion title="In an autoresponder">
+    Autoresponders support a lighter inline embed mode (color, title, footer) directly, without needing a full saved template.
+  </Accordion>
+  <Accordion title="In welcome/leave/boost messages">
+    Set `channel + message` as usual, or point the message field at `{embed:name}` to use a saved embed instead of plain text.
+  </Accordion>
+  <Accordion title="In a ticket panel">
+    A panel's welcome message can use a saved embed too, configured on the dashboard's Tickets page.
+  </Accordion>
+</AccordionGroup>
+
+## Variables inside embeds
+
+Every field (title, description, fields, author, footer, button labels) supports the full [variable](/resources/scripting/variables) list. `/embed preview` and the dashboard's live preview both show the raw, unresolved tokens, variables only resolve once the embed is actually sent by the bot.

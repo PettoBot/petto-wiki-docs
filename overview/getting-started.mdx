@@ -1,0 +1,47 @@
+---
+title: "Getting Started"
+description: "Invite Petto and get the basics configured."
+icon: "rocket"
+---
+
+## Add Petto to your server
+
+<Card title="Add Petto" icon="rocket-launch" href="https://petto.sbs/invite">
+  Requires **Manage Server** permission on the server you're adding it to.
+</Card>
+
+## The dashboard
+
+Most of Petto's configuration can be done without typing a single command, at [petto.sbs/dash](https://petto.sbs/dash). Log in with Discord, pick your server, and every module (Moderation, Automation, Tickets, Leveling, Giveaways, Embeds, and more) has its own page.
+
+<Tip>
+  Everything the dashboard can do, a slash command can also do. Use whichever is faster for you.
+</Tip>
+
+## First things to configure
+
+<Steps>
+  <Step title="Set a mute role (optional)">
+    Moderation's `/mute` works with Discord's native timeout by default, no role needed. If you'd rather use a dedicated mute role instead, set it on the dashboard's General page.
+  </Step>
+  <Step title="Route your logs">
+    Pick channels for each of the 9 logging categories (sanctions, automod, members, messages, voice, roles, channels, invites, tickets) on the Logging page, or with `/logs add`.
+  </Step>
+  <Step title="Turn on leveling, if you want it">
+    Leveling is off by default. Enable it and set the XP curve from the Leveling page, or `/level config`.
+  </Step>
+  <Step title="Set up onboarding">
+    Welcome/leave/boost messages, a verification gate, and bump reminders all live under Onboarding.
+  </Step>
+</Steps>
+
+## Getting help
+
+<CardGroup cols={2}>
+  <Card title="Every command" icon="list" href="https://petto.sbs/commands">
+    The full command reference, searchable, right on the site.
+  </Card>
+  <Card title="Support server" icon="headset" href="https://petto.sbs/support">
+    Ask a question or report a bug directly.
+  </Card>
+</CardGroup>

@@ -1,0 +1,43 @@
+---
+title: "Leveling"
+description: "XP curve, multipliers, and rewards, all configurable."
+icon: "chart-line"
+---
+
+## Overview
+
+Leveling tracks XP per member with a curve and rewards you control, not a fixed formula.
+
+<Steps>
+  <Step title="Set the rate">
+    Set the XP rate, curve, and cooldown with `/level config`.
+  </Step>
+  <Step title="Add rewards">
+    Add role rewards at specific levels on the dashboard.
+  </Step>
+  <Step title="Check progress">
+    Members check their own progress with `/rank`, or the server ranking with `/top`.
+  </Step>
+</Steps>
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| level | `/level config [rate] [curve] [cooldown]` | Admin config: XP rate, curve, cooldown, rewards. |
+| rank | `/rank [user]` | Your (or someone else's) level card. |
+| top | `/top [page]` | Paginated XP leaderboard. |
+
+## The XP curve
+
+<Warning>
+  The advanced curve settings (curve A/B/C, difficulty, rounding, max level) change how much total XP each level requires. Existing members' levels are recalculated against the new curve when you change it, only touch this if you know what you're doing.
+</Warning>
+
+## Announcements
+
+Level-up messages can post in a specific channel, reply in place, or be turned off entirely. You can also limit announcements to every N levels instead of every single one, and choose plain text or an embed.
+
+## Ignored channels
+
+Channels added to the ignore list grant no XP for messages sent there, useful for bot-command or meme channels you don't want farmed for levels.

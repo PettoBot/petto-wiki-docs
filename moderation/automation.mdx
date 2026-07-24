@@ -1,0 +1,48 @@
+---
+title: "Automation"
+description: "The small things that used to need a human watching the server."
+icon: "robot"
+---
+
+## Overview
+
+Automation covers reaction roles, canned replies, and pinned messages, the small stuff that used to need someone watching the server around the clock.
+
+<Steps>
+  <Step title="Reaction roles">
+    Bind a role to an emoji on any message with `/reactionrole`. Pick toggle, add-only, or remove-only mode.
+  </Step>
+  <Step title="Custom commands & autoresponders">
+    Create a command with `/customcommand`, or a keyword trigger with `/autoresponder`, either can reply with plain text or a saved embed.
+  </Step>
+  <Step title="Turn things off">
+    Disable any built-in command server-wide or in a specific channel with `/disablecommand`.
+  </Step>
+</Steps>
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| reactionrole | `/reactionrole <add\|remove> <message_id> <emoji> <role>` | Bind an emoji on a message to a role. |
+| customcommand | `/customcommand <add\|edit\|remove> <name> <response>` | Create a command that replies with saved text or an embed. |
+| autoresponder | `/autoresponder <add\|remove> <trigger> <response>` | Auto-reply when a message matches a trigger. |
+| stickymessage | `/stickymessage <set\|remove> <channel> [text]` | Keep a message pinned to the bottom of a channel. |
+| disablecommand | `/disablecommand <command> [channel]` | Turn a command off, server-wide or per channel. |
+
+## Autoresponder match modes
+
+<AccordionGroup>
+  <Accordion title="contains">The trigger can appear anywhere in the message.</Accordion>
+  <Accordion title="startsWith / endsWith">The message must start or end with the trigger.</Accordion>
+  <Accordion title="exact">The message must match the trigger exactly.</Accordion>
+  <Accordion title="regex">The trigger is treated as a regular expression.</Accordion>
+</AccordionGroup>
+
+## Scoping an autoresponder to specific channels
+
+By default an autoresponder fires anywhere in the server. Set one or more channels on the dashboard to restrict it, empty means everywhere.
+
+## Sending as an embed
+
+Both custom commands and autoresponders can reply with a saved [embed](/resources/scripting/embeds) instead of plain text. Autoresponders also support a lighter inline mode: just a color, title, and footer, without a full saved embed.

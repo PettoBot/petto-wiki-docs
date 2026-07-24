@@ -1,0 +1,174 @@
+---
+title: "Variables"
+description: "All available variables in Petto."
+icon: "signature"
+---
+
+These variables are available in welcome, leave, boost, level-up messages, autoresponders, custom commands, giveaway messages, bump reminders, and saved embeds. You can also browse this same list as a copy-to-clipboard dropdown right in the [dashboard](https://petto.sbs/dash), next to any field that supports them.
+
+<Tabs>
+  <Tab title="User">
+    | Variable | Output |
+    | --- | --- |
+    | `{user}` | Mentions the user |
+    | `{user.mention}` | Mentions the user (same as `{user}`) |
+    | `{user.name}` | Username |
+    | `{user.id}` | User ID |
+    | `{user.avatar}` | Global avatar image URL |
+    | `{user.display_avatar}` | Server avatar, falls back to global |
+    | `{user.display_name}` | Server nickname, or username if none |
+    | `{user.joined_at}` | Date they joined this server |
+    | `{user.joined_at_timestamp}` | Unix timestamp of that join date |
+    | `{user.created_at}` | Date the account was created |
+    | `{user.created_at_timestamp}` | Unix timestamp of account creation |
+    | `{user.boost}` | "Yes" or "No", are they boosting |
+    | `{user.boost_since}` | Date they started boosting, or "Not boosting" |
+    | `{user.boost_since_timestamp}` | Unix timestamp of boost start |
+    | `{user.color}` | Highest role color as hex |
+    | `{user.top_role}` | Their highest role name |
+    | `{user.role_list}` | All their roles, mentioned |
+    | `{user.bot}` | "Yes" or "No", is it a bot account |
+    | `{user.join_position}` | Which member number they were |
+    | `{user.join_position_suffix}` | Join position with suffix (1st, 2nd...) |
+  </Tab>
+  <Tab title="User (legacy)">
+    These are the original underscore-notation variables. They still work and are identical to their dot-notation equivalents.
+
+    | Variable | Output |
+    | --- | --- |
+    | `{user_tag}` | Username (same as `{user.name}`) |
+    | `{user_name}` | Username |
+    | `{user_avatar}` | Avatar image URL |
+    | `{user_id}` | User ID |
+    | `{user_discrim}` | Discriminator, mostly empty on new usernames |
+    | `{user_nick}` | Server nickname, or username if none |
+    | `{user_joindate}` | Date they joined this server |
+    | `{user_createdate}` | Date the account was created |
+    | `{user_displaycolor}` | Highest role color as hex |
+    | `{user_boostsince}` | Date they started boosting, or "Not boosting" |
+  </Tab>
+  <Tab title="Server">
+    | Variable | Output |
+    | --- | --- |
+    | `{server_name}` | Server name |
+    | `{server_id}` | Server ID |
+    | `{server_prefix}` | The server's configured prefix |
+    | `{server_membercount}` | Total member count |
+    | `{server_membercount_ordinal}` | Member count with suffix (1st, 2nd...) |
+    | `{server_membercount_nobots}` | Member count excluding bots |
+    | `{server_membercount_nobots_ordinal}` | That count, with suffix |
+    | `{server_botcount}` | Number of bots in the server |
+    | `{server_botcount_ordinal}` | Bot count, with suffix |
+    | `{server_icon}` | Server icon URL |
+    | `{server_rolecount}` | Number of roles |
+    | `{server_channelcount}` | Number of channels |
+    | `{server_randommember}` | Mentions a random member |
+    | `{server_randommember_tag}` | Username of a random member |
+    | `{server_randommember_nobots}` | Mentions a random non-bot member |
+    | `{server_owner}` | Mentions the server owner |
+    | `{server_owner_id}` | Server owner's user ID |
+    | `{server_createdate}` | Date the server was created |
+    | `{server_boostlevel}` | Current boost level (0-3) |
+    | `{server_boostcount}` | Total boost count |
+    | `{server_nextboostlevel}` | The next boost level (1-3) |
+    | `{server_nextboostlevel_required}` | Boosts required to reach it |
+    | `{server_nextboostlevel_until_required}` | Boosts still needed to reach it |
+  </Tab>
+  <Tab title="Guild">
+    <Info>
+      Dot-notation equivalents to most of the Server variables, both work identically.
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{guild.name}` | Server name |
+    | `{guild.id}` | Server ID |
+    | `{guild.count}` | Total member count |
+    | `{guild.icon}` | Server icon URL |
+    | `{guild.banner}` | Server banner URL |
+    | `{guild.owner_id}` | Server owner's user ID |
+    | `{guild.created_at}` | Date the server was created |
+    | `{guild.created_at_timestamp}` | Unix timestamp of server creation |
+    | `{guild.emoji_count}` | Number of custom emojis |
+    | `{guild.role_count}` | Number of roles |
+    | `{guild.boost_count}` | Total boost count |
+    | `{guild.boost_tier}` | Boost tier, e.g. "Level 2" or "No Level" |
+    | `{guild.channels_count}` | Number of channels |
+    | `{guild.vanity}` | Vanity invite URL, if the server has one |
+    | `{guild.region}` | Server's preferred locale |
+    | `{guild.max_members}` | Max member capacity |
+  </Tab>
+  <Tab title="Channel">
+    | Variable | Output |
+    | --- | --- |
+    | `{channel}` | Mentions the current channel |
+    | `{channel.mention}` | Mentions the current channel |
+    | `{channel.name}` | Channel name |
+    | `{channel.id}` | Channel ID |
+    | `{channel.topic}` | Channel topic |
+    | `{channel_name}` | Channel name (legacy) |
+    | `{channel_createdate}` | Date the channel was created (legacy) |
+  </Tab>
+  <Tab title="Message">
+    <Info>
+      Only populated where a triggering message exists, e.g. autoresponders.
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{message_link}` | Jump link to the triggering message |
+    | `{message_id}` | ID of the triggering message |
+    | `{message_content}` | Text of the triggering message |
+  </Tab>
+  <Tab title="Leveling">
+    <Info>
+      These variables are only available in the level-up notification message.
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{level}` | The new level reached |
+    | `{level_xp}` | Total XP |
+    | `{level_xp_needed}` | XP needed for the next level |
+    | `{level_rank}` | Leaderboard rank |
+  </Tab>
+  <Tab title="Giveaway">
+    <Info>
+      These variables are only available in giveaway messages.
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{gw.prize}` | The prize |
+    | `{gw.winners}` | Number of winners |
+    | `{gw.host}` | Mentions whoever started it |
+    | `{gw.duration}` | End time, as a raw unix timestamp |
+    | `{gw.timestamp}` | End time, as a relative Discord timestamp |
+    | `{gw.claim_time}` | How long winners have to claim |
+    | `{gw.reaction}` | The entry emoji, if using reaction mode |
+    | `{gw.entry_mode}` | "react with" or "click on", matches entry mode |
+    | `{gw.preset}` | The bonus-entry roles list, if a preset is used |
+  </Tab>
+  <Tab title="Bump">
+    <Info>
+      Only available in the bump reminder channel's messages.
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{user.mention}` | Mentions whoever bumped |
+    | `{nextBump}` | Relative time until the next bump is allowed |
+  </Tab>
+  <Tab title="Date & Functions">
+    | Variable | Output |
+    | --- | --- |
+    | `{date}` | Today's date |
+    | `{date.now}` | Today's date, Pacific time |
+    | `{date.utc_now}` | Current date and time, UTC |
+    | `{date.utc_timestamp}` | Current unix timestamp |
+    | `{choose:a\|b\|c}` | Random choice from the list |
+    | `{range:1-100}` | Random number between 1 and 100 |
+    | `{newline}` | Line break |
+    | `{separator}` | Decorative line |
+  </Tab>
+</Tabs>

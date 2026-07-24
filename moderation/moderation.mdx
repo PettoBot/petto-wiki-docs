@@ -1,0 +1,53 @@
+---
+title: "Moderation"
+description: "Every sanction gets a numbered case, searchable later."
+icon: "shield-check"
+---
+
+## Overview
+
+Moderation gives every sanction a permanent, searchable case instead of a message that gets deleted and forgotten.
+
+<Steps>
+  <Step title="Take an action">
+    Run `/ban`, `/kick`, `/mute`, or `/warn` on a member, with an optional reason and duration.
+  </Step>
+  <Step title="It gets a case">
+    Every action gets a numbered case automatically, viewable later with `/case view`.
+  </Step>
+  <Step title="Temp actions expire on their own">
+    Temporary bans and mutes expire on their own, no follow-up command needed.
+  </Step>
+</Steps>
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| ban | `/ban <user> [duration] [reason]` | Ban one or many members, permanent or temporary. |
+| kick | `/kick <user> [reason]` | Kick one or many members. |
+| mute | `/mute <user> [duration] [reason]` | Timeout a member, permanent or temporary, with auto-expiry. |
+| warn | `/warn <user> [reason]` | Log a warning, optionally escalating after N warns. |
+| case | `/case <list\|view\|edit\|delete> [case_id]` | List, view, edit, or delete moderation cases. |
+| note | `/note <user> <text>` | Add a non-punitive staff note to a user. |
+| role | `/role <add\|remove> <user> <role>` | Add or remove a role from a member. |
+| channel | `/channel <lock\|unlock\|slowmode\|clear> [duration]` | Lock, unlock, slowmode, or clear a channel. |
+| voice | `/voice <mute\|deafen\|disconnect\|move> <user> [channel]` | Mute, deafen, disconnect, or move members in voice. |
+
+## Warn escalation
+
+<Info>
+  Set rules on the dashboard's Moderation page so that reaching a certain warn count automatically mutes, tempmutes, kicks, or bans, no manual follow-up needed.
+</Info>
+
+## Automod
+
+Word filters, anti-spam, and anti-raid are configured separately, see [Logging & Automod](/moderation/logging).
+
+## Anti-nuke
+
+A separate protection layer watches for mass-destructive actions (channel/role deletion sprees, mass bans) and can automatically strip permissions from whoever triggers it. Configure the action threshold and time window, plus a whitelist of trusted IDs, on the dashboard.
+
+## Immune roles
+
+Roles added to the automod immune list skip the word filter, anti-spam, and anti-raid checks entirely, useful for staff and trusted bots.

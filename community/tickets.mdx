@@ -1,0 +1,35 @@
+---
+title: "Tickets"
+description: "Panel-based support tickets with full transcripts."
+icon: "ticket"
+---
+
+## Overview
+
+Tickets route support requests through a panel instead of a flood of DMs.
+
+<Steps>
+  <Step title="Create a panel">
+    Set one up with `/ticket panel`, picking which categories and staff roles it uses.
+  </Step>
+  <Step title="Members open, staff claims">
+    Members open a ticket from the panel, staff can `/ticket claim` it to take ownership.
+  </Step>
+  <Step title="Close for a transcript">
+    Closing with `/ticket close` generates a shareable transcript link automatically.
+  </Step>
+</Steps>
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| ticket panel | `/ticket panel <create\|edit\|delete>` | Create and manage ticket panels. |
+| ticket category | `/ticket category <add\|edit\|remove> <name>` | Configure ticket categories and their naming pattern. |
+| ticket open / close / reopen | `/ticket <open\|close\|reopen> [reason]` | Standard ticket lifecycle. |
+| ticket claim / unclaim | `/ticket <claim\|unclaim>` | Staff claims a ticket to own it. |
+| ticket transcript | `/ticket transcript` | Get the public link to a closed ticket transcript. |
+
+## Per-category settings
+
+Each category can have its own button style, channel naming pattern (e.g. `ticket-{number}`), support roles, roles to ping on open, and a max-open-per-user limit, all configurable on the dashboard.

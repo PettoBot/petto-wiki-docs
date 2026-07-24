@@ -1,0 +1,39 @@
+---
+title: "Giveaways"
+description: "Role-weighted entries, claim windows, reusable templates."
+icon: "gift"
+---
+
+## Overview
+
+Giveaways support role-weighted entries and a claim window so a winner has to actually accept the prize.
+
+<Steps>
+  <Step title="Launch one">
+    Use `/giveaway quick` for something fast, or `/giveaway start` to customize every detail.
+  </Step>
+  <Step title="Reuse a setup">
+    Save a reusable setup with `/giveawaytemplate`, or bonus entries per role with `/giveawaypreset`.
+  </Step>
+  <Step title="Automatic reroll">
+    If a winner doesn't claim in time, Petto rerolls automatically.
+  </Step>
+</Steps>
+
+## Commands
+
+| Command | Syntax | Description |
+| --- | --- | --- |
+| giveaway quick / start | `/giveaway <quick\|start> <duration> <winners> [channel] <prize>` | Launch a giveaway, instantly or fully customized. |
+| giveaway template | `/giveaway template <template_name>` | Launch a saved giveaway configuration. |
+| giveaway reroll / end / edit | `/giveaway <reroll\|end\|edit> <message_id>` | Manage a giveaway in progress or after it ends. |
+| giveawaypreset | `/giveawaypreset <add\|remove> <role> <entries>` | Role-based bonus entries and claim time. |
+| giveawaytemplate | `/giveawaytemplate <save\|load> <name>` | Save a full giveaway setup to relaunch later. |
+
+## Bonus-entry presets
+
+A preset gives certain roles extra entries automatically. Each role's bonus can optionally stack with other matching roles a member has, both for entries and for extended claim time, configurable per role.
+
+## Custom messages
+
+Every stage has its own configurable message: winner announced, nobody entered, a winner denied their prize, the claim prompt, claim expired, and claim accepted. All support [variables](/resources/scripting/variables).
