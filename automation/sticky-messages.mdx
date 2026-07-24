@@ -13,17 +13,13 @@ Keeps a message always at the bottom of a channel, Petto reposts it every time n
 <CodeGroup>
 
 ```javascript Syntax
-/stickymessage set <channel> <content>
-/stickymessage remove <channel>
-/stickymessage list
+!stickymessage set <channel> <content>
+!stickymessage remove <channel>
+!stickymessage list
 ```
 
 ```javascript Example
-/stickymessage set channel:#rules content=Read the rules before posting!{newline}Full rules: {channel_name}
-```
-
-```javascript Prefix
-!stickymessage set #rules Read the rules before posting!
+!stickymessage set #rules "Read the rules before posting!{newline}Full rules: {channel_name}"
 ```
 
 </CodeGroup>

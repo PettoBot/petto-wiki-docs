@@ -17,22 +17,18 @@ Petto's embeds are saved templates: build one (in Discord or on the dashboard), 
 <CodeGroup>
 
 ```javascript Syntax
-/embed create <name>
-/embed preview <embed>
-/embed send <embed> [channel]
-/embed delete <embed>
-/embed list
-/embed vars [page]
+!embed create <name>
+!embed preview <embed>
+!embed send <embed> [channel]
+!embed delete <embed>
+!embed list
+!embed vars [page]
 ```
 
 ```javascript Example
-/embed create name:welcome_embed
-/embed preview embed:welcome_embed
-/embed send embed:welcome_embed channel:#announcements
-```
-
-```javascript Prefix
 !embed create welcome_embed
+!embed preview welcome_embed
+!embed send welcome_embed #announcements
 ```
 
 </CodeGroup>
@@ -44,20 +40,20 @@ Petto's embeds are saved templates: build one (in Discord or on the dashboard), 
 <CodeGroup>
 
 ```javascript Syntax
-/embed edit title <embed> <title> [url]
-/embed edit description <embed> <description>
-/embed edit color <embed> <color>
-/embed edit author <embed> <text> [icon] [url]
-/embed edit footer <embed> <text> [icon]
-/embed edit thumbnail <embed> <image>
-/embed edit image <embed> <image>
-/embed edit timestamp <embed> <timestamp>
+!embed edit title <embed> <title> [url]
+!embed edit description <embed> <description>
+!embed edit color <embed> <color>
+!embed edit author <embed> <text> [icon] [url]
+!embed edit footer <embed> <text> [icon]
+!embed edit thumbnail <embed> <image>
+!embed edit image <embed> <image>
+!embed edit timestamp <embed> <timestamp>
 ```
 
 ```javascript Example
-/embed edit title embed:welcome_embed title=Welcome! url=https://petto.sbs
-/embed edit color embed:welcome_embed color:#8399ff
-/embed edit description embed:welcome_embed description=Glad you're here, {user}!{newline}Check #rules to get started.
+!embed edit title welcome_embed "Welcome!" https://petto.sbs
+!embed edit color welcome_embed #8399ff
+!embed edit description welcome_embed "Glad you're here, {user}!{newline}Check #rules to get started."
 ```
 
 </CodeGroup>
@@ -67,36 +63,36 @@ Petto's embeds are saved templates: build one (in Discord or on the dashboard), 
 <CodeGroup>
 
 ```javascript Syntax
-/embed field add <embed> <name> <value> [inline]
-/embed field remove <embed> <position>
+!embed field add <embed> <name> <value> [inline]
+!embed field remove <embed> <position>
 ```
 
 ```javascript Example
-/embed field add embed:welcome_embed name=Rules value=See #rules inline:true
-/embed field remove embed:welcome_embed position:1
+!embed field add welcome_embed Rules "See #rules" true
+!embed field remove welcome_embed 1
 ```
 
 </CodeGroup>
 
-Up to 25 fields per embed. `position` is 1-based, from the order shown in `/embed preview`.
+Up to 25 fields per embed. `position` is 1-based, from the order shown in `!embed preview`.
 
 ## Using a saved embed
 
 <AccordionGroup>
   <Accordion title="In a custom command">
-    Point `/customcommand` at a saved embed instead of plain response text, `embed_template` takes priority over `response`.
+    Point `!customcommand` at a saved embed instead of plain response text, `embed_template` takes priority over `response`.
   </Accordion>
   <Accordion title="In an autoresponder">
     Autoresponders support a lighter inline embed mode (color, title, footer) directly, without needing a full saved template.
   </Accordion>
   <Accordion title="In welcome/leave/boost/DM-on-join messages">
-    Every `setup` subcommand (`/welcome setup`, `/leave setup`, `/boost setup`, `/dmonjoin setup`) has an `embed` option that takes priority over plain `message`.
+    Every `setup` subcommand (`!welcome setup`, `!leave setup`, `!boost setup`, `!dmonjoin setup`) has an `embed` option that takes priority over plain `message`.
   </Accordion>
   <Accordion title="In a ticket panel or category">
-    Both `/ticket panel create` and `/ticket category add` accept a saved embed for the panel message or the ticket welcome message.
+    Both `!ticket panel create` and `!ticket category add` accept a saved embed for the panel message or the ticket welcome message.
   </Accordion>
 </AccordionGroup>
 
 ## Variables inside embeds
 
-Every field (title, description, fields, author, footer, button labels) supports the full [variable](/resources/scripting/variables) list. `/embed preview` and the dashboard's live preview both show the raw, unresolved tokens, variables only resolve once the embed is actually sent by the bot.
+Every field (title, description, fields, author, footer, button labels) supports the full [variable](/resources/scripting/variables) list. `!embed preview` and the dashboard's live preview both show the raw, unresolved tokens, variables only resolve once the embed is actually sent by the bot.

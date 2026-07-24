@@ -13,18 +13,14 @@ Give a role automatically when a member reaches a specific level, and give certa
 <CodeGroup>
 
 ```javascript Syntax
-/level reward add <level> <role>
-/level reward remove <level>
-/level reward list
+!level reward add <level> <role>
+!level reward remove <level>
+!level reward list
 ```
 
 ```javascript Example
-/level reward add level:10 role:@Regular
-/level reward add level:25 role:@Veteran
-```
-
-```javascript Prefix
 !level reward add 10 @Regular
+!level reward add 25 @Veteran
 ```
 
 </CodeGroup>
@@ -34,16 +30,16 @@ Give a role automatically when a member reaches a specific level, and give certa
 <CodeGroup>
 
 ```javascript Syntax
-/level role-mode <mode>
+!level role-mode <mode>
 ```
 
 ```javascript Example
-/level role-mode mode:highest
+!level role-mode highest
 ```
 
 </CodeGroup>
 
-`mode` is `highest` (only the highest earned reward role is kept, others are stripped) or `all` (every earned reward role stacks). Set with `/level role-mode`.
+`mode` is `highest` (only the highest earned reward role is kept, others are stripped) or `all` (every earned reward role stacks). Set with `!level role-mode`.
 
 ## XP multipliers
 
@@ -52,18 +48,14 @@ Give a role or channel a faster (or slower) XP rate.
 <CodeGroup>
 
 ```javascript Syntax
-/level multiplier set <value> [role] [channel]
-/level multiplier remove [role] [channel]
-/level multiplier list
+!level multiplier set <value> [role] [channel]
+!level multiplier remove [role] [channel]
+!level multiplier list
 ```
 
 ```javascript Example
-/level multiplier set value:2 role:@Booster
-/level multiplier set value:0.5 channel:#off-topic
-```
-
-```javascript Prefix
 !level multiplier set 2 @Booster
+!level multiplier set 0.5 "" #off-topic
 ```
 
 </CodeGroup>
@@ -72,4 +64,4 @@ Give a role or channel a faster (or slower) XP rate.
 
 ## Rank cards
 
-Members check their own progress with `/rank`, or the server ranking with `/top`, no configuration needed for either.
+Members check their own progress with `!rank`, or the server ranking with `!top`, no configuration needed for either.

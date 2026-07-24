@@ -6,24 +6,20 @@ icon: "flag"
 
 ## Overview
 
-`/report` and the "Report Message" right-click context-menu action both send to the same destination channel.
+`!report` and the "Report Message" right-click context-menu action both send to the same destination channel.
 
 ## Commands
 
 <CodeGroup>
 
 ```javascript Syntax
-/report send <user> <reason>
-/report config <channel> [enabled]
+!report send <user> <reason>
+!report config <channel> [enabled]
 ```
 
 ```javascript Example
-/report send user:@Someone reason=Spamming DMs
-/report config channel:#reports enabled:true
-```
-
-```javascript Prefix
-!report send @Someone Spamming DMs
+!report send @Someone "Spamming DMs"
+!report config #reports true
 ```
 
 </CodeGroup>
@@ -32,4 +28,4 @@ icon: "flag"
 
 ## Reporting a message directly
 
-Right-click any message → **Apps** → **Report Message**, no need to type `/report` and describe which message you mean.
+Right-click any message → **Apps** → **Report Message**, no need to type `!report` and describe which message you mean.

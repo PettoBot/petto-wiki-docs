@@ -1,7 +1,7 @@
 ---
 title: "Boost Messages"
 description: "Announce new boosts and boost-level changes."
-icon: "sparkle"
+icon: "sparkles"
 ---
 
 ## Overview
@@ -16,20 +16,16 @@ Two separate, independently configurable messages:
 <CodeGroup>
 
 ```javascript Syntax
-/boost setup <channel> [embed] [message]
-/boost level-up [embed] [message]
-/boost status
-/boost test
-/boost disable
+!boost setup <channel> [embed] [message]
+!boost level-up [embed] [message]
+!boost status
+!boost test
+!boost disable
 ```
 
 ```javascript Example
-/boost setup channel:#boosts message={user} just boosted! {server_boostcount} total boosts.
-/boost level-up message=We just hit boost level {server_boostlevel}!
-```
-
-```javascript Prefix
-!boost setup #boosts {user} just boosted!
+!boost setup #boosts "" "{user} just boosted! {server_boostcount} total boosts."
+!boost level-up "" "We just hit boost level {server_boostlevel}!"
 ```
 
 </CodeGroup>

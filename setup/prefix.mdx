@@ -1,33 +1,28 @@
 ---
 title: "Prefix"
-description: "Petto works with a prefix or as slash commands, your choice."
+description: "The text you type before every command."
 icon: "terminal"
 ---
 
 ## Overview
 
-Every command works identically as `/command` or as `<prefix>command`, nothing about a command's behavior changes based on which one you use. The default prefix is `!`.
+Every command starts with the server's prefix, `!` by default. Arguments are positional and space-separated, wrap anything with spaces in "quotes".
 
 ## Commands
 
 <CodeGroup>
 
 ```javascript Syntax
-/prefix [new_prefix]
-/help [query]
+!prefix [new_prefix]
+!help [query]
 ```
 
 ```javascript Example
-/prefix
-/prefix new_prefix:?
-/help query=ticket category add
-```
-
-```javascript Prefix
 !prefix
 !prefix ?
+!help "ticket category add"
 ```
 
 </CodeGroup>
 
-Run `/prefix` with no argument to see the current one, or with `new_prefix` (up to 5 characters) to change it. `/help` browses every command, or looks one up directly, including a specific subcommand like `ticket category add`.
+Run `!prefix` with no argument to see the current one, or with `new_prefix` (up to 5 characters) to change it. `!help` browses every command, or looks one up directly, including a specific subcommand like `ticket category add`.

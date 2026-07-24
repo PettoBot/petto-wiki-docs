@@ -12,17 +12,17 @@ Petto's own role must sit **above** the role it's trying to manage in your serve
 
 Same rule as roles: Petto's role must be positioned above the target member's highest role. This also means Petto can never act on someone with a role above its own, including other admins, by design.
 
-## Slash commands aren't showing up
+## Commands aren't responding
 
 <Steps>
-  <Step title="Check the invite scope">
-    Petto needs to have been invited with the `applications.commands` scope, not just `bot`. Re-invite using the official [invite link](https://petto.sbs/invite) if unsure.
+  <Step title="Check the prefix">
+    Run `!help` (or whatever your current prefix is, see [Prefix](/setup/prefix) if you're not sure). A message starting with the wrong prefix is just ignored, no error shown.
   </Step>
-  <Step title="Wait a few minutes">
-    Global slash commands can take up to an hour to propagate after the bot first joins, usually much faster.
+  <Step title="Check Petto is actually online">
+    Look for the green status dot next to its name in the member list, or check [petto.sbs/status](https://petto.sbs/status).
   </Step>
-  <Step title="Restart Discord">
-    A stale client cache is the most common cause once the above two are ruled out.
+  <Step title="Check it can read the channel">
+    Petto needs **View Channel** and **Send Messages** in that specific channel, see below.
   </Step>
 </Steps>
 

@@ -13,19 +13,15 @@ Sent to a channel of your choice whenever a new member joins. Use plain text wit
 <CodeGroup>
 
 ```javascript Syntax
-/welcome setup <channel> [embed] [message]
-/welcome status
-/welcome test
-/welcome disable
+!welcome setup <channel> [embed] [message]
+!welcome status
+!welcome test
+!welcome disable
 ```
 
 ```javascript Example
-/welcome setup channel:#welcome message=Welcome {user} to {server_name}!
-/welcome setup channel:#welcome embed:welcome-embed
-```
-
-```javascript Prefix
-!welcome setup #welcome Welcome {user} to {server_name}!
+!welcome setup #welcome "" "Welcome {user} to {server_name}!"
+!welcome setup #welcome welcome-embed
 ```
 
 </CodeGroup>

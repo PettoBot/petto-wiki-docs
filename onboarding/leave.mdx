@@ -13,18 +13,14 @@ Sent to a channel of your choice whenever a member leaves. Same [variables](/res
 <CodeGroup>
 
 ```javascript Syntax
-/leave setup <channel> [embed] [message]
-/leave status
-/leave test
-/leave disable
+!leave setup <channel> [embed] [message]
+!leave status
+!leave test
+!leave disable
 ```
 
 ```javascript Example
-/leave setup channel:#logs message={user_tag} left the server.
-```
-
-```javascript Prefix
-!leave setup #logs {user_tag} left the server.
+!leave setup #logs "" "{user_tag} left the server."
 ```
 
 </CodeGroup>

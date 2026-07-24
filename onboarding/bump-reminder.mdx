@@ -6,31 +6,27 @@ icon: "arrow-up"
 
 ## Overview
 
-Reminds the server to `/bump` again once Disboard's 2-hour cooldown ends, with an optional thank-you message right after a successful bump.
+Reminds the server to `!bump` again once Disboard's 2-hour cooldown ends, with an optional thank-you message right after a successful bump.
 
 ## Commands
 
 <CodeGroup>
 
 ```javascript Syntax
-/bumpreminder channel <channel>
-/bumpreminder message <text>
-/bumpreminder thankyou <text>
-/bumpreminder pingable <enabled>
-/bumpreminder autolock <enabled>
-/bumpreminder autoclean <enabled>
-/bumpreminder status
+!bumpreminder channel <channel>
+!bumpreminder message <text>
+!bumpreminder thankyou <text>
+!bumpreminder pingable <enabled>
+!bumpreminder autolock <enabled>
+!bumpreminder autoclean <enabled>
+!bumpreminder status
 ```
 
 ```javascript Example
-/bumpreminder channel channel:#bump
-/bumpreminder message text=Time to /bump the server!
-/bumpreminder thankyou text={user.mention} bumped! Next bump {nextBump}.
-/bumpreminder pingable enabled:true
-```
-
-```javascript Prefix
 !bumpreminder channel #bump
+!bumpreminder message "Time to /bump the server!"
+!bumpreminder thankyou "{user.mention} bumped! Next bump {nextBump}."
+!bumpreminder pingable true
 ```
 
 </CodeGroup>

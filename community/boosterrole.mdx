@@ -13,21 +13,17 @@ Boosters can create a custom colored role for themselves, and share it with a li
 <CodeGroup>
 
 ```javascript Syntax
-/boosterrole color <hex> [hex2]
-/boosterrole rename <name>
-/boosterrole icon <input>
-/boosterrole random
-/boosterrole remove
+!boosterrole color <hex> [hex2]
+!boosterrole rename <name>
+!boosterrole icon <input>
+!boosterrole random
+!boosterrole remove
 ```
 
 ```javascript Example
-/boosterrole color hex:#ff91c2
-/boosterrole color hex:#ff91c2 hex2:#8399ff
-/boosterrole icon input=🎀
-```
-
-```javascript Prefix
 !boosterrole color #ff91c2
+!boosterrole color #ff91c2 #8399ff
+!boosterrole icon 🎀
 ```
 
 </CodeGroup>
@@ -39,13 +35,13 @@ Boosters can create a custom colored role for themselves, and share it with a li
 <CodeGroup>
 
 ```javascript Syntax
-/boosterrole share <user>
-/boosterrole unshare <user>
-/boosterrole shared
+!boosterrole share <user>
+!boosterrole unshare <user>
+!boosterrole shared
 ```
 
 ```javascript Example
-/boosterrole share user:@Friend
+!boosterrole share @Friend
 ```
 
 </CodeGroup>
@@ -57,18 +53,18 @@ Directly manage any member's booster role, bypassing their own cooldowns and lim
 <CodeGroup>
 
 ```javascript Syntax
-/boosterrole admin set <user> [hex] [hex2] [name]
-/boosterrole admin rename <user> <name>
-/boosterrole admin icon <user> <input>
-/boosterrole admin remove <user>
-/boosterrole admin list
-/boosterrole admin link <user> <role>
-/boosterrole admin cleanup
+!boosterrole admin set <user> [hex] [hex2] [name]
+!boosterrole admin rename <user> <name>
+!boosterrole admin icon <user> <input>
+!boosterrole admin remove <user>
+!boosterrole admin list
+!boosterrole admin link <user> <role>
+!boosterrole admin cleanup
 ```
 
 ```javascript Example
-/boosterrole admin set user:@Someone hex:#ff91c2 name=Someone's Role
-/boosterrole admin link user:@Someone role:@ExistingRole
+!boosterrole admin set @Someone #ff91c2 "" "Someone's Role"
+!boosterrole admin link @Someone @ExistingRole
 ```
 
 </CodeGroup>
@@ -80,16 +76,16 @@ Directly manage any member's booster role, bypassing their own cooldowns and lim
 <CodeGroup>
 
 ```javascript Syntax
-/boosterrole admin base <role>
-/boosterrole admin limit <count>
-/boosterrole admin share-limit <count>
-/boosterrole admin cooldown <type> <duration>
+!boosterrole admin base <role>
+!boosterrole admin limit <count>
+!boosterrole admin share-limit <count>
+!boosterrole admin cooldown <type> <duration>
 ```
 
 ```javascript Example
-/boosterrole admin base role:@Booster
-/boosterrole admin limit count:1
-/boosterrole admin cooldown type:color duration:24h
+!boosterrole admin base @Booster
+!boosterrole admin limit 1
+!boosterrole admin cooldown color 24h
 ```
 
 </CodeGroup>
@@ -108,9 +104,13 @@ Block specific words from booster role names.
 <CodeGroup>
 
 ```javascript Syntax
-/boosterrole admin filter add <word>
-/boosterrole admin filter remove <word>
-/boosterrole admin filter list
+!boosterrole admin filter add <word>
+!boosterrole admin filter remove <word>
+!boosterrole admin filter list
+```
+
+```javascript Example
+!boosterrole admin filter add slur
 ```
 
 </CodeGroup>

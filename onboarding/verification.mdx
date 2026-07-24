@@ -1,7 +1,7 @@
 ---
 title: "Verification"
 description: "A real captcha gate before new members can talk."
-icon: "seal-check"
+icon: "circle-check"
 ---
 
 ## Overview
@@ -13,18 +13,14 @@ A join-gate backed by an actual Cloudflare Turnstile captcha, not a reaction or 
 <CodeGroup>
 
 ```javascript Syntax
-/verify setup <enabled> [verified_role]
-/verify status
-/verify send <user>
+!verify setup <enabled> [verified_role]
+!verify status
+!verify send <user>
 ```
 
 ```javascript Example
-/verify setup enabled:true verified_role:@Verified
-/verify send user:@Someone
-```
-
-```javascript Prefix
 !verify setup true @Verified
+!verify send @Someone
 ```
 
 </CodeGroup>

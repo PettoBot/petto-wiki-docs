@@ -13,19 +13,16 @@ Set a personal reminder, Petto DMs you when it's due.
 <CodeGroup>
 
 ```javascript Syntax
-/remind add <duration> <message>
-/remind list
-/remind cancel <id>
+!remind add <duration> <message>
+!remind list
+!remind cancel <id>
 ```
 
 ```javascript Example
-/remind add duration:2h message=Check the oven
-```
-
-```javascript Prefix
-!remind add 2h Check the oven
+!remind add 2h "Check the oven"
+!remind cancel 3
 ```
 
 </CodeGroup>
 
-Purely personal, nothing to configure server-side. `id` for `cancel` comes from `/remind list`.
+Purely personal, nothing to configure server-side. `id` for `cancel` comes from `!remind list`.

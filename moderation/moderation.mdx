@@ -6,28 +6,23 @@ icon: "shield-check"
 
 ## Overview
 
-Moderation gives every sanction a permanent, searchable case instead of a message that gets deleted and forgotten. Every command below works identically with the [server prefix](/setup/prefix) or as a slash command.
+Moderation gives every sanction a permanent, searchable case instead of a message that gets deleted and forgotten. Arguments are positional and space-separated, wrap anything with spaces (like a reason) in "quotes".
 
 ## Ban
 
 <CodeGroup>
 
 ```javascript Syntax
-/ban user <user> [delete_message_days] [reason]
-/ban users <users> [reason]
-/ban temp <user> <duration> [delete_message_days] [reason]
-/ban remove <user> [reason]
-/ban remove-all [reason]
+!ban user <user> [delete_message_days] [reason]
+!ban users <users> [reason]
+!ban temp <user> <duration> [delete_message_days] [reason]
+!ban remove <user> [reason]
+!ban remove-all [reason]
 ```
 
 ```javascript Example
-/ban user user:@Spammer reason:Raid bot
-/ban temp user:@Someone duration:7d reason:Repeated warnings
-```
-
-```javascript Prefix
-!ban user @Spammer Raid bot
-!ban temp @Someone 7d Repeated warnings
+!ban user @Spammer 0 "Raid bot"
+!ban temp @Someone 7d 0 "Repeated warnings"
 ```
 
 </CodeGroup>
@@ -39,12 +34,12 @@ Moderation gives every sanction a permanent, searchable case instead of a messag
 <CodeGroup>
 
 ```javascript Syntax
-/kick user <user> [reason]
-/kick users <users> [reason]
+!kick user <user> [reason]
+!kick users <users> [reason]
 ```
 
-```javascript Prefix
-!kick user @Someone Being disruptive
+```javascript Example
+!kick user @Someone "Being disruptive"
 ```
 
 </CodeGroup>
@@ -54,15 +49,16 @@ Moderation gives every sanction a permanent, searchable case instead of a messag
 <CodeGroup>
 
 ```javascript Syntax
-/mute user <user> [reason]
-/mute users <users> [reason]
-/mute temp <user> <duration> [reason]
-/mute remove <user> [reason]
-/mute remove-users <users> [reason]
+!mute user <user> [reason]
+!mute users <users> [reason]
+!mute temp <user> <duration> [reason]
+!mute remove <user> [reason]
+!mute remove-users <users> [reason]
 ```
 
-```javascript Prefix
-!mute temp @Someone 2h Cooldown
+```javascript Example
+!mute temp @Someone 2h "Cooldown"
+!mute remove @Someone
 ```
 
 </CodeGroup>
@@ -74,12 +70,12 @@ Moderation gives every sanction a permanent, searchable case instead of a messag
 <CodeGroup>
 
 ```javascript Syntax
-/warn user <user> <reason>
-/warn users <users> <reason>
+!warn user <user> <reason>
+!warn users <users> <reason>
 ```
 
-```javascript Prefix
-!warn user @Someone Breaking rule 3
+```javascript Example
+!warn user @Someone "Breaking rule 3"
 ```
 
 </CodeGroup>
@@ -95,15 +91,15 @@ Automatic consequences once a member reaches a warning threshold, no manual foll
 <CodeGroup>
 
 ```javascript Syntax
-/warn escalation add <threshold> <action> [duration]
-/warn escalation remove <threshold>
-/warn escalation list
+!warn escalation add <threshold> <action> [duration]
+!warn escalation remove <threshold>
+!warn escalation list
 ```
 
 ```javascript Example
-/warn escalation add threshold:3 action:tempmute duration:1h
-/warn escalation add threshold:5 action:kick
-/warn escalation add threshold:7 action:ban
+!warn escalation add 3 tempmute 1h
+!warn escalation add 5 kick
+!warn escalation add 7 ban
 ```
 
 </CodeGroup>
@@ -117,19 +113,20 @@ Every sanction gets a numbered case automatically.
 <CodeGroup>
 
 ```javascript Syntax
-/case list <user>
-/case last <user>
-/case last-many <users>
-/case view <case>
-/case edit <case> [duration] [reason]
-/case edit-many <cases> [duration] [reason]
-/case delete <case>
-/case delete-all <user>
+!case list <user>
+!case last <user>
+!case last-many <users>
+!case view <case>
+!case edit <case> [duration] [reason]
+!case edit-many <cases> [duration] [reason]
+!case delete <case>
+!case delete-all <user>
 ```
 
-```javascript Prefix
+```javascript Example
 !case list @Someone
 !case view 42
+!case edit 42 "" "Updated reason"
 ```
 
 </CodeGroup>
@@ -141,9 +138,13 @@ Non-punitive staff notes, separate from case history.
 <CodeGroup>
 
 ```javascript Syntax
-/note add <user> <note>
-/note view <id>
-/note list <user>
+!note add <user> <note>
+!note view <id>
+!note list <user>
+```
+
+```javascript Example
+!note add @Someone "Asked about appealing a ban, seemed genuine"
 ```
 
 </CodeGroup>
@@ -153,12 +154,12 @@ Non-punitive staff notes, separate from case history.
 <CodeGroup>
 
 ```javascript Syntax
-/role add <user> <roles> [reason]
-/role remove <user> <roles> [reason]
+!role add <user> <roles> [reason]
+!role remove <user> <roles> [reason]
 ```
 
-```javascript Prefix
-!role add @Someone Verified, Member
+```javascript Example
+!role add @Someone "Verified, Member"
 ```
 
 </CodeGroup>
@@ -170,16 +171,16 @@ Non-punitive staff notes, separate from case history.
 <CodeGroup>
 
 ```javascript Syntax
-/channel lock [channel] [role]
-/channel unlock [channel] [role]
-/channel slowmode <seconds> [channel]
-/channel clear <amount> [user]
+!channel lock [channel] [role]
+!channel unlock [channel] [role]
+!channel slowmode <seconds> [channel]
+!channel clear <amount> [user]
 ```
 
 ```javascript Example
-/channel lock
-/channel slowmode seconds:10
-/channel clear amount:50 user:@Spammer
+!channel lock
+!channel slowmode 10
+!channel clear 50 @Spammer
 ```
 
 </CodeGroup>
@@ -191,19 +192,24 @@ Non-punitive staff notes, separate from case history.
 <CodeGroup>
 
 ```javascript Syntax
-/voice mute <user> [reason]
-/voice unmute <user> [reason]
-/voice deafen <user> [reason]
-/voice undeafen <user> [reason]
-/voice disconnect <user> [reason]
-/voice move <user> <channel> [reason]
+!voice mute <user> [reason]
+!voice unmute <user> [reason]
+!voice deafen <user> [reason]
+!voice undeafen <user> [reason]
+!voice disconnect <user> [reason]
+!voice move <user> <channel> [reason]
+```
+
+```javascript Example
+!voice mute @Someone
+!voice move @Someone #AFK
 ```
 
 </CodeGroup>
 
 ## Mute role vs timeout
 
-`/mute` uses Discord's native timeout by default, no role setup needed. If you'd rather use a dedicated mute role instead, set it on the dashboard's General page.
+`!mute` uses Discord's native timeout by default, no role setup needed. If you'd rather use a dedicated mute role instead, set it on the dashboard's General page.
 
 ## Related
 

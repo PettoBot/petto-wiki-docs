@@ -13,24 +13,20 @@ Create a command that replies with saved text or a saved [embed](/resources/scri
 <CodeGroup>
 
 ```javascript Syntax
-/customcommand add <name> <response> [embed_template]
-/customcommand edit <name> <response> [embed_template]
-/customcommand remove <name>
-/customcommand list
-/customcommand show <name>
+!customcommand add <name> <response> [embed_template]
+!customcommand edit <name> <response> [embed_template]
+!customcommand remove <name>
+!customcommand list
+!customcommand show <name>
 ```
 
 ```javascript Example
-/customcommand add name:rules response:Check out {channel_name} for the full rules, {user}!
-/customcommand add name:socials embed_template:socials-embed
-```
-
-```javascript Prefix
-!customcommand add rules Check out #rules for the full rules, {user}!
+!customcommand add rules "Check out {channel_name} for the full rules, {user}!"
+!customcommand add socials "(unused, embed takes over)" socials-embed
 ```
 
 </CodeGroup>
 
 ## Plain text or embed
 
-If `embed_template` is set, it takes priority over `response`, the saved embed is sent instead of plain text. Manage embed templates on the [dashboard](https://petto.sbs/dash)'s Embeds page or with `/embed`.
+If `embed_template` is set, it takes priority over `response`, the saved embed is sent instead of plain text. Manage embed templates on the [dashboard](https://petto.sbs/dash)'s Embeds page or with `!embed`.

@@ -13,20 +13,16 @@ A preset gives certain roles extra entries (and optionally extra claim time) aut
 <CodeGroup>
 
 ```javascript Syntax
-/giveawaypreset create <name>
-/giveawaypreset view <name>
-/giveawaypreset remove <name>
-/giveawaypreset add-role <name> <role> [entries] [claim_time] [entries_stack] [claim_time_stack]
-/giveawaypreset remove-role <name> <role>
+!giveawaypreset create <name>
+!giveawaypreset view <name>
+!giveawaypreset remove <name>
+!giveawaypreset add-role <name> <role> [entries] [claim_time] [entries_stack] [claim_time_stack]
+!giveawaypreset remove-role <name> <role>
 ```
 
 ```javascript Example
-/giveawaypreset create name:boosters
-/giveawaypreset add-role name:boosters role:@Booster entries:3 claim_time:10m entries_stack:true
-```
-
-```javascript Prefix
-!giveawaypreset add-role boosters @Booster 3
+!giveawaypreset create boosters
+!giveawaypreset add-role boosters @Booster 3 10m true
 ```
 
 </CodeGroup>
@@ -40,4 +36,4 @@ Each role's bonus can optionally stack with other matching roles a member has, c
 
 Without stacking (the default for both), only the single best-matching role's bonus applies.
 
-Use a preset when starting a giveaway with `/giveaway start preset:<name>`.
+Use a preset when starting a giveaway, it's the `preset` argument on `!giveaway start` (see [Giveaways](/community/giveaways)).

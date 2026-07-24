@@ -1,27 +1,27 @@
 ---
 title: "Automod"
 description: "Word filters, anti-spam, anti-raid, and more, configured together."
-icon: "shield-warning"
+icon: "shield-halved"
 ---
 
 ## Overview
 
-Automod is one command, `/automod`, covering several independent checks. Each has its own enable toggle, so turning one on doesn't affect the others.
+Automod is one command, `!automod`, covering several independent checks. Each has its own enable toggle, so turning one on doesn't affect the others. Arguments are positional and space-separated.
 
 ## Word filter
 
 <CodeGroup>
 
 ```javascript Syntax
-/automod word-filter toggle <enabled> [action]
-/automod word-filter add <word>
-/automod word-filter remove <word>
-/automod word-filter list
+!automod word-filter toggle <enabled> [action]
+!automod word-filter add <word>
+!automod word-filter remove <word>
+!automod word-filter list
 ```
 
 ```javascript Example
-/automod word-filter toggle enabled:true action:mute
-/automod word-filter add word:slur
+!automod word-filter toggle true mute
+!automod word-filter add slur
 ```
 
 </CodeGroup>
@@ -33,11 +33,11 @@ Automod is one command, `/automod`, covering several independent checks. Each ha
 <CodeGroup>
 
 ```javascript Syntax
-/automod spam <enabled> [max_mentions]
+!automod spam <enabled> [max_mentions]
 ```
 
 ```javascript Example
-/automod spam enabled:true max_mentions:5
+!automod spam true 5
 ```
 
 </CodeGroup>
@@ -49,13 +49,13 @@ Also catches repeat messages, excessive caps, and unauthorized Discord invite li
 <CodeGroup>
 
 ```javascript Syntax
-/automod invites allow <code>
-/automod invites disallow <code>
-/automod invites list
+!automod invites allow <code>
+!automod invites disallow <code>
+!automod invites list
 ```
 
 ```javascript Example
-/automod invites allow code:abc123
+!automod invites allow abc123
 ```
 
 </CodeGroup>
@@ -67,11 +67,11 @@ Add your own server's invite code (or any partner server's) so anti-spam doesn't
 <CodeGroup>
 
 ```javascript Syntax
-/automod raid <enabled> [threshold] [window_seconds] [action]
+!automod raid <enabled> [threshold] [window_seconds] [action]
 ```
 
 ```javascript Example
-/automod raid enabled:true threshold:6 window_seconds:10 action:kick
+!automod raid true 6 10 kick
 ```
 
 </CodeGroup>
@@ -83,11 +83,11 @@ Defaults: 6 joins within 10 seconds. `action` is `alert` (default, staff-only no
 <CodeGroup>
 
 ```javascript Syntax
-/automod anti-alt <enabled> [min_age_days] [action]
+!automod anti-alt <enabled> [min_age_days] [action]
 ```
 
 ```javascript Example
-/automod anti-alt enabled:true min_age_days:7 action:kick
+!automod anti-alt true 7 kick
 ```
 
 </CodeGroup>
@@ -99,11 +99,11 @@ Flags or kicks accounts younger than `min_age_days` (default 7) on join. `action
 <CodeGroup>
 
 ```javascript Syntax
-/automod link <url>
+!automod link <url>
 ```
 
 ```javascript Example
-/automod link url:https://suspicious-link.com
+!automod link https://suspicious-link.com
 ```
 
 </CodeGroup>
@@ -117,9 +117,13 @@ Roles that bypass the word filter and anti-spam checks entirely.
 <CodeGroup>
 
 ```javascript Syntax
-/automod immune add <role>
-/automod immune remove <role>
-/automod immune list
+!automod immune add <role>
+!automod immune remove <role>
+!automod immune list
+```
+
+```javascript Example
+!automod immune add @Staff
 ```
 
 </CodeGroup>
@@ -131,13 +135,13 @@ A channel where **any** message counts as a violation, regardless of content.
 <CodeGroup>
 
 ```javascript Syntax
-/automod silent-channel add <channel> [action]
-/automod silent-channel remove <channel>
-/automod silent-channel list
+!automod silent-channel add <channel> [action]
+!automod silent-channel remove <channel>
+!automod silent-channel list
 ```
 
 ```javascript Example
-/automod silent-channel add channel:#announcements action:mute
+!automod silent-channel add #announcements mute
 ```
 
 </CodeGroup>

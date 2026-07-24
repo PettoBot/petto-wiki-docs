@@ -13,18 +13,14 @@ Giveaways support a claim window so a winner has to actually accept the prize, n
 <CodeGroup>
 
 ```javascript Syntax
-/giveaway quick <duration> <winners> <prize> [channel]
-/giveaway start <duration> <winners> <prize> [channel] [claim_time] [preset] [embed_template] [entry_mode]
-/giveaway template <template_name> [channel]
+!giveaway quick <duration> <winners> <prize> [channel]
+!giveaway start <duration> <winners> <prize> [channel] [claim_time] [preset] [embed_template] [entry_mode]
+!giveaway template <template_name> [channel]
 ```
 
 ```javascript Example
-/giveaway quick duration:1h winners:1 prize=Nitro
-/giveaway start duration:1d winners:3 prize=Steam key claim_time:5m preset:boosters
-```
-
-```javascript Prefix
 !giveaway quick 1h 1 Nitro
+!giveaway start 1d 3 "Steam key" #giveaways 5m boosters
 ```
 
 </CodeGroup>
@@ -36,13 +32,14 @@ Giveaways support a claim window so a winner has to actually accept the prize, n
 <CodeGroup>
 
 ```javascript Syntax
-/giveaway reroll <message_id> [winners]
-/giveaway end <message_id>
-/giveaway edit <message_id> [prize] [winners] [duration]
+!giveaway reroll <message_id> [winners]
+!giveaway end <message_id>
+!giveaway edit <message_id> [prize] [winners] [duration]
 ```
 
 ```javascript Example
-/giveaway reroll message_id:123456789012345678
+!giveaway reroll 123456789012345678
+!giveaway edit 123456789012345678 "" 5
 ```
 
 </CodeGroup>
@@ -52,9 +49,14 @@ Giveaways support a claim window so a winner has to actually accept the prize, n
 <CodeGroup>
 
 ```javascript Syntax
-/giveaway embed <template>
-/giveaway reaction <emoji>
-/giveaway entry-mode <mode>
+!giveaway embed <template>
+!giveaway reaction <emoji>
+!giveaway entry-mode <mode>
+```
+
+```javascript Example
+!giveaway reaction 🎉
+!giveaway entry-mode reaction
 ```
 
 </CodeGroup>
@@ -66,12 +68,17 @@ Every stage has its own configurable message, all support `{gw.*}` and `{user}` 
 <CodeGroup>
 
 ```javascript Syntax
-/giveaway winner-message <message>
-/giveaway no-entries-message <message>
-/giveaway deny-message <message>
-/giveaway claim-time-message <message>
-/giveaway claim-time-over-message <message>
-/giveaway accept-message <message>
+!giveaway winner-message <message>
+!giveaway no-entries-message <message>
+!giveaway deny-message <message>
+!giveaway claim-time-message <message>
+!giveaway claim-time-over-message <message>
+!giveaway accept-message <message>
+```
+
+```javascript Example
+!giveaway winner-message "{user} won **{gw.prize}**!"
+!giveaway no-entries-message "Nobody entered, no winner this time."
 ```
 
 </CodeGroup>
@@ -80,15 +87,19 @@ Every stage has its own configurable message, all support `{gw.*}` and `{user}` 
 
 ## Templates
 
-Save a full giveaway configuration to relaunch later with `/giveaway template`.
+Save a full giveaway configuration to relaunch later with `!giveaway template`.
 
 <CodeGroup>
 
 ```javascript Syntax
-/giveawaytemplate create <name> <prize> <winners> <duration> [channel] [claim_time] [preset] [embed_template] [entry_mode]
-/giveawaytemplate edit <name> [prize] [winners] [duration] [channel] [claim_time] [preset] [embed_template] [entry_mode]
-/giveawaytemplate remove <name>
-/giveawaytemplate list
+!giveawaytemplate create <name> <prize> <winners> <duration> [channel] [claim_time] [preset] [embed_template] [entry_mode]
+!giveawaytemplate edit <name> [prize] [winners] [duration] [channel] [claim_time] [preset] [embed_template] [entry_mode]
+!giveawaytemplate remove <name>
+!giveawaytemplate list
+```
+
+```javascript Example
+!giveawaytemplate create monthly-nitro Nitro 1 3d #giveaways
 ```
 
 </CodeGroup>

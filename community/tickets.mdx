@@ -15,17 +15,13 @@ The message members click to open a ticket.
 <CodeGroup>
 
 ```javascript Syntax
-/ticket panel create <channel> [title] [description] [embed_template] [style]
-/ticket panel delete <panel_id>
-/ticket panel list
+!ticket panel create <channel> [title] [description] [embed_template] [style]
+!ticket panel delete <panel_id>
+!ticket panel list
 ```
 
 ```javascript Example
-/ticket panel create channel:#support title=Need help? description=Click a button below style:button
-```
-
-```javascript Prefix
-!ticket panel create #support "Need help?" "Click a button below"
+!ticket panel create #support "Need help?" "Click a button below" "" button
 ```
 
 </CodeGroup>
@@ -39,14 +35,14 @@ What a panel's button or dropdown option actually opens.
 <CodeGroup>
 
 ```javascript Syntax
-/ticket category add <panel_id> <key> <label> <parent> <support_role> [emoji] [style] [description] [welcome_embed] [max_open] [naming]
-/ticket category edit <key> [label] [parent] [emoji] [style] [description] [welcome_embed] [max_open] [naming]
-/ticket category remove <key>
-/ticket category list
+!ticket category add <panel_id> <key> <label> <parent> <support_role> [emoji] [style] [description] [welcome_embed] [max_open] [naming]
+!ticket category edit <key> [label] [parent] [emoji] [style] [description] [welcome_embed] [max_open] [naming]
+!ticket category remove <key>
+!ticket category list
 ```
 
 ```javascript Example
-/ticket category add panel_id:1 key:support label=Support parent:#Tickets support_role:@Staff naming:ticket-{number}
+!ticket category add 1 support Support #Tickets @Staff
 ```
 
 </CodeGroup>
@@ -60,12 +56,17 @@ Beyond the one required at creation, add more roles that can see a category's ti
 <CodeGroup>
 
 ```javascript Syntax
-/ticket support-role add <key> <role>
-/ticket support-role remove <key> <role>
-/ticket support-role list <key>
-/ticket ping-role add <key> <role>
-/ticket ping-role remove <key> <role>
-/ticket ping-role list <key>
+!ticket support-role add <key> <role>
+!ticket support-role remove <key> <role>
+!ticket support-role list <key>
+!ticket ping-role add <key> <role>
+!ticket ping-role remove <key> <role>
+!ticket ping-role list <key>
+```
+
+```javascript Example
+!ticket support-role add support @Senior-Staff
+!ticket ping-role add support @on-call
 ```
 
 </CodeGroup>
@@ -75,22 +76,22 @@ Beyond the one required at creation, add more roles that can see a category's ti
 <CodeGroup>
 
 ```javascript Syntax
-/ticket open <category>
-/ticket close [reason]
-/ticket reopen
-/ticket delete
-/ticket claim
-/ticket unclaim
-/ticket add <user>
-/ticket remove <user>
-/ticket rename <name>
-/ticket transcript
-/ticket info
+!ticket open <category>
+!ticket close [reason]
+!ticket reopen
+!ticket delete
+!ticket claim
+!ticket unclaim
+!ticket add <user>
+!ticket remove <user>
+!ticket rename <name>
+!ticket transcript
+!ticket info
 ```
 
-```javascript Prefix
-!ticket claim
-!ticket close Resolved
+```javascript Example
+!ticket open support
+!ticket close "Resolved, thanks!"
 ```
 
 </CodeGroup>

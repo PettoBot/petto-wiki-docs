@@ -17,36 +17,32 @@ Logging routes independent event categories to their own channels, so a mod-log 
 <CodeGroup>
 
 ```javascript Syntax
-/logs view
-/logs add <channel> <event>
-/logs remove <channel> [event]
+!logs view
+!logs add <channel> <event>
+!logs remove <channel> [event]
 ```
 
 ```javascript Example
-/logs add channel:#mod-log event:sanctions
-/logs add channel:#member-log event:members
-/logs remove channel:#mod-log
-```
-
-```javascript Prefix
 !logs add #mod-log sanctions
+!logs add #member-log members
+!logs remove #mod-log
 ```
 
 </CodeGroup>
 
-Omitting `event` on `/logs remove` clears every category routed to that channel at once.
+Omitting `event` on `!logs remove` clears every category routed to that channel at once.
 
 ## Per-channel color override
 
 <CodeGroup>
 
 ```javascript Syntax
-/logs color set <channel> <event> <color>
-/logs color list <channel>
+!logs color set <channel> <event> <color>
+!logs color list <channel>
 ```
 
 ```javascript Example
-/logs color set channel:#mod-log event:sanctions color:#ff0000
+!logs color set #mod-log sanctions #ff0000
 ```
 
 </CodeGroup>
@@ -56,12 +52,12 @@ Omitting `event` on `/logs remove` clears every category routed to that channel 
 <CodeGroup>
 
 ```javascript Syntax
-/logs ignore toggle [user] [channel]
-/logs ignore list
+!logs ignore toggle [user] [channel]
+!logs ignore list
 ```
 
 ```javascript Example
-/logs ignore toggle user:@TrustedBot
+!logs ignore toggle @TrustedBot
 ```
 
 </CodeGroup>

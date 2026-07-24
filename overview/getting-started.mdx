@@ -15,20 +15,20 @@ icon: "rocket"
 Most of Petto's configuration can be done without typing a single command, at [petto.sbs/dash](https://petto.sbs/dash). Log in with Discord, pick your server, and every module (Moderation, Automation, Tickets, Leveling, Giveaways, Embeds, and more) has its own page.
 
 <Tip>
-  Everything the dashboard can do, a slash command can also do. Use whichever is faster for you.
+  Everything the dashboard can do, the prefix commands below can also do. Use whichever is faster for you.
 </Tip>
 
 ## First things to configure
 
 <Steps>
   <Step title="Set a mute role (optional)">
-    Moderation's `/mute` works with Discord's native timeout by default, no role needed. If you'd rather use a dedicated mute role instead, set it on the dashboard's General page.
+    Moderation's `!mute` works with Discord's native timeout by default, no role needed. If you'd rather use a dedicated mute role instead, set it on the dashboard's General page.
   </Step>
   <Step title="Route your logs">
-    Pick channels for each of the 9 logging categories (sanctions, automod, members, messages, voice, roles, channels, invites, tickets) on the Logging page, or with `/logs add`.
+    Pick channels for each of the 9 logging categories (sanctions, automod, members, messages, voice, roles, channels, invites, tickets) on the Logging page, or with `!logs add`.
   </Step>
   <Step title="Turn on leveling, if you want it">
-    Leveling is off by default. Enable it and set the XP curve from the Leveling page, or `/level config`.
+    Leveling is off by default. Enable it and set the XP curve from the Leveling page, or `!level enable true`.
   </Step>
   <Step title="Set up onboarding">
     Welcome/leave/boost messages, a verification gate, and bump reminders all live under Onboarding.

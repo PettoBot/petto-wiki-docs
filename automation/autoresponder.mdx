@@ -13,20 +13,17 @@ Auto-reply whenever a message matches a trigger word or phrase.
 <CodeGroup>
 
 ```javascript Syntax
-/autoresponder add <trigger> <reply> [mode] [embed] [delete_trigger] [channels]
-/autoresponder edit <id> [mode] [embed] [delete_trigger] [reply]
-/autoresponder remove <trigger>
-/autoresponder list
-/autoresponder show <id>
-/autoresponder reset
+!autoresponder add <trigger> <reply> [mode] [embed] [delete_trigger] [channels]
+!autoresponder edit <id> [mode] [embed] [delete_trigger] [reply]
+!autoresponder remove <trigger>
+!autoresponder list
+!autoresponder show <id>
+!autoresponder reset
 ```
 
 ```javascript Example
-/autoresponder add trigger:!rules reply:Check the pins for rules! mode:exact delete_trigger:true
-```
-
-```javascript Prefix
-!autoresponder add !rules "Check the pins for rules!" exact
+!autoresponder add "how do i get help" "Check #support for that!" contains
+!autoresponder show ar_a1b2c3
 ```
 
 </CodeGroup>
@@ -47,13 +44,13 @@ Auto-reply whenever a message matches a trigger word or phrase.
 <CodeGroup>
 
 ```javascript Syntax
-/autoresponder channel add <id> <channels>
-/autoresponder channel remove <id> <channels>
-/autoresponder channel clear <id>
+!autoresponder channel add <id> <channels>
+!autoresponder channel remove <id> <channels>
+!autoresponder channel clear <id>
 ```
 
 ```javascript Example
-/autoresponder channel add id:ar_a1b2c3 channels:#general #chat
+!autoresponder channel add ar_a1b2c3 "#general #chat"
 ```
 
 </CodeGroup>

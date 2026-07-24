@@ -1,12 +1,12 @@
 ---
 title: "Anti-Nuke"
 description: "Catches mass-destructive actions before they finish."
-icon: "shield-exclamation"
+icon: "bomb"
 ---
 
 ## Overview
 
-Anti-nuke is part of `/automod`, but a separate, more serious layer than the rest: it watches for a burst of destructive actions (bans, channel or role deletions) by one account, and automatically strips their permissions once they cross the threshold.
+Anti-nuke is part of `!automod`, but a separate, more serious layer than the rest: it watches for a burst of destructive actions (bans, channel or role deletions) by one account, and automatically strips their permissions once they cross the threshold.
 
 <Warning>
   Turning this on requires **Administrator**, it can strip roles or ban accounts automatically.
@@ -17,14 +17,10 @@ Anti-nuke is part of `/automod`, but a separate, more serious layer than the res
 <CodeGroup>
 
 ```javascript Syntax
-/automod antinuke <enabled> [threshold] [window_seconds]
+!automod antinuke <enabled> [threshold] [window_seconds]
 ```
 
 ```javascript Example
-/automod antinuke enabled:true threshold:5 window_seconds:10
-```
-
-```javascript Prefix
 !automod antinuke true 5 10
 ```
 
@@ -39,9 +35,13 @@ Users or bots exempt from anti-nuke tracking entirely.
 <CodeGroup>
 
 ```javascript Syntax
-/automod antinuke-whitelist add <user>
-/automod antinuke-whitelist remove <user>
-/automod antinuke-whitelist list
+!automod antinuke-whitelist add <user>
+!automod antinuke-whitelist remove <user>
+!automod antinuke-whitelist list
+```
+
+```javascript Example
+!automod antinuke-whitelist add @CoOwner
 ```
 
 </CodeGroup>

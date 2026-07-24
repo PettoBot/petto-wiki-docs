@@ -13,19 +13,15 @@ Info commands are public lookups, nobody needs staff permissions to run them.
 <CodeGroup>
 
 ```javascript Syntax
-/avatar [user]
-/banner [user]
-/userinfo [user]
-/permissions [user] [channel]
+!avatar [user]
+!banner [user]
+!userinfo [user]
+!permissions [user] [channel]
 ```
 
 ```javascript Example
-/avatar user:@Someone
-/permissions channel:#staff-only
-```
-
-```javascript Prefix
 !avatar @Someone
+!permissions "" #staff-only
 ```
 
 </CodeGroup>
@@ -37,17 +33,17 @@ Everything defaults to yourself if `user` is omitted.
 <CodeGroup>
 
 ```javascript Syntax
-/serverinfo
-/roles
-/roleinfo <role>
-/channelinfo [channel]
-/emojiinfo <emoji>
-/firstmessage [channel]
+!serverinfo
+!roles
+!roleinfo <role>
+!channelinfo [channel]
+!emojiinfo <emoji>
+!firstmessage [channel]
 ```
 
 ```javascript Example
-/roleinfo role:@Moderator
-/emojiinfo emoji:🎉
+!roleinfo @Moderator
+!emojiinfo 🎉
 ```
 
 </CodeGroup>
@@ -57,9 +53,9 @@ Everything defaults to yourself if `user` is omitted.
 <CodeGroup>
 
 ```javascript Syntax
-/botinfo
-/ping
-/uptime
+!botinfo
+!ping
+!uptime
 ```
 
 </CodeGroup>
@@ -71,15 +67,15 @@ Also live and public at [petto.sbs/status](https://petto.sbs/status), reported d
 <CodeGroup>
 
 ```javascript Syntax
-/snowflake <id>
-/color <hex>
-/inviteinfo <code>
+!snowflake <id>
+!color <hex>
+!inviteinfo <code>
 ```
 
 ```javascript Example
-/snowflake id:1234567890123456789
-/color hex:#8399ff
-/inviteinfo code:discord.gg/abc123
+!snowflake 1234567890123456789
+!color #8399ff
+!inviteinfo discord.gg/abc123
 ```
 
 </CodeGroup>
@@ -91,8 +87,13 @@ Also live and public at [petto.sbs/status](https://petto.sbs/status), reported d
 <CodeGroup>
 
 ```javascript Syntax
-/rank [user]
-/top [page]
+!rank [user]
+!top [page]
+```
+
+```javascript Example
+!rank @Someone
+!top 2
 ```
 
 </CodeGroup>
@@ -104,11 +105,11 @@ See [Leveling](/community/leveling) for configuration.
 <CodeGroup>
 
 ```javascript Syntax
-/steal [emoji]
+!steal [emoji]
 ```
 
 ```javascript Example
-/steal emoji:🎉
+!steal 🎉
 ```
 
 </CodeGroup>
@@ -120,12 +121,12 @@ Add a custom emoji from another server to this one. Reply to a message containin
 <CodeGroup>
 
 ```javascript Syntax
-/help [query]
+!help [query]
 ```
 
 ```javascript Example
-/help
-/help query=ticket category add
+!help
+!help "ticket category add"
 ```
 
 </CodeGroup>
