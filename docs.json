@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Petto",
   "colors": {
-    "primary": "#8399ff",
-    "light": "#5266d6",
-    "dark": "#8399ff"
+    "primary": "#fde52f",
+    "light": "#9c7b00",
+    "dark": "#fde52f"
   },
   "background": {
     "color": {
@@ -146,7 +146,7 @@
   },
   "seo": {
     "metatags": {
-      "theme-color": "#8399ff",
+      "theme-color": "#fde52f",
       "og:site_name": "petto.sbs",
       "og:title": "Petto Documentation",
       "og:description": "Every command, module, and variable Petto supports, with real examples.",
