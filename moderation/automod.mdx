@@ -1,43 +1,151 @@
 ---
 title: "Automod"
-description: "Word filters, anti-spam, and anti-raid, configured together."
+description: "Word filters, anti-spam, anti-raid, and more, configured together."
 icon: "shield-warning"
 ---
 
 ## Overview
 
-Automod runs three independent checks: a word filter, anti-spam, and anti-raid, each with its own toggle and action.
+Automod is one command, `/automod`, covering several independent checks. Each has its own enable toggle, so turning one on doesn't affect the others.
 
 ## Word filter
 
-A list of banned words triggers a configurable action (warn, mute, kick, or ban) when a member's message matches.
+<CodeGroup>
+
+```javascript Syntax
+/automod word-filter toggle <enabled> [action]
+/automod word-filter add <word>
+/automod word-filter remove <word>
+/automod word-filter list
+```
+
+```javascript Example
+/automod word-filter toggle enabled:true action:mute
+/automod word-filter add word:slur
+```
+
+</CodeGroup>
+
+`action` is `warn` (default), `mute` (10 minutes), `kick`, or `delete` (removes the message, no sanction).
 
 ## Anti-spam
 
-Flags a member for sending too many mentions in a message (configurable threshold), independent of the word filter.
+<CodeGroup>
+
+```javascript Syntax
+/automod spam <enabled> [max_mentions]
+```
+
+```javascript Example
+/automod spam enabled:true max_mentions:5
+```
+
+</CodeGroup>
+
+Also catches repeat messages, excessive caps, and unauthorized Discord invite links, alongside mass mentions.
+
+### Allowed invites
+
+<CodeGroup>
+
+```javascript Syntax
+/automod invites allow <code>
+/automod invites disallow <code>
+/automod invites list
+```
+
+```javascript Example
+/automod invites allow code:abc123
+```
+
+</CodeGroup>
+
+Add your own server's invite code (or any partner server's) so anti-spam doesn't flag it.
 
 ## Anti-raid
 
-Watches join velocity: if more than a configured number of members join within a time window, it triggers a configurable action (alert staff, kick, or ban the joiners), catching a bot raid before it does damage.
+<CodeGroup>
+
+```javascript Syntax
+/automod raid <enabled> [threshold] [window_seconds] [action]
+```
+
+```javascript Example
+/automod raid enabled:true threshold:6 window_seconds:10 action:kick
+```
+
+</CodeGroup>
+
+Defaults: 6 joins within 10 seconds. `action` is `alert` (default, staff-only notice) or `kick`.
 
 ## Anti-alt
 
-Flags accounts younger than a configured minimum age on join, with a configurable action (kick by default).
+<CodeGroup>
 
-## Commands
+```javascript Syntax
+/automod anti-alt <enabled> [min_age_days] [action]
+```
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| automod | `/automod config [words] [links] [spam]` | Word filters, spam detection, link scanning, anti-raid. |
+```javascript Example
+/automod anti-alt enabled:true min_age_days:7 action:kick
+```
+
+</CodeGroup>
+
+Flags or kicks accounts younger than `min_age_days` (default 7) on join. `action` is `kick` (default) or `flag` (logs only, no action taken).
+
+## Link scanning
+
+<CodeGroup>
+
+```javascript Syntax
+/automod link <url>
+```
+
+```javascript Example
+/automod link url:https://suspicious-link.com
+```
+
+</CodeGroup>
+
+A one-off manual check, not a passive filter, runs a URL through Google Safe Browsing for phishing/malware.
 
 ## Immune roles
 
-Roles on the immune list skip every automod check entirely (word filter, anti-spam, anti-raid), set them on the dashboard's Moderation page. Useful for staff and trusted bots.
+Roles that bypass the word filter and anti-spam checks entirely.
+
+<CodeGroup>
+
+```javascript Syntax
+/automod immune add <role>
+/automod immune remove <role>
+/automod immune list
+```
+
+</CodeGroup>
 
 ## Silent channels
 
-A channel marked silent suppresses one specific automod action (warn, mute, or kick) while detection still runs there, useful where some normally-flagged behavior is expected.
+A channel where **any** message counts as a violation, regardless of content.
 
-<Tip>
-  All of automod is configured on the [dashboard](https://petto.sbs/dash)'s Moderation page: toggles, thresholds, and actions for all four checks in one place.
-</Tip>
+<CodeGroup>
+
+```javascript Syntax
+/automod silent-channel add <channel> [action]
+/automod silent-channel remove <channel>
+/automod silent-channel list
+```
+
+```javascript Example
+/automod silent-channel add channel:#announcements action:mute
+```
+
+</CodeGroup>
+
+`action` is `warn` (default), `mute` (30 minutes), or `kick`.
+
+## Related
+
+<Card title="Anti-Nuke" icon="shield-exclamation" href="/moderation/anti-nuke">
+  A separate, more serious layer for mass-destructive actions.
+</Card>

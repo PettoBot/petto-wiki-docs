@@ -10,8 +10,21 @@ Mark yourself away with an optional reason. Anyone who mentions you while you're
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| afk | `/afk [reason]` | Mark yourself away, auto-clears on your next message. |
+<CodeGroup>
 
-Purely personal, nothing to configure server-side.
+```javascript Syntax
+/afk set [reason]
+/afk mentions
+```
+
+```javascript Example
+/afk set reason=Sleeping
+```
+
+```javascript Prefix
+!afk set Sleeping
+```
+
+</CodeGroup>
+
+`mentions` shows who mentioned you in the last 3 days while you were away, even after you're no longer AFK. Purely personal, nothing to configure server-side.

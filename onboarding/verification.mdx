@@ -10,14 +10,33 @@ A join-gate backed by an actual Cloudflare Turnstile captcha, not a reaction or 
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| verify | `/verify setup [role]` | Cloudflare Turnstile join-gate setup. |
+<CodeGroup>
+
+```javascript Syntax
+/verify setup <enabled> [verified_role]
+/verify status
+/verify send <user>
+```
+
+```javascript Example
+/verify setup enabled:true verified_role:@Verified
+/verify send user:@Someone
+```
+
+```javascript Prefix
+!verify setup true @Verified
+```
+
+</CodeGroup>
+
+`verified_role` is optional, granted once someone passes the captcha. `send` manually (re)sends a verification link to a member, useful if their original link expired.
 
 ## How it works
 
-1. A new member gets an unverified role on join, restricting what they can see or do.
+1. A new member gets restricted access on join.
 2. They complete the Turnstile captcha through a link Petto sends them.
-3. On success, the unverified role is swapped for a verified one.
+3. On success, they get the configured `verified_role` (if set).
 
-Set both roles from the dashboard's Onboarding page.
+<Info>
+  The role a member holds while unverified is set from the dashboard's Onboarding page, alongside the verified role.
+</Info>

@@ -6,26 +6,111 @@ icon: "sparkles"
 
 ## Overview
 
-Boosters can create a custom colored role for themselves, and share it with a limited number of other members.
+Boosters can create a custom colored role for themselves, and share it with a limited number of other members. Everything in this section requires the member to actually be boosting the server.
 
-## Commands
+## Creating and styling your role
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| boosterrole | `/boosterrole <color> [name]` | A custom colored role for server boosters. |
+<CodeGroup>
 
-## Configuration
+```javascript Syntax
+/boosterrole color <hex> [hex2]
+/boosterrole rename <name>
+/boosterrole icon <input>
+/boosterrole random
+/boosterrole remove
+```
+
+```javascript Example
+/boosterrole color hex:#ff91c2
+/boosterrole color hex:#ff91c2 hex2:#8399ff
+/boosterrole icon input=🎀
+```
+
+```javascript Prefix
+!boosterrole color #ff91c2
+```
+
+</CodeGroup>
+
+`hex2` creates a gradient role. `icon` accepts an image URL, a custom emoji, or a sticker ID.
+
+## Sharing
+
+<CodeGroup>
+
+```javascript Syntax
+/boosterrole share <user>
+/boosterrole unshare <user>
+/boosterrole shared
+```
+
+```javascript Example
+/boosterrole share user:@Friend
+```
+
+</CodeGroup>
+
+## Staff administration
+
+Directly manage any member's booster role, bypassing their own cooldowns and limits.
+
+<CodeGroup>
+
+```javascript Syntax
+/boosterrole admin set <user> [hex] [hex2] [name]
+/boosterrole admin rename <user> <name>
+/boosterrole admin icon <user> <input>
+/boosterrole admin remove <user>
+/boosterrole admin list
+/boosterrole admin link <user> <role>
+/boosterrole admin cleanup
+```
+
+```javascript Example
+/boosterrole admin set user:@Someone hex:#ff91c2 name=Someone's Role
+/boosterrole admin link user:@Someone role:@ExistingRole
+```
+
+</CodeGroup>
+
+`link` associates an already-existing role with a member as their booster role, useful if one was created manually. `cleanup` deletes booster roles belonging to members who are no longer boosting.
+
+## Server-wide settings
+
+<CodeGroup>
+
+```javascript Syntax
+/boosterrole admin base <role>
+/boosterrole admin limit <count>
+/boosterrole admin share-limit <count>
+/boosterrole admin cooldown <type> <duration>
+```
+
+```javascript Example
+/boosterrole admin base role:@Booster
+/boosterrole admin limit count:1
+/boosterrole admin cooldown type:color duration:24h
+```
+
+</CodeGroup>
 
 | Setting | Description |
 | --- | --- |
-| Anchor role | Where booster roles get positioned in the role list. |
-| Roles per booster | Max custom roles one booster can hold. |
-| Share limit | Max members a booster can share their role with. |
-| Color cooldown | How often the color can be changed. |
-| Icon cooldown | How often the icon can be changed. |
-| Rename cooldown | How often the name can be changed. |
-| Filtered words | Words blocked from booster role names. |
+| `base` | New booster roles are placed just above this role. |
+| `limit` | Max booster roles per member (0 = unlimited). |
+| `share-limit` | Max members one booster role can be shared with (0 = unlimited). |
+| `cooldown` | How often `color`, `icon`, or `rename` can each be used, `type` picks which one. Use `0` to disable a cooldown. |
 
-<Info>
-  Admins can also directly create, edit, or remove any member's booster role from the dashboard, not just the booster themselves.
-</Info>
+## Filtered words
+
+Block specific words from booster role names.
+
+<CodeGroup>
+
+```javascript Syntax
+/boosterrole admin filter add <word>
+/boosterrole admin filter remove <word>
+/boosterrole admin filter list
+```
+
+</CodeGroup>

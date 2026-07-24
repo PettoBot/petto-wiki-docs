@@ -9,12 +9,29 @@ icon: "sparkle"
 Two separate, independently configurable messages:
 
 - **Boost message**: fires every individual boost (a member can apply more than one).
-- **Boost tier reached message**: only fires when the server's boost level itself goes up.
+- **Level-up message**: only fires when the server's boost level itself goes up.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| boost | `/boost <channel> [message]` | Announce new boosts and boost-level changes. |
+<CodeGroup>
 
-Both messages support every [variable](/resources/scripting/variables) and can be a saved [embed](/resources/scripting/embeds).
+```javascript Syntax
+/boost setup <channel> [embed] [message]
+/boost level-up [embed] [message]
+/boost status
+/boost test
+/boost disable
+```
+
+```javascript Example
+/boost setup channel:#boosts message={user} just boosted! {server_boostcount} total boosts.
+/boost level-up message=We just hit boost level {server_boostlevel}!
+```
+
+```javascript Prefix
+!boost setup #boosts {user} just boosted!
+```
+
+</CodeGroup>
+
+Both support every [variable](/resources/scripting/variables), and can each be a saved [embed](/resources/scripting/embeds).

@@ -6,33 +6,200 @@ icon: "shield-check"
 
 ## Overview
 
-Moderation gives every sanction a permanent, searchable case instead of a message that gets deleted and forgotten.
+Moderation gives every sanction a permanent, searchable case instead of a message that gets deleted and forgotten. Every command below works identically with the [server prefix](/setup/prefix) or as a slash command.
 
-<Steps>
-  <Step title="Take an action">
-    Run `/ban`, `/kick`, `/mute`, or `/warn` on a member, with an optional reason and duration.
-  </Step>
-  <Step title="It gets a case">
-    Every action gets a numbered case automatically, viewable later with `/case view`.
-  </Step>
-  <Step title="Temp actions expire on their own">
-    Temporary bans and mutes expire on their own, no follow-up command needed.
-  </Step>
-</Steps>
+## Ban
 
-## Commands
+<CodeGroup>
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| ban | `/ban <user> [duration] [reason]` | Ban one or many members, permanent or temporary. |
-| kick | `/kick <user> [reason]` | Kick one or many members. |
-| mute | `/mute <user> [duration] [reason]` | Timeout a member, permanent or temporary, with auto-expiry. |
-| warn | `/warn <user> [reason]` | Log a warning, optionally escalating after N warns, see [Warn Escalation](/moderation/warn-escalation). |
-| case | `/case <list\|view\|edit\|delete> [case_id]` | List, view, edit, or delete moderation cases. |
-| note | `/note <user> <text>` | Add a non-punitive staff note to a user. |
-| role | `/role <add\|remove> <user> <role>` | Add or remove a role from a member. |
-| channel | `/channel <lock\|unlock\|slowmode\|clear> [duration]` | Lock, unlock, slowmode, or clear a channel. |
-| voice | `/voice <mute\|deafen\|disconnect\|move> <user> [channel]` | Mute, deafen, disconnect, or move members in voice. |
+```javascript Syntax
+/ban user <user> [delete_message_days] [reason]
+/ban users <users> [reason]
+/ban temp <user> <duration> [delete_message_days] [reason]
+/ban remove <user> [reason]
+/ban remove-all [reason]
+```
+
+```javascript Example
+/ban user user:@Spammer reason:Raid bot
+/ban temp user:@Someone duration:7d reason:Repeated warnings
+```
+
+```javascript Prefix
+!ban user @Spammer Raid bot
+!ban temp @Someone 7d Repeated warnings
+```
+
+</CodeGroup>
+
+`users` bans several members at once with the same reason (space or comma separated mentions/IDs). `remove-all` unbans every currently banned user and requires **Administrator**, it asks for confirmation first.
+
+## Kick
+
+<CodeGroup>
+
+```javascript Syntax
+/kick user <user> [reason]
+/kick users <users> [reason]
+```
+
+```javascript Prefix
+!kick user @Someone Being disruptive
+```
+
+</CodeGroup>
+
+## Mute
+
+<CodeGroup>
+
+```javascript Syntax
+/mute user <user> [reason]
+/mute users <users> [reason]
+/mute temp <user> <duration> [reason]
+/mute remove <user> [reason]
+/mute remove-users <users> [reason]
+```
+
+```javascript Prefix
+!mute temp @Someone 2h Cooldown
+```
+
+</CodeGroup>
+
+`user`/`users` mute indefinitely until manually removed. `temp` uses Discord's native timeout (max 28 days).
+
+## Warn
+
+<CodeGroup>
+
+```javascript Syntax
+/warn user <user> <reason>
+/warn users <users> <reason>
+```
+
+```javascript Prefix
+!warn user @Someone Breaking rule 3
+```
+
+</CodeGroup>
+
+<Tip>
+  Reason is **required** for warnings, unlike bans, kicks, and mutes where it's optional.
+</Tip>
+
+### Warn escalation
+
+Automatic consequences once a member reaches a warning threshold, no manual follow-up needed.
+
+<CodeGroup>
+
+```javascript Syntax
+/warn escalation add <threshold> <action> [duration]
+/warn escalation remove <threshold>
+/warn escalation list
+```
+
+```javascript Example
+/warn escalation add threshold:3 action:tempmute duration:1h
+/warn escalation add threshold:5 action:kick
+/warn escalation add threshold:7 action:ban
+```
+
+</CodeGroup>
+
+`action` is one of `mute` (indefinite), `tempmute`, `kick`, or `ban`. `duration` is required when `action` is `tempmute`.
+
+## Case
+
+Every sanction gets a numbered case automatically.
+
+<CodeGroup>
+
+```javascript Syntax
+/case list <user>
+/case last <user>
+/case last-many <users>
+/case view <case>
+/case edit <case> [duration] [reason]
+/case edit-many <cases> [duration] [reason]
+/case delete <case>
+/case delete-all <user>
+```
+
+```javascript Prefix
+!case list @Someone
+!case view 42
+```
+
+</CodeGroup>
+
+## Note
+
+Non-punitive staff notes, separate from case history.
+
+<CodeGroup>
+
+```javascript Syntax
+/note add <user> <note>
+/note view <id>
+/note list <user>
+```
+
+</CodeGroup>
+
+## Role
+
+<CodeGroup>
+
+```javascript Syntax
+/role add <user> <roles> [reason]
+/role remove <user> <roles> [reason]
+```
+
+```javascript Prefix
+!role add @Someone Verified, Member
+```
+
+</CodeGroup>
+
+`roles` accepts several mentions/IDs/names at once, space or comma separated.
+
+## Channel
+
+<CodeGroup>
+
+```javascript Syntax
+/channel lock [channel] [role]
+/channel unlock [channel] [role]
+/channel slowmode <seconds> [channel]
+/channel clear <amount> [user]
+```
+
+```javascript Example
+/channel lock
+/channel slowmode seconds:10
+/channel clear amount:50 user:@Spammer
+```
+
+</CodeGroup>
+
+`channel` and `role` default to the current channel and `@everyone` when omitted. `clear` deletes 1-100 recent messages, optionally filtered to one user.
+
+## Voice
+
+<CodeGroup>
+
+```javascript Syntax
+/voice mute <user> [reason]
+/voice unmute <user> [reason]
+/voice deafen <user> [reason]
+/voice undeafen <user> [reason]
+/voice disconnect <user> [reason]
+/voice move <user> <channel> [reason]
+```
+
+</CodeGroup>
 
 ## Mute role vs timeout
 
@@ -46,9 +213,6 @@ Moderation gives every sanction a permanent, searchable case instead of a messag
   </Card>
   <Card title="Anti-Nuke" icon="shield-exclamation" href="/moderation/anti-nuke">
     Catches mass-destructive actions automatically.
-  </Card>
-  <Card title="Warn Escalation" icon="stairs" href="/moderation/warn-escalation">
-    Automatic consequences after a warn count.
   </Card>
   <Card title="Logging" icon="notebook" href="/moderation/logging">
     Route every event category to its own channel.

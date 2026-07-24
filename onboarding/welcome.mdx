@@ -6,24 +6,28 @@ icon: "hand-wave"
 
 ## Overview
 
-Sent to a channel of your choice whenever a new member joins. Use plain text, [variables](/resources/scripting/variables), or a saved [embed](/resources/scripting/embeds).
+Sent to a channel of your choice whenever a new member joins. Use plain text with [variables](/resources/scripting/variables), or a saved [embed](/resources/scripting/embeds).
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| welcome | `/welcome <channel> [message]` | Channel announcement on join. |
+<CodeGroup>
 
-## Example
-
+```javascript Syntax
+/welcome setup <channel> [embed] [message]
+/welcome status
+/welcome test
+/welcome disable
 ```
-/welcome channel:#welcome message:Welcome {user} to {server_name}!
+
+```javascript Example
+/welcome setup channel:#welcome message=Welcome {user} to {server_name}!
+/welcome setup channel:#welcome embed:welcome-embed
 ```
 
-<Tip>
-  Point the message at `{embed:name}` to send a saved embed instead of plain text.
-</Tip>
+```javascript Prefix
+!welcome setup #welcome Welcome {user} to {server_name}!
+```
 
-## DM on join
+</CodeGroup>
 
-A separate, optional direct message to new members, independent of the channel welcome. See the dashboard's Onboarding page.
+`embed` takes priority over `message` if both are set. `test` sends a preview using your own account, without anyone actually joining.

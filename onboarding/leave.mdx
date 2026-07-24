@@ -10,12 +10,21 @@ Sent to a channel of your choice whenever a member leaves. Same [variables](/res
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| leave | `/leave <channel> [message]` | Channel announcement on leave. |
+<CodeGroup>
 
-## Example
+```javascript Syntax
+/leave setup <channel> [embed] [message]
+/leave status
+/leave test
+/leave disable
+```
 
+```javascript Example
+/leave setup channel:#logs message={user_tag} left the server.
 ```
-/leave channel:#logs message:{user_name} left the server.
+
+```javascript Prefix
+!leave setup #logs {user_tag} left the server.
 ```
+
+</CodeGroup>

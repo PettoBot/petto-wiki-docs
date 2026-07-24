@@ -8,34 +8,90 @@ icon: "gift"
 
 Giveaways support a claim window so a winner has to actually accept the prize, not just be picked and forgotten.
 
-<Steps>
-  <Step title="Launch one">
-    Use `/giveaway quick` for something fast, or `/giveaway start` to customize every detail.
-  </Step>
-  <Step title="Reuse a setup">
-    Save a reusable setup with `/giveawaytemplate`.
-  </Step>
-  <Step title="Automatic reroll">
-    If a winner doesn't claim in time, Petto rerolls automatically.
-  </Step>
-</Steps>
+## Starting one
 
-## Commands
+<CodeGroup>
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| giveaway quick / start | `/giveaway <quick\|start> <duration> <winners> [channel] <prize>` | Launch a giveaway, instantly or fully customized. |
-| giveaway template | `/giveaway template <template_name>` | Launch a saved giveaway configuration. |
-| giveaway reroll / end / edit | `/giveaway <reroll\|end\|edit> <message_id>` | Manage a giveaway in progress or after it ends. |
-| giveawaytemplate | `/giveawaytemplate <save\|load> <name>` | Save a full giveaway setup to relaunch later. |
+```javascript Syntax
+/giveaway quick <duration> <winners> <prize> [channel]
+/giveaway start <duration> <winners> <prize> [channel] [claim_time] [preset] [embed_template] [entry_mode]
+/giveaway template <template_name> [channel]
+```
 
-## Entry method
+```javascript Example
+/giveaway quick duration:1h winners:1 prize=Nitro
+/giveaway start duration:1d winners:3 prize=Steam key claim_time:5m preset:boosters
+```
 
-Button or reaction, your choice per giveaway.
+```javascript Prefix
+!giveaway quick 1h 1 Nitro
+```
 
-## Custom messages
+</CodeGroup>
 
-Every stage has its own configurable message: winner announced, nobody entered, a winner denied their prize, the claim prompt, claim expired, and claim accepted. All support [variables](/resources/scripting/variables), and can each be a saved [embed](/resources/scripting/embeds) instead of plain text.
+`quick` uses server defaults for everything else. `entry_mode` is `button` (default) or `reaction`.
+
+## Managing one in progress
+
+<CodeGroup>
+
+```javascript Syntax
+/giveaway reroll <message_id> [winners]
+/giveaway end <message_id>
+/giveaway edit <message_id> [prize] [winners] [duration]
+```
+
+```javascript Example
+/giveaway reroll message_id:123456789012345678
+```
+
+</CodeGroup>
+
+## Server defaults
+
+<CodeGroup>
+
+```javascript Syntax
+/giveaway embed <template>
+/giveaway reaction <emoji>
+/giveaway entry-mode <mode>
+```
+
+</CodeGroup>
+
+### Custom messages
+
+Every stage has its own configurable message, all support `{gw.*}` and `{user}` [variables](/resources/scripting/variables):
+
+<CodeGroup>
+
+```javascript Syntax
+/giveaway winner-message <message>
+/giveaway no-entries-message <message>
+/giveaway deny-message <message>
+/giveaway claim-time-message <message>
+/giveaway claim-time-over-message <message>
+/giveaway accept-message <message>
+```
+
+</CodeGroup>
+
+`deny-message` fires when a winner denies their prize, `no-entries-message` fires when the giveaway ends with nobody entered, distinct from each other.
+
+## Templates
+
+Save a full giveaway configuration to relaunch later with `/giveaway template`.
+
+<CodeGroup>
+
+```javascript Syntax
+/giveawaytemplate create <name> <prize> <winners> <duration> [channel] [claim_time] [preset] [embed_template] [entry_mode]
+/giveawaytemplate edit <name> [prize] [winners] [duration] [channel] [claim_time] [preset] [embed_template] [entry_mode]
+/giveawaytemplate remove <name>
+/giveawaytemplate list
+```
+
+</CodeGroup>
 
 ## Related
 

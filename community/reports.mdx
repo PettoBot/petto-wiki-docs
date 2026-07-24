@@ -10,8 +10,26 @@ icon: "flag"
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| report | `/report <user\|message> [reason]` | Report a message or user to staff. |
+<CodeGroup>
 
-Set the destination channel, and turn reports on or off, from the dashboard's Community page.
+```javascript Syntax
+/report send <user> <reason>
+/report config <channel> [enabled]
+```
+
+```javascript Example
+/report send user:@Someone reason=Spamming DMs
+/report config channel:#reports enabled:true
+```
+
+```javascript Prefix
+!report send @Someone Spamming DMs
+```
+
+</CodeGroup>
+
+`config` is staff-only, sets the destination channel and turns the whole system on or off.
+
+## Reporting a message directly
+
+Right-click any message → **Apps** → **Report Message**, no need to type `/report` and describe which message you mean.

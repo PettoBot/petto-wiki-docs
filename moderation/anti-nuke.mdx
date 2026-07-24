@@ -6,19 +6,46 @@ icon: "shield-exclamation"
 
 ## Overview
 
-Anti-nuke is a separate protection layer from automod, watching for mass-destructive actions: channel or role deletion sprees, or a wave of mass bans. When a member crosses the configured action threshold within the time window, Petto automatically strips their permissions.
-
-## Configuration
-
-| Setting | Description |
-| --- | --- |
-| Enabled | Turns the whole system on or off. |
-| Action threshold | How many destructive actions within the window trigger a response. |
-| Window (seconds) | The rolling time window the threshold is measured over. |
-| Whitelist | User or role IDs exempt from anti-nuke entirely. |
+Anti-nuke is part of `/automod`, but a separate, more serious layer than the rest: it watches for a burst of destructive actions (bans, channel or role deletions) by one account, and automatically strips their permissions once they cross the threshold.
 
 <Warning>
-  Add every co-owner and trusted admin bot to the whitelist before turning this on, anti-nuke can't tell the difference between a compromised account and a busy admin doing legitimate cleanup.
+  Turning this on requires **Administrator**, it can strip roles or ban accounts automatically.
 </Warning>
 
-Configured entirely on the [dashboard](https://petto.sbs/dash)'s Moderation page.
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+/automod antinuke <enabled> [threshold] [window_seconds]
+```
+
+```javascript Example
+/automod antinuke enabled:true threshold:5 window_seconds:10
+```
+
+```javascript Prefix
+!automod antinuke true 5 10
+```
+
+</CodeGroup>
+
+Defaults: 5 destructive actions within a 10-second window.
+
+## Whitelist
+
+Users or bots exempt from anti-nuke tracking entirely.
+
+<CodeGroup>
+
+```javascript Syntax
+/automod antinuke-whitelist add <user>
+/automod antinuke-whitelist remove <user>
+/automod antinuke-whitelist list
+```
+
+</CodeGroup>
+
+<Tip>
+  Add every co-owner and trusted admin bot to the whitelist before turning this on, anti-nuke can't tell the difference between a compromised account and a busy admin doing legitimate cleanup.
+</Tip>

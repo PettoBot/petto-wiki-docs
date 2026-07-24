@@ -6,38 +6,134 @@ icon: "chart-line"
 
 ## Overview
 
-Leveling tracks XP per member with a curve and cooldown you control, not a fixed formula.
+Leveling tracks XP per member with a curve and cooldown you control, not a fixed formula. Every `/level` subcommand below requires **Manage Guild**.
 
-<Steps>
-  <Step title="Set the rate">
-    Set the XP rate, curve, and cooldown with `/level config`.
-  </Step>
-  <Step title="Add rewards">
-    Add role rewards at specific levels, see [Level Rewards](/community/leveling-rewards).
-  </Step>
-  <Step title="Check progress">
-    Members check their own progress with `/rank`, or the server ranking with `/top`.
-  </Step>
-</Steps>
+## Turning it on and setting the rate
 
-## Commands
+<CodeGroup>
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| level | `/level config [rate] [curve] [cooldown]` | Admin config: XP rate, curve, cooldown. |
-| rank | `/rank [user]` | Your (or someone else's) level card. |
-| top | `/top [page]` | Paginated XP leaderboard. |
+```javascript Syntax
+/level enable <enabled>
+/level xp <min> <max>
+/level voice-xp <amount>
+/level cooldown <seconds>
+```
 
-## XP rate
+```javascript Example
+/level enable enabled:true
+/level xp min:15 max:25
+/level voice-xp amount:5
+/level cooldown seconds:60
+```
 
-XP is a random amount per message (min/max), plus optional XP per minute spent in voice, both on a cooldown so spamming messages doesn't inflate XP.
+```javascript Prefix
+!level enable true
+```
+
+</CodeGroup>
+
+XP per message is a random amount between `min` and `max`, on a per-member cooldown. `voice-xp` is a flat amount per minute in voice, no cooldown.
 
 ## The XP curve
 
 <Warning>
-  The advanced curve settings (curve A/B/C, difficulty, rounding, max level) change how much total XP each level requires. Existing members' levels are recalculated against the new curve when you change it, only touch this if you know what you're doing.
+  Total XP per level is `(a·L³ + b·L² + c·L) × difficulty`, rounded. Existing members' levels are recalculated against the new curve when you change it, only touch this if you know what you're doing.
 </Warning>
+
+<CodeGroup>
+
+```javascript Syntax
+/level curve [a] [b] [c] [difficulty] [rounding]
+/level max-level <count>
+```
+
+```javascript Example
+/level curve difficulty:3 rounding:100
+```
+
+</CodeGroup>
+
+Defaults: `a=1`, `b=50`, `c=100`, `difficulty=2.5`, `rounding=50`.
+
+## Notifications
+
+<CodeGroup>
+
+```javascript Syntax
+/level notify <mode> [channel] [embed] [every] [message]
+```
+
+```javascript Example
+/level notify mode:channel channel:#level-ups embed:true every:5
+/level notify mode:reply message={user} hit level {level}!
+```
+
+</CodeGroup>
+
+`mode` is `off`, `reply` (in the channel they leveled up in), `channel` (fixed), or `dm`. `every` limits announcements to every N levels instead of every single one. `message` supports `{user}`, `{level}`, `{level_xp}`, `{level_rank}`, and every [variable](/resources/scripting/variables).
 
 ## Ignored channels
 
-Channels added to the ignore list grant no XP for messages sent there, useful for bot-command or meme channels you don't want farmed for levels.
+<CodeGroup>
+
+```javascript Syntax
+/level ignore <channel>
+```
+
+</CodeGroup>
+
+Running it again on the same channel toggles it back off. Channels on the list grant no XP.
+
+## Join bonus
+
+<CodeGroup>
+
+```javascript Syntax
+/level join [xp] [level]
+/level sync-join
+```
+
+```javascript Example
+/level join level:5
+```
+
+</CodeGroup>
+
+Grants new members a starting XP/level. `level` takes priority if both are set. `sync-join` retroactively applies the current bonus to every member who's still at zero.
+
+## Manual XP/level management
+
+<CodeGroup>
+
+```javascript Syntax
+/level manage xp <action> <user> <amount> [target]
+/level manage level <action> <user> <amount>
+/level reset <user>
+```
+
+```javascript Example
+/level manage xp action:add user:@Someone amount:500
+/level manage xp action:transfer user:@A amount:200 target:@B
+```
+
+</CodeGroup>
+
+`action` is `add`, `set`, `remove`, or (XP only) `transfer` to another member. `reset` wipes a member's XP/level and removes their reward roles.
+
+## Status
+
+<CodeGroup>
+
+```javascript Syntax
+/level status
+```
+
+</CodeGroup>
+
+Shows the full current configuration in one place.
+
+## Related
+
+<Card title="Level Rewards" icon="trophy" href="/community/leveling-rewards">
+  Role rewards and XP multipliers.
+</Card>

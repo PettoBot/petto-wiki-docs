@@ -1,35 +1,70 @@
 ---
 title: "Logging"
-description: "Nine independent categories, each routed to its own channel."
+description: "Eleven independent event categories, each routed to its own channel."
 icon: "notebook"
 ---
 
 ## Overview
 
-Logging routes independent event categories to their own channels, so a mod-log channel isn't one unreadable firehose.
-
-<Steps>
-  <Step title="Route a category">
-    Send a category to a channel with `/logs add`, remove it with `/logs remove`.
-  </Step>
-  <Step title="Style it, if you want">
-    Override the embed color per channel with `/logs color` if you want categories visually distinct.
-  </Step>
-</Steps>
+Logging routes independent event categories to their own channels, so a mod-log channel isn't one unreadable firehose. Each category can go to a different channel, or be left off entirely.
 
 ## The categories
 
-Sanctions, Automod, Verification, Members, Messages, Voice, Roles, Channels, Invites, Emojis, Tickets, and Server changes, each can be routed to its own channel or left off.
+`messages` · `members` · `roles` · `channels` · `invites` · `emojis` · `voice` · `server` · `sanctions` · `verification` · `automod`
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| logs add / remove | `/logs <add\|remove> <category> <channel>` | Route an event category to a channel. |
-| logs color | `/logs color <category> <hex_color>` | Override an event's embed color per channel. |
-| logs ignore | `/logs ignore <add\|remove> <user\|channel>` | Exclude a user or channel from being logged. |
+<CodeGroup>
 
-## Ignoring specific users or channels
+```javascript Syntax
+/logs view
+/logs add <channel> <event>
+/logs remove <channel> [event]
+```
+
+```javascript Example
+/logs add channel:#mod-log event:sanctions
+/logs add channel:#member-log event:members
+/logs remove channel:#mod-log
+```
+
+```javascript Prefix
+!logs add #mod-log sanctions
+```
+
+</CodeGroup>
+
+Omitting `event` on `/logs remove` clears every category routed to that channel at once.
+
+## Per-channel color override
+
+<CodeGroup>
+
+```javascript Syntax
+/logs color set <channel> <event> <color>
+/logs color list <channel>
+```
+
+```javascript Example
+/logs color set channel:#mod-log event:sanctions color:#ff0000
+```
+
+</CodeGroup>
+
+## Ignoring users or channels
+
+<CodeGroup>
+
+```javascript Syntax
+/logs ignore toggle [user] [channel]
+/logs ignore list
+```
+
+```javascript Example
+/logs ignore toggle user:@TrustedBot
+```
+
+</CodeGroup>
 
 <Tip>
   A user or channel added to the ignore list is skipped by every logging category at once, not just one, useful for bots or a staff-only channel you don't want cluttering the log.

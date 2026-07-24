@@ -10,9 +10,26 @@ Bind a role to an emoji on any message, members react to get the role.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| reactionrole | `/reactionrole <add\|remove> <message_id> <emoji> <role>` | Bind an emoji on a message to a role. |
+<CodeGroup>
+
+```javascript Syntax
+/reactionrole add <message_id> <emoji> <role> [channel] [mode]
+/reactionrole remove <message_id> <emoji>
+/reactionrole list <message_id>
+/reactionrole clear <message_id>
+```
+
+```javascript Example
+/reactionrole add message_id:123456789012345678 emoji:🎮 role:@Gamer mode:toggle
+```
+
+```javascript Prefix
+!reactionrole add 123456789012345678 🎮 @Gamer
+```
+
+</CodeGroup>
+
+`channel` defaults to the current channel. `emoji` accepts both custom and default emoji.
 
 ## Modes
 
@@ -21,5 +38,3 @@ Bind a role to an emoji on any message, members react to get the role.
   <Accordion title="Add only">Reacting adds the role, removing the reaction does nothing.</Accordion>
   <Accordion title="Remove only">Reacting removes the role, useful paired with a role members start with.</Accordion>
 </AccordionGroup>
-
-Set the mode on the dashboard's Automation page when creating one.

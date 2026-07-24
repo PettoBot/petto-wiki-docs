@@ -10,9 +10,24 @@ Turn off any built-in command, either everywhere in the server or in one specifi
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| disablecommand | `/disablecommand <command> [channel]` | Turn a command off, server-wide or per channel. |
+<CodeGroup>
+
+```javascript Syntax
+/disablecommand disable <command> [channel]
+/disablecommand enable <command> [channel]
+/disablecommand list
+```
+
+```javascript Example
+/disablecommand disable command:steal
+/disablecommand disable command:remind channel:#staff-only
+```
+
+```javascript Prefix
+!disablecommand disable steal
+```
+
+</CodeGroup>
 
 <Info>
   Leave `channel` empty to disable it server-wide, or set it to only disable that command in one channel while it keeps working everywhere else.

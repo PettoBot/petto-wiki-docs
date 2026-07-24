@@ -12,42 +12,88 @@ Petto's embeds are saved templates: build one (in Discord or on the dashboard), 
   The [dashboard's Embeds page](https://petto.sbs/dash) has a full visual builder: a live Discord-accurate preview, up to 10 embeds and 5 rows of link buttons per template, markdown formatting shortcuts, and a searchable [variable](/resources/scripting/variables) reference. Everything below also works from Discord directly.
 </Tip>
 
-## Commands
+## Creating and managing
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| embed create | `/embed create <name>` | Start building a new saved embed. |
-| embed edit | `/embed edit <name>` | Open the editor for an existing embed. |
-| embed delete | `/embed delete <name>` | Delete a saved embed. |
-| embed list | `/embed list` | List every saved embed in the server. |
-| embed preview | `/embed preview <name>` | Preview a saved embed with variables resolved. |
-| embed send | `/embed send <name> [channel]` | Send a saved embed to a channel right now. |
+<CodeGroup>
 
-## What an embed template can have
+```javascript Syntax
+/embed create <name>
+/embed preview <embed>
+/embed send <embed> [channel]
+/embed delete <embed>
+/embed list
+/embed vars [page]
+```
 
-- Title, description, and a color
-- A title link URL
-- A thumbnail and a full-width image
-- An author line (name, icon, link)
-- A footer (text, icon), optionally with the current time
-- Up to 25 fields, each optionally inline
-- A message content line, alongside the embed
-- Up to 5 rows of link buttons
+```javascript Example
+/embed create name:welcome_embed
+/embed preview embed:welcome_embed
+/embed send embed:welcome_embed channel:#announcements
+```
+
+```javascript Prefix
+!embed create welcome_embed
+```
+
+</CodeGroup>
+
+`vars` shows the variable reference directly in Discord, paginated.
+
+## Editing fields
+
+<CodeGroup>
+
+```javascript Syntax
+/embed edit title <embed> <title> [url]
+/embed edit description <embed> <description>
+/embed edit color <embed> <color>
+/embed edit author <embed> <text> [icon] [url]
+/embed edit footer <embed> <text> [icon]
+/embed edit thumbnail <embed> <image>
+/embed edit image <embed> <image>
+/embed edit timestamp <embed> <timestamp>
+```
+
+```javascript Example
+/embed edit title embed:welcome_embed title=Welcome! url=https://petto.sbs
+/embed edit color embed:welcome_embed color:#8399ff
+/embed edit description embed:welcome_embed description=Glad you're here, {user}!{newline}Check #rules to get started.
+```
+
+</CodeGroup>
+
+## Fields (the name/value pairs)
+
+<CodeGroup>
+
+```javascript Syntax
+/embed field add <embed> <name> <value> [inline]
+/embed field remove <embed> <position>
+```
+
+```javascript Example
+/embed field add embed:welcome_embed name=Rules value=See #rules inline:true
+/embed field remove embed:welcome_embed position:1
+```
+
+</CodeGroup>
+
+Up to 25 fields per embed. `position` is 1-based, from the order shown in `/embed preview`.
 
 ## Using a saved embed
 
 <AccordionGroup>
   <Accordion title="In a custom command">
-    Point `/customcommand` at a saved embed instead of plain response text, pick it from the dropdown when creating the command.
+    Point `/customcommand` at a saved embed instead of plain response text, `embed_template` takes priority over `response`.
   </Accordion>
   <Accordion title="In an autoresponder">
     Autoresponders support a lighter inline embed mode (color, title, footer) directly, without needing a full saved template.
   </Accordion>
-  <Accordion title="In welcome/leave/boost messages">
-    Set `channel + message` as usual, or point the message field at `{embed:name}` to use a saved embed instead of plain text.
+  <Accordion title="In welcome/leave/boost/DM-on-join messages">
+    Every `setup` subcommand (`/welcome setup`, `/leave setup`, `/boost setup`, `/dmonjoin setup`) has an `embed` option that takes priority over plain `message`.
   </Accordion>
-  <Accordion title="In a ticket panel">
-    A panel's welcome message can use a saved embed too, configured on the dashboard's Tickets page.
+  <Accordion title="In a ticket panel or category">
+    Both `/ticket panel create` and `/ticket category add` accept a saved embed for the panel message or the ticket welcome message.
   </Accordion>
 </AccordionGroup>
 

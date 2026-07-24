@@ -10,14 +10,33 @@ Auto-reply whenever a message matches a trigger word or phrase.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| autoresponder | `/autoresponder <add\|remove> <trigger> <response>` | Auto-reply when a message matches a trigger. |
+<CodeGroup>
+
+```javascript Syntax
+/autoresponder add <trigger> <reply> [mode] [embed] [delete_trigger] [channels]
+/autoresponder edit <id> [mode] [embed] [delete_trigger] [reply]
+/autoresponder remove <trigger>
+/autoresponder list
+/autoresponder show <id>
+/autoresponder reset
+```
+
+```javascript Example
+/autoresponder add trigger:!rules reply:Check the pins for rules! mode:exact delete_trigger:true
+```
+
+```javascript Prefix
+!autoresponder add !rules "Check the pins for rules!" exact
+```
+
+</CodeGroup>
+
+`reset` deletes every autoresponder in the server, use carefully.
 
 ## Match modes
 
 <AccordionGroup>
-  <Accordion title="contains">The trigger can appear anywhere in the message.</Accordion>
+  <Accordion title="contains (default)">The trigger can appear anywhere in the message.</Accordion>
   <Accordion title="startsWith / endsWith">The message must start or end with the trigger.</Accordion>
   <Accordion title="exact">The message must match the trigger exactly.</Accordion>
   <Accordion title="regex">The trigger is treated as a regular expression.</Accordion>
@@ -25,12 +44,26 @@ Auto-reply whenever a message matches a trigger word or phrase.
 
 ## Scoping to specific channels
 
-By default an autoresponder fires anywhere in the server. Set one or more channels on the dashboard to restrict it, empty means everywhere.
+<CodeGroup>
+
+```javascript Syntax
+/autoresponder channel add <id> <channels>
+/autoresponder channel remove <id> <channels>
+/autoresponder channel clear <id>
+```
+
+```javascript Example
+/autoresponder channel add id:ar_a1b2c3 channels:#general #chat
+```
+
+</CodeGroup>
+
+By default an autoresponder fires anywhere in the server. `channel clear` removes the restriction back to everywhere.
 
 ## Deleting the triggering message
 
-Optionally delete the message that triggered the response, useful for keyword-triggered cleanup.
+The `delete_trigger` option removes the message that triggered the response, useful for keyword-triggered cleanup.
 
 ## Sending as an embed
 
-Supports a lightweight inline embed mode (color, title, footer) directly, without needing a full saved [embed](/resources/scripting/embeds) template.
+The `embed` option sends a lightweight inline embed (color, title, footer) instead of plain text, without needing a full saved [embed](/resources/scripting/embeds) template.

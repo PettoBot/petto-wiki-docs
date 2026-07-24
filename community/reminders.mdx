@@ -10,8 +10,22 @@ Set a personal reminder, Petto DMs you when it's due.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| remind | `/remind <duration> [message]` | Set a personal reminder. |
+<CodeGroup>
 
-Purely personal, nothing to configure server-side.
+```javascript Syntax
+/remind add <duration> <message>
+/remind list
+/remind cancel <id>
+```
+
+```javascript Example
+/remind add duration:2h message=Check the oven
+```
+
+```javascript Prefix
+!remind add 2h Check the oven
+```
+
+</CodeGroup>
+
+Purely personal, nothing to configure server-side. `id` for `cancel` comes from `/remind list`.

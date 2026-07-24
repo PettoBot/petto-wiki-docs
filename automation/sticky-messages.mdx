@@ -10,9 +10,25 @@ Keeps a message always at the bottom of a channel, Petto reposts it every time n
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| stickymessage | `/stickymessage <set\|remove> <channel> [text]` | Keep a message pinned to the bottom of a channel. |
+<CodeGroup>
+
+```javascript Syntax
+/stickymessage set <channel> <content>
+/stickymessage remove <channel>
+/stickymessage list
+```
+
+```javascript Example
+/stickymessage set channel:#rules content=Read the rules before posting!{newline}Full rules: {channel_name}
+```
+
+```javascript Prefix
+!stickymessage set #rules Read the rules before posting!
+```
+
+</CodeGroup>
+
+Content supports `{newline}` and `{separator}`, along with every other [variable](/resources/scripting/variables).
 
 <Tip>
   Useful for rules reminders, an invite link, or a "read this first" note in an active channel.

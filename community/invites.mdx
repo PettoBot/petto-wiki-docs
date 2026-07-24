@@ -10,8 +10,22 @@ Tracks who invited whom, with a leaderboard of who's bringing in the most member
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| invites | `/invites [user]` | See who invited whom, and a per-server leaderboard. |
+<CodeGroup>
 
-Purely a tracking/lookup feature, nothing to configure.
+```javascript Syntax
+/invites user [user]
+/invites top
+```
+
+```javascript Example
+/invites user user:@Someone
+/invites top
+```
+
+```javascript Prefix
+!invites top
+```
+
+</CodeGroup>
+
+`user` defaults to yourself if omitted. Purely a tracking/lookup feature, nothing to configure.

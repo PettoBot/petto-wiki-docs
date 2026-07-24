@@ -1,26 +1,75 @@
 ---
 title: "Level Rewards"
-description: "Role rewards and level-up announcements."
+description: "Role rewards and XP multipliers."
 icon: "trophy"
 ---
 
 ## Overview
 
-Give a role automatically when a member reaches a specific level, and control how (and whether) a level-up gets announced.
+Give a role automatically when a member reaches a specific level, and give certain roles or channels a faster (or slower) XP rate.
 
 ## Role rewards
 
-Add as many level-to-role pairs as you want on the dashboard's Leveling page. Role mode controls whether a member keeps every reward role they've earned, or only their highest.
+<CodeGroup>
 
-## Announcements
+```javascript Syntax
+/level reward add <level> <role>
+/level reward remove <level>
+/level reward list
+```
 
-| Setting | Description |
-| --- | --- |
-| Channel | Where level-ups post, or reply in place if left empty. |
-| Every N levels | Only announce every N levels instead of every single one. |
-| Style | Plain text or an embed. |
-| Message | Fully custom text, supports every [variable](/resources/scripting/variables). |
+```javascript Example
+/level reward add level:10 role:@Regular
+/level reward add level:25 role:@Veteran
+```
 
-## Join bonus
+```javascript Prefix
+!level reward add 10 @Regular
+```
 
-Optionally grant starting XP and a starting level to new members the moment they join.
+</CodeGroup>
+
+## Stacking vs highest-only
+
+<CodeGroup>
+
+```javascript Syntax
+/level role-mode <mode>
+```
+
+```javascript Example
+/level role-mode mode:highest
+```
+
+</CodeGroup>
+
+`mode` is `highest` (only the highest earned reward role is kept, others are stripped) or `all` (every earned reward role stacks). Set with `/level role-mode`.
+
+## XP multipliers
+
+Give a role or channel a faster (or slower) XP rate.
+
+<CodeGroup>
+
+```javascript Syntax
+/level multiplier set <value> [role] [channel]
+/level multiplier remove [role] [channel]
+/level multiplier list
+```
+
+```javascript Example
+/level multiplier set value:2 role:@Booster
+/level multiplier set value:0.5 channel:#off-topic
+```
+
+```javascript Prefix
+!level multiplier set 2 @Booster
+```
+
+</CodeGroup>
+
+`value` is a raw multiplier: `2` for double XP, `0.5` for half. Provide either `role` or `channel`, not both. If a member's message qualifies for more than one multiplier, they combine.
+
+## Rank cards
+
+Members check their own progress with `/rank`, or the server ranking with `/top`, no configuration needed for either.

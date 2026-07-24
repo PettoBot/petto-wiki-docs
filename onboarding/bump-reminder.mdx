@@ -6,22 +6,39 @@ icon: "arrow-up"
 
 ## Overview
 
-Reminds the server to `/bump` again once Disboard's cooldown ends, with an optional thank-you message.
+Reminds the server to `/bump` again once Disboard's 2-hour cooldown ends, with an optional thank-you message right after a successful bump.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| bumpreminder | `/bumpreminder <channel>` | Reminds the server to bump on Disboard. |
+<CodeGroup>
 
-## Configuration
+```javascript Syntax
+/bumpreminder channel <channel>
+/bumpreminder message <text>
+/bumpreminder thankyou <text>
+/bumpreminder pingable <enabled>
+/bumpreminder autolock <enabled>
+/bumpreminder autoclean <enabled>
+/bumpreminder status
+```
+
+```javascript Example
+/bumpreminder channel channel:#bump
+/bumpreminder message text=Time to /bump the server!
+/bumpreminder thankyou text={user.mention} bumped! Next bump {nextBump}.
+/bumpreminder pingable enabled:true
+```
+
+```javascript Prefix
+!bumpreminder channel #bump
+```
+
+</CodeGroup>
 
 | Setting | Description |
 | --- | --- |
-| Reminder message | What's posted when it's time to bump. |
-| Thank-you message | Posted right after a successful bump. |
-| Ping everyone | Whether the reminder pings `@everyone`. |
-| Auto-lock | Locks the channel between bumps. |
-| Auto-clean | Deletes non-bump chatter in the channel. |
+| `pingable` | Whether the reminder message can actually ping `@everyone`. |
+| `autolock` | Locks the channel (denies Send Messages) between bumps. |
+| `autoclean` | Deletes non-bump chatter in the channel. |
 
-The `{nextBump}` [variable](/resources/scripting/variables) is only available here, a relative time until the next bump is allowed.
+The `{nextBump}` [variable](/resources/scripting/variables) is only available in the thank-you message, a relative time until the next bump is allowed.

@@ -6,12 +6,29 @@ icon: "at"
 
 ## Overview
 
-Mentions a new member in one or more channels, then deletes the ping automatically, a way to trigger channel "new member" notifications without leaving a permanent mention in chat history.
+Mentions a new member in up to 10 channels, then deletes the ping automatically, a way to trigger channel "new member" notifications without leaving a permanent mention in chat history.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| poj | `/poj <enable\|disable> [role]` | "Ping on join": mention a new member, then clean it up. |
+<CodeGroup>
 
-Pick which channels it fires in from the dashboard's Onboarding page.
+```javascript Syntax
+/poj add <channel> [delete_after]
+/poj remove <channel>
+/poj list
+/poj enable <enabled>
+/poj clear
+```
+
+```javascript Example
+/poj add channel:#general delete_after:10s
+/poj enable enabled:true
+```
+
+```javascript Prefix
+!poj add #general 10s
+```
+
+</CodeGroup>
+
+`delete_after` defaults to 5 seconds. `clear` removes every configured channel at once.

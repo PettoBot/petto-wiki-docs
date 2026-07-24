@@ -6,19 +6,38 @@ icon: "star"
 
 ## Overview
 
-A preset gives certain roles extra entries automatically when a giveaway uses it, no manual weighting needed each time.
+A preset gives certain roles extra entries (and optionally extra claim time) automatically when a giveaway uses it, no manual weighting needed each time.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| giveawaypreset | `/giveawaypreset <add\|remove> <role> <entries>` | Role-based bonus entries and claim time. |
+<CodeGroup>
+
+```javascript Syntax
+/giveawaypreset create <name>
+/giveawaypreset view <name>
+/giveawaypreset remove <name>
+/giveawaypreset add-role <name> <role> [entries] [claim_time] [entries_stack] [claim_time_stack]
+/giveawaypreset remove-role <name> <role>
+```
+
+```javascript Example
+/giveawaypreset create name:boosters
+/giveawaypreset add-role name:boosters role:@Booster entries:3 claim_time:10m entries_stack:true
+```
+
+```javascript Prefix
+!giveawaypreset add-role boosters @Booster 3
+```
+
+</CodeGroup>
 
 ## Stacking
 
-Each role's bonus can optionally stack with other matching roles a member has, configurable independently for:
+Each role's bonus can optionally stack with other matching roles a member has, configurable independently:
 
-- **Entries stacking**: a member with two bonus roles gets both bonuses added together.
-- **Claim time stacking**: their extended claim window stacks too.
+- **`entries_stack`**: a member with two bonus roles gets both entry bonuses added together.
+- **`claim_time_stack`**: their extended claim window stacks too.
 
-Without stacking, only the single best-matching role's bonus applies.
+Without stacking (the default for both), only the single best-matching role's bonus applies.
+
+Use a preset when starting a giveaway with `/giveaway start preset:<name>`.

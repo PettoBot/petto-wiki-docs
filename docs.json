@@ -23,7 +23,6 @@
           "moderation/moderation",
           "moderation/automod",
           "moderation/anti-nuke",
-          "moderation/warn-escalation",
           "moderation/logging"
         ]
       },
@@ -58,6 +57,7 @@
           "onboarding/welcome",
           "onboarding/leave",
           "onboarding/boost",
+          "onboarding/dm-on-join",
           "onboarding/bump-reminder",
           "onboarding/ping-on-join",
           "onboarding/verification"

@@ -6,13 +6,28 @@ icon: "terminal"
 
 ## Overview
 
-Every command works identically as `/command` or as `<prefix>command`, nothing about a command's behavior changes based on which one you use.
+Every command works identically as `/command` or as `<prefix>command`, nothing about a command's behavior changes based on which one you use. The default prefix is `!`.
 
 ## Commands
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| prefix | `/prefix [new_prefix]` | View or change the command prefix. |
-| help | `/help [command]` | Browse every command and how to use it, without leaving Discord. |
+<CodeGroup>
 
-Run `/prefix` with no argument to see the current one, or `/prefix !` (for example) to change it.
+```javascript Syntax
+/prefix [new_prefix]
+/help [query]
+```
+
+```javascript Example
+/prefix
+/prefix new_prefix:?
+/help query=ticket category add
+```
+
+```javascript Prefix
+!prefix
+!prefix ?
+```
+
+</CodeGroup>
+
+Run `/prefix` with no argument to see the current one, or with `new_prefix` (up to 5 characters) to change it. `/help` browses every command, or looks one up directly, including a specific subcommand like `ticket category add`.

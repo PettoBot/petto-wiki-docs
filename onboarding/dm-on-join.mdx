@@ -1,0 +1,36 @@
+---
+title: "DM on Join"
+description: "A direct message to new members, separate from the channel welcome."
+icon: "envelope"
+---
+
+## Overview
+
+Sends a direct message to new members the moment they join, independent of the [channel welcome message](/onboarding/welcome). Useful for rules, an invite to introduce themselves, or anything you don't want cluttering a public channel.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+/dmonjoin setup [embed] [message]
+/dmonjoin status
+/dmonjoin test
+/dmonjoin disable
+```
+
+```javascript Example
+/dmonjoin setup message=Welcome to {server_name}! Check out #rules to get started.
+```
+
+```javascript Prefix
+!dmonjoin setup Welcome to {server_name}! Check out #rules to get started.
+```
+
+</CodeGroup>
+
+`embed` takes priority over `message` if both are set. `test` DMs yourself a preview.
+
+<Warning>
+  Members with DMs closed to non-friends simply won't receive it, there's no way for the bot to detect or work around this.
+</Warning>

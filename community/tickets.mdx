@@ -6,30 +6,93 @@ icon: "ticket"
 
 ## Overview
 
-Tickets route support requests through a panel instead of a flood of DMs.
+Tickets route support requests through a panel instead of a flood of DMs. Everything below requires the **Manage Guild** permission unless it's a per-ticket action any member can use.
 
-<Steps>
-  <Step title="Create a panel">
-    Set one up with `/ticket panel`, picking which categories and staff roles it uses.
-  </Step>
-  <Step title="Members open, staff claims">
-    Members open a ticket from the panel, staff can `/ticket claim` it to take ownership.
-  </Step>
-  <Step title="Close for a transcript">
-    Closing with `/ticket close` generates a shareable transcript link automatically.
-  </Step>
-</Steps>
+## Panels
 
-## Commands
+The message members click to open a ticket.
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| ticket panel | `/ticket panel <create\|edit\|delete>` | Create and manage ticket panels. |
-| ticket category | `/ticket category <add\|edit\|remove> <name>` | Configure ticket categories and their naming pattern. |
-| ticket open / close / reopen | `/ticket <open\|close\|reopen> [reason]` | Standard ticket lifecycle. |
-| ticket claim / unclaim | `/ticket <claim\|unclaim>` | Staff claims a ticket to own it. |
-| ticket transcript | `/ticket transcript` | Get the public link to a closed ticket transcript. |
+<CodeGroup>
 
-## Per-category settings
+```javascript Syntax
+/ticket panel create <channel> [title] [description] [embed_template] [style]
+/ticket panel delete <panel_id>
+/ticket panel list
+```
 
-Each category can have its own button style, channel naming pattern (e.g. `ticket-{number}`), support roles, roles to ping on open, and a max-open-per-user limit, all configurable on the dashboard.
+```javascript Example
+/ticket panel create channel:#support title=Need help? description=Click a button below style:button
+```
+
+```javascript Prefix
+!ticket panel create #support "Need help?" "Click a button below"
+```
+
+</CodeGroup>
+
+`style` is `button` (max 5 categories) or `select` (dropdown, max 25 categories).
+
+## Categories
+
+What a panel's button or dropdown option actually opens.
+
+<CodeGroup>
+
+```javascript Syntax
+/ticket category add <panel_id> <key> <label> <parent> <support_role> [emoji] [style] [description] [welcome_embed] [max_open] [naming]
+/ticket category edit <key> [label] [parent] [emoji] [style] [description] [welcome_embed] [max_open] [naming]
+/ticket category remove <key>
+/ticket category list
+```
+
+```javascript Example
+/ticket category add panel_id:1 key:support label=Support parent:#Tickets support_role:@Staff naming:ticket-{number}
+```
+
+</CodeGroup>
+
+`naming` supports `{number}` and `{username}`, defaults to `ticket-{number}`. `max_open` is the cap per user for that category, defaults to 1.
+
+### Support roles & ping roles
+
+Beyond the one required at creation, add more roles that can see a category's tickets, or roles pinged when one opens.
+
+<CodeGroup>
+
+```javascript Syntax
+/ticket support-role add <key> <role>
+/ticket support-role remove <key> <role>
+/ticket support-role list <key>
+/ticket ping-role add <key> <role>
+/ticket ping-role remove <key> <role>
+/ticket ping-role list <key>
+```
+
+</CodeGroup>
+
+## Using a ticket
+
+<CodeGroup>
+
+```javascript Syntax
+/ticket open <category>
+/ticket close [reason]
+/ticket reopen
+/ticket delete
+/ticket claim
+/ticket unclaim
+/ticket add <user>
+/ticket remove <user>
+/ticket rename <name>
+/ticket transcript
+/ticket info
+```
+
+```javascript Prefix
+!ticket claim
+!ticket close Resolved
+```
+
+</CodeGroup>
+
+`open` works without a panel at all. `close` generates a shareable transcript link automatically, `transcript` posts one without closing. `claim`/`unclaim`, `reopen`, `delete`, and `rename` are staff-only.

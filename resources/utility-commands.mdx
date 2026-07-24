@@ -8,29 +8,126 @@ icon: "magnifying-glass"
 
 Info commands are public lookups, nobody needs staff permissions to run them.
 
-<Steps>
-  <Step title="Look up an account or server">
-    Check any member's account with `/userinfo`, or the server's with `/serverinfo`.
-  </Step>
-  <Step title="Look up a role, channel, or emoji">
-    Get details with `/roleinfo`, `/channelinfo`, or `/emojiinfo`.
-  </Step>
-  <Step title="Petto's own stats">
-    Public too, with `/botinfo`, `/ping`, and `/uptime`.
-  </Step>
-</Steps>
+## Member & account
 
-## Commands
+<CodeGroup>
 
-| Command | Syntax | Description |
-| --- | --- | --- |
-| avatar / banner | `/avatar [user]` | A member's avatar or profile banner. |
-| userinfo / serverinfo | `/userinfo [user]` | Account, join date, roles, badges, or full server stats. |
-| roleinfo / channelinfo / emojiinfo | `/roleinfo <role>` | Details on a role, channel, or custom emoji. |
-| permissions | `/permissions <user> [channel]` | A member's effective permissions in a channel. |
-| botinfo / ping / uptime | `/botinfo` | Petto's own stats and latency. |
-| snowflake / color / firstmessage / inviteinfo | `/snowflake <id>` | Small everyday lookups. |
+```javascript Syntax
+/avatar [user]
+/banner [user]
+/userinfo [user]
+/permissions [user] [channel]
+```
 
-## Live status
+```javascript Example
+/avatar user:@Someone
+/permissions channel:#staff-only
+```
 
-Petto's own uptime and per-shard health are public at [petto.sbs/status](https://petto.sbs/status), reported directly by the bot.
+```javascript Prefix
+!avatar @Someone
+```
+
+</CodeGroup>
+
+Everything defaults to yourself if `user` is omitted.
+
+## Server
+
+<CodeGroup>
+
+```javascript Syntax
+/serverinfo
+/roles
+/roleinfo <role>
+/channelinfo [channel]
+/emojiinfo <emoji>
+/firstmessage [channel]
+```
+
+```javascript Example
+/roleinfo role:@Moderator
+/emojiinfo emoji:🎉
+```
+
+</CodeGroup>
+
+## Petto's own stats
+
+<CodeGroup>
+
+```javascript Syntax
+/botinfo
+/ping
+/uptime
+```
+
+</CodeGroup>
+
+Also live and public at [petto.sbs/status](https://petto.sbs/status), reported directly by the bot.
+
+## Small lookups
+
+<CodeGroup>
+
+```javascript Syntax
+/snowflake <id>
+/color <hex>
+/inviteinfo <code>
+```
+
+```javascript Example
+/snowflake id:1234567890123456789
+/color hex:#8399ff
+/inviteinfo code:discord.gg/abc123
+```
+
+</CodeGroup>
+
+`snowflake` decodes the creation timestamp embedded in any Discord ID (user, channel, role, message).
+
+## Leveling
+
+<CodeGroup>
+
+```javascript Syntax
+/rank [user]
+/top [page]
+```
+
+</CodeGroup>
+
+See [Leveling](/community/leveling) for configuration.
+
+## Emoji & sticker theft
+
+<CodeGroup>
+
+```javascript Syntax
+/steal [emoji]
+```
+
+```javascript Example
+/steal emoji:🎉
+```
+
+</CodeGroup>
+
+Add a custom emoji from another server to this one. Reply to a message containing a sticker instead of providing `emoji` to steal that sticker.
+
+## Getting help
+
+<CodeGroup>
+
+```javascript Syntax
+/help [query]
+```
+
+```javascript Example
+/help
+/help query=ticket category add
+```
+
+</CodeGroup>
+
+Browse every command, or look one up directly, including a specific subcommand.
