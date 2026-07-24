@@ -25,9 +25,20 @@ Moderation gives every sanction a permanent, searchable case instead of a messag
 !ban temp @Someone 7d 0 "Repeated warnings"
 ```
 
+```text Result
+✅ Case #12 · Ban
+User: @Spammer (492810293847162839)
+Moderator: @you
+Reason: Raid bot
+```
+
 </CodeGroup>
 
 `users` bans several members at once with the same reason (space or comma separated mentions/IDs). `remove-all` unbans every currently banned user and requires **Administrator**, it asks for confirmation first.
+
+<Info>
+  Every case Petto creates has this exact shape, see [Moderation Cases](/concepts/cases) for what each field means and how editing/deleting works.
+</Info>
 
 ## Kick
 

@@ -114,6 +114,12 @@
           "common-issues/permissions",
           "common-issues/dashboard-issues"
         ]
+      },
+      {
+        "group": "Changelog",
+        "pages": [
+          "changelog"
+        ]
       }
     ]
   },
@@ -141,7 +147,11 @@
   "seo": {
     "metatags": {
       "theme-color": "#8399ff",
-      "og:site_name": "petto.sbs"
+      "og:site_name": "petto.sbs",
+      "og:title": "Petto Documentation",
+      "og:description": "Every command, module, and variable Petto supports, with real examples.",
+      "og:image": "/favicon.png",
+      "twitter:card": "summary"
     },
     "indexing": "navigable"
   },
