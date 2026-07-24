@@ -23,8 +23,7 @@ const svg = `
   <text x="90" y="330" font-family="Arial, sans-serif" font-size="88" font-weight="700" fill="#f5f3ee">Petto</text>
   <text x="90" y="400" font-family="Arial, sans-serif" font-size="40" font-weight="400" fill="#b8b3a8">Documentation</text>
   <text x="90" y="470" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#8a8478" xml:space="preserve">Every command, module, and variable, with real examples.</text>
-  <rect x="90" y="520" width="46" height="6" rx="3" fill="#fde52f"/>
-  <text x="150" y="527" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#fde52f">petto.sbs</text>
+  <text x="90" y="527" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#fde52f">wiki.petto.sbs</text>
 </svg>
 `;
 
