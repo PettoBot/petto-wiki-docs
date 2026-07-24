@@ -8,6 +8,25 @@ icon: "terminal"
 
 Every command starts with the server's prefix, `!` by default. Arguments are positional and space-separated, wrap anything with spaces in "quotes".
 
+## Skipping an optional argument
+
+Commands with several optional fields in a row (like `!ticket category edit` or `!welcome setup`) let you skip straight to the one you want with `--fieldname value`, instead of typing every field before it.
+
+<CodeGroup>
+
+```javascript Syntax
+!command subcommand <required> --optionname value
+```
+
+```javascript Example
+!ticket category edit support --naming ticket-{number}
+!welcome setup #welcome --message "Welcome {user}!"
+```
+
+</CodeGroup>
+
+Mix and match freely, plain positional values and `--flags` can appear in the same command. This only matters for optional fields, required ones always need a plain value in order.
+
 ## Commands
 
 <CodeGroup>

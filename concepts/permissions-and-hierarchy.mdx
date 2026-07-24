@@ -1,0 +1,41 @@
+---
+title: "Permissions & Role Hierarchy"
+description: "Why Petto sometimes can't do something a staff member asked it to."
+icon: "sitemap"
+---
+
+## The rule that explains most permission issues
+
+Discord enforces one hard rule for every bot, Petto included: **a bot can never act on a member whose highest role sits above the bot's own role** in the server's role list, no permission or admin setting overrides this. This applies to `/ban`, `/kick`, `/mute`, `/role`, and anything else that touches a member directly.
+
+<Warning>
+  This means Petto also can't moderate members with a role positioned above its own, even if that member has no special permissions themselves, hierarchy is purely about role **position**, not what the role grants.
+</Warning>
+
+## Fixing it
+
+Server Settings → Roles, drag Petto's own role up until it sits above every role you want it to be able to act on. It doesn't need to be at the very top, just higher than its targets.
+
+## Bot permissions vs. channel permissions
+
+Two separate things have to both be true:
+
+1. **Server-wide permissions**: what Petto's role is granted overall (Manage Roles, Ban Members, Manage Channels, etc.), set once in Server Settings → Roles.
+2. **Channel-specific overrides**: a channel can deny Petto something it has server-wide, permission overwrites on a specific channel always win over the role-level grant.
+
+A command failing in exactly one channel but working everywhere else is almost always #2, not #1.
+
+## Command-level permission requirements
+
+Beyond what Petto itself needs, most config commands also require the **member running them** to have **Manage Guild** (or a more specific permission like Ban Members for `/ban`). This is Discord's own permission system, set on the command itself, Petto never needs to manually check who's allowed, Discord hides the command from members who can't use it.
+
+## Where this shows up
+
+<CardGroup cols={2}>
+  <Card title="Moderation" icon="shield-check" href="/moderation/moderation">
+    Every sanction command is subject to hierarchy.
+  </Card>
+  <Card title="Permission Issues" icon="triangle-exclamation" href="/common-issues/permissions">
+    Step-by-step troubleshooting when something isn't working.
+  </Card>
+</CardGroup>

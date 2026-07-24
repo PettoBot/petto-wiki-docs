@@ -1,0 +1,29 @@
+---
+title: "How Variables Resolve"
+description: "What actually happens when a {token} turns into real text."
+icon: "wand-magic-sparkles"
+---
+
+## The short version
+
+Every place that accepts [variables](/resources/scripting/variables) runs the same resolver: it takes your raw text, finds every `{token}` in it, and replaces each one with real data pulled from whatever triggered that message (the member who joined, the giveaway that ended, and so on).
+
+## Context-dependent tokens resolve empty, not broken
+
+A token that doesn't apply to the current situation doesn't error, it just resolves to an empty string. `{level}` inside a welcome message isn't invalid syntax, it simply has nothing to pull from (a join event has no level-up data attached) and disappears silently. This is why [Leveling](/community/leveling) tokens are only meaningful in the level-up message, and `{gw.*}` tokens only in giveaway messages, using them elsewhere is harmless but pointless.
+
+## Two naming styles, same result
+
+`{user_name}` and `{user.name}` resolve identically, the underscore style is the original set, the dot-notation style was added alongside it for readability and matches the pattern most other tokens (`{guild.*}`, `{channel.*}`) already use. Neither is deprecated, use whichever reads better to you.
+
+## Functions run before the lookup table
+
+`{choose:a|b|c}` and `{range:1-100}` aren't looked up, they're evaluated fresh every single time the text resolves, before any other token is substituted. That means the same saved message produces a different result each time it fires, by design, they're not meant to be predictable.
+
+## Preview vs. live send
+
+`!embed preview` and the dashboard's live preview both show the **raw**, unresolved tokens, they don't have a real member/channel/event to pull data from at preview time. The only way to see a fully resolved result is to actually trigger it (a real join, a real level-up) or use a command's own `test` subcommand where one exists (`!welcome test`, `!leave test`, `!boost test`, `!dmonjoin test`), which resolves against your own account as a stand-in.
+
+## Where this is used
+
+Welcome/leave/boost/DM-on-join messages, autoresponders, custom commands, giveaway messages, bump reminders, sticky messages, and every field inside a saved [embed](/resources/scripting/embeds), all share this exact same resolver, nothing behaves differently between them.

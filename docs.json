@@ -18,6 +18,22 @@
         ]
       },
       {
+        "group": "Guides",
+        "pages": [
+          "guides/first-server-setup",
+          "guides/ticket-system-setup",
+          "guides/migrating-from-another-bot"
+        ]
+      },
+      {
+        "group": "Concepts",
+        "pages": [
+          "concepts/cases",
+          "concepts/variables-engine",
+          "concepts/permissions-and-hierarchy"
+        ]
+      },
+      {
         "group": "Moderation",
         "pages": [
           "moderation/moderation",
@@ -88,7 +104,9 @@
       {
         "group": "Common Issues",
         "pages": [
-          "common-issues/permissions"
+          "common-issues/faq",
+          "common-issues/permissions",
+          "common-issues/dashboard-issues"
         ]
       }
     ]

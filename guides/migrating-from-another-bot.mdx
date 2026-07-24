@@ -1,0 +1,42 @@
+---
+title: "Migrating From Another Bot"
+description: "Moving off another moderation/utility bot without losing anything important."
+icon: "route"
+---
+
+Configuration never transfers automatically between bots, Discord doesn't expose a way for one bot to read another's saved settings, and neither would you want it to (every bot structures things differently). This is the order that avoids the most friction.
+
+<Steps>
+  <Step title="Write down what actually matters">
+    Not everything needs to move day one. At minimum, note: your prefix (if you want to match the old one), mod-log channel, mute role (if you use one instead of timeout), welcome/leave channel and message text, and any custom commands or autoresponders worth keeping.
+  </Step>
+  <Step title="Set up Petto alongside the old bot first">
+    Don't remove the old bot yet. Run through [Your First Server Setup](/guides/first-server-setup) with Petto while the old one is still active, so you're never without moderation coverage mid-migration.
+  </Step>
+  <Step title="Recreate config, don't guess">
+    Copy welcome/leave/boost message text directly if you have it saved, rather than rewriting from memory, small wording differences compound. [Variables](/resources/scripting/variables) use different token names between bots, translate the concept, not the literal syntax.
+  </Step>
+  <Step title="Test each moved feature once">
+    Trigger a test welcome (`!welcome test`), post a test autoresponder trigger, open a test ticket, before trusting the migration is complete.
+  </Step>
+  <Step title="Turn off the old bot's overlapping features">
+    Running two bots that both respond to the same welcome event, or both log the same moderation actions, means duplicates. Disable the old bot's equivalent feature once Petto's version is confirmed working, module by module rather than all at once.
+  </Step>
+  <Step title="Remove the old bot last">
+    Only once every feature you actually use has a working Petto equivalent. There's no rush, and keeping it a few extra days costs nothing.
+  </Step>
+</Steps>
+
+## What doesn't carry over, and why
+
+<AccordionGroup>
+  <Accordion title="Moderation case history">
+    Past bans/warns/kicks logged by another bot live in that bot's own database, Petto has no way to read it. Old sanctions already applied in Discord (an actual ban, an actual timeout) stay in effect regardless, only the *history/case record* doesn't transfer.
+  </Accordion>
+  <Accordion title="XP and levels">
+    Same reason, plus most bots use a different XP curve, so even a raw number import would produce different levels under Petto's formula. Members start fresh, or use `/level join` / `/level manage xp` to award a starting bonus if you want to soften that.
+  </Accordion>
+  <Accordion title="Custom command / autoresponder syntax">
+    The trigger and response text usually copies over fine, but variable tokens (`{user}`-style syntax) differ between bots and need translating, see [Variables](/resources/scripting/variables) for Petto's real list.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,65 @@
+---
+title: "Setting Up a Ticket System"
+description: "From an empty server to a working support panel with multiple categories."
+icon: "ticket"
+---
+
+A full walkthrough of the [Tickets](/community/tickets) module, building a two-category support system.
+
+<Steps>
+  <Step title="Create a category channel and a panel channel">
+    Make a Discord channel category (e.g. "Tickets") where ticket channels will be created, and a text channel (e.g. `#support`) where the panel message will live.
+  </Step>
+  <Step title="Post the panel">
+    ```javascript
+    !ticket panel create #support "Need help?" "Pick a category below" --style button
+    ```
+    This returns a `panel_id`, you'll need it for every category you attach.
+  </Step>
+  <Step title="Add your first category">
+    ```javascript
+    !ticket category add 1 support "General Support" "Tickets" @Staff 🎫
+    ```
+    `key` (`support` here) is how you'll refer to this category in every other command, `parent` is the channel category new ticket channels get created under.
+  </Step>
+  <Step title="Add a second category">
+    ```javascript
+    !ticket category add 1 billing Billing "Tickets" @Finance 💳
+    ```
+    A `button`-style panel supports up to 5 categories, switch `style` to `select` when you create the panel if you need more (up to 25, as a dropdown instead of buttons).
+  </Step>
+  <Step title="Add extra roles, if one isn't enough">
+    ```javascript
+    !ticket support-role add support @Trainee
+    !ticket ping-role add support @on-call
+    ```
+    `support-role` controls who can see/manage the category's tickets, `ping-role` controls who gets pinged when one opens, they don't have to match.
+  </Step>
+  <Step title="Set a naming pattern (optional)">
+    ```javascript
+    !ticket category edit support --naming ticket-{number}
+    ```
+    Supports `{number}` and `{username}`, defaults to `ticket-{number}`.
+  </Step>
+  <Step title="Try it yourself">
+    Click your own panel. Once inside, `!ticket claim` to take ownership, `!ticket close "Testing"` to close it and generate a transcript link.
+  </Step>
+</Steps>
+
+## Using a saved embed for the panel or welcome message
+
+Instead of plain `title`/`description`, both `!ticket panel create` and `!ticket category add` accept an `embed_template` name, see [Embeds](/resources/scripting/embeds) for how to build one first.
+
+## Common mistakes
+
+<AccordionGroup>
+  <Accordion title="\"Category key already in use\"">
+    `key` must be unique per server, not just per panel. Pick something specific like `billing-eu` instead of reusing `billing` across two panels.
+  </Accordion>
+  <Accordion title="Panel posted but no buttons/dropdown">
+    You need at least one category added to the panel before it shows any interactive elements, an empty panel is just the title/description.
+  </Accordion>
+  <Accordion title="A member can't open a second ticket">
+    That's `max_open`, defaults to 1 per category. Raise it with `!ticket category edit` if your server wants members to have multiple tickets open at once.
+  </Accordion>
+</AccordionGroup>

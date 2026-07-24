@@ -1,0 +1,35 @@
+---
+title: "FAQ"
+description: "Quick answers to the questions that come up most."
+icon: "circle-question"
+---
+
+<AccordionGroup>
+  <Accordion title="Is Petto free?">
+    Yes, every feature documented here is free. Petto Premium is planned but not live yet, when it ships it'll add extras on top, not lock away what already exists.
+  </Accordion>
+  <Accordion title="Can I change the prefix?">
+    Yes, `!prefix <new_prefix>`, up to 5 characters. See [Prefix](/setup/prefix).
+  </Accordion>
+  <Accordion title="Does Petto read/store my messages?">
+    No. Petto doesn't log or store ordinary message content. The only message-related text it stores is what a feature explicitly needs to function: a custom command's saved response, a sticky message's content, a reminder you set yourself.
+  </Accordion>
+  <Accordion title="Can I run Petto and another moderation bot together?">
+    Yes, nothing about Petto assumes it's the only bot in the server. If two bots both try to log the same event or respond to the same trigger, expect duplicates, not a conflict.
+  </Accordion>
+  <Accordion title="Why isn't a command doing anything?">
+    Check the prefix first (`!help` should always respond), then permissions and role hierarchy. See [Permission Issues](/common-issues/permissions).
+  </Accordion>
+  <Accordion title="How do I back up my configuration?">
+    The dashboard's General page has a full JSON export of every module's settings for your server. See [Config Export & Reset](/setup/config-export).
+  </Accordion>
+  <Accordion title="Can members configure Petto, or only staff?">
+    Config commands require **Manage Guild** (or a more specific permission for some moderation commands). Discord hides commands a member can't use, they won't even show as autocomplete.
+  </Accordion>
+  <Accordion title="I migrated from another bot, will my old settings carry over?">
+    No, configuration doesn't transfer automatically between bots. You'll set Petto up fresh, the same as adding any new bot. Most modules take a few minutes to configure, see [Your First Server Setup](/guides/first-server-setup).
+  </Accordion>
+  <Accordion title="Where do I report a bug or request a feature?">
+    The [support server](https://petto.sbs/support), that's also where Premium questions and general help go.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,79 @@
+---
+title: "Your First Server Setup"
+description: "A complete walkthrough, from invite to a fully configured server."
+icon: "map"
+---
+
+This walks through setting up a new server end to end, touching every module once, in an order that makes sense. Each step links to the full reference page if you want more detail than shown here.
+
+<Steps>
+  <Step title="Invite Petto">
+    Use the [invite link](https://petto.sbs/invite), it needs **Manage Server** at minimum. Petto's role gets added near the bottom of your role list by default, see step 2.
+  </Step>
+  <Step title="Position Petto's role">
+    Open Server Settings → Roles and drag Petto's role **above** every role you want it to be able to moderate (mute, kick, ban, manage). A bot can never act on a member whose highest role sits above its own.
+  </Step>
+  <Step title="Set the prefix, if you want a different one">
+    Default is `!`. Change it with `!prefix <new_prefix>` if it clashes with another bot. See [Prefix](/setup/prefix).
+  </Step>
+  <Step title="Turn on core moderation protections">
+    ```javascript
+    !automod word-filter toggle true warn
+    !automod raid true 6 10 alert
+    !automod antinuke true 5 10
+    ```
+    Add yourself and any co-owners to the anti-nuke whitelist before enabling it, see [Anti-Nuke](/moderation/anti-nuke).
+  </Step>
+  <Step title="Route your logs">
+    Pick a channel (or a few) and send the categories that matter to you there:
+    ```javascript
+    !logs add #mod-log sanctions
+    !logs add #mod-log automod
+    !logs add #server-log members
+    ```
+    Full category list at [Logging](/moderation/logging).
+  </Step>
+  <Step title="Set up onboarding">
+    ```javascript
+    !welcome setup #welcome "Welcome {user} to {server_name}! 🎉"
+    !leave setup #welcome "{user_tag} left the server."
+    ```
+    Add [Verification](/onboarding/verification) too if you want a captcha gate before new members can talk.
+  </Step>
+  <Step title="Turn on leveling, if you want it">
+    ```javascript
+    !level enable true
+    !level reward add 10 @Regular
+    ```
+    See [Leveling](/community/leveling) for the full XP curve and notification options.
+  </Step>
+  <Step title="Set up a ticket panel">
+    ```javascript
+    !ticket panel create #support "Need help?" "Click below to open a ticket" --style button
+    !ticket category add 1 support Support #Tickets @Staff
+    ```
+    Full walkthrough at [Ticket System Setup](/guides/ticket-system-setup).
+  </Step>
+  <Step title="Customize how Petto looks in your server">
+    Nickname, avatar, banner, and bio, all from the [dashboard's Customize page](https://petto.sbs/dash), no command for this one.
+  </Step>
+</Steps>
+
+## What to configure later
+
+Not everything needs to happen on day one. These are easy to add whenever you actually need them:
+
+<CardGroup cols={2}>
+  <Card title="Automation" icon="robot" href="/automation/custom-commands">
+    Custom commands, autoresponders, reaction roles.
+  </Card>
+  <Card title="Giveaways" icon="gift" href="/community/giveaways">
+    Only needed once you're ready to run one.
+  </Card>
+  <Card title="Booster Roles" icon="sparkles" href="/community/boosterrole">
+    Only relevant once your server has boosters.
+  </Card>
+  <Card title="Bump Reminder" icon="arrow-up" href="/onboarding/bump-reminder">
+    Only if you actually use Disboard.
+  </Card>
+</CardGroup>

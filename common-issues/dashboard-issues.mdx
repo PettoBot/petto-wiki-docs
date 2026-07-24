@@ -1,0 +1,37 @@
+---
+title: "Dashboard Issues"
+description: "What to check when petto.sbs/dash isn't behaving."
+icon: "browser"
+---
+
+## A server isn't showing up in "Manage"
+
+The dashboard only lists servers where **both** of these are true: Petto is actually in that server, and your Discord account has **Manage Server** permission there. Missing either one hides it from the list, this is a live check against Discord every time the page loads, not a cached list.
+
+## Changes aren't saving
+
+<Steps>
+  <Step title="Check for a red error banner">
+    Most save failures show an inline error instead of failing silently.
+  </Step>
+  <Step title="Refresh and try again">
+    Your login session (via Discord OAuth) can expire, a refresh usually re-establishes it.
+  </Step>
+  <Step title="Try the equivalent command instead">
+    Every dashboard page has a matching command, useful to confirm whether it's a dashboard issue specifically or the underlying setting itself.
+  </Step>
+</Steps>
+
+## Bot appearance changes aren't showing in Discord
+
+Nickname/avatar/banner changes from the Customize page are real, applied directly through Discord, but Discord's own clients cache profile data client-side. Give it a minute, or restart your Discord client if it's still stale after that.
+
+## The embed preview looks different from what actually sends
+
+The dashboard's [Embeds](/resources/scripting/embeds) preview (and `!embed preview`) both show **raw, unresolved** `{variable}` tokens on purpose, they don't have a real member/event to pull data from at preview time. That's expected, not a bug, see [How Variables Resolve](/concepts/variables-engine).
+
+## Still stuck
+
+<Card title="Support Server" icon="headset" href="https://petto.sbs/support">
+  Ask directly, a screenshot of the exact error usually speeds things up.
+</Card>

@@ -1,0 +1,44 @@
+---
+title: "Moderation Cases"
+description: "What a case actually is, and how it stays consistent over time."
+icon: "folder-open"
+---
+
+## What a case is
+
+Every sanction Petto takes (`ban`, `kick`, `mute`, `warn`, and their variants) creates a **case**: a permanent, numbered record stored server-side, independent of Discord's own audit log (which expires and can't be edited or searched by user).
+
+<Info>
+  Case numbers are sequential per server, starting at 1, they never get reused even if a case is deleted.
+</Info>
+
+## What's on a case
+
+- A **type** (`ban`, `tempban`, `kick`, `mute`, `tempmute`, `warn`, `unban`)
+- The **target** and the **moderator** who took the action
+- A **reason**, if one was given
+- A **duration**, for temporary actions
+- Whether it's still **active** (a tempban/tempmute that hasn't expired or been manually removed yet)
+
+## Automatic expiry
+
+`tempban` and `tempmute` cases carry an expiry timestamp. A background job checks for expired ones and lifts the sanction automatically, no command needed. When that happens, the case is marked inactive but stays in the history.
+
+## Manual unban/unmute
+
+Running `!ban remove` or `!mute remove` early does two things: lifts the sanction immediately, and marks the original tempban/tempmute case inactive. It does **not** delete the case, the history stays intact, only its active status changes. A fresh `unban`-type case is also created recording who reversed it and why.
+
+## Editing and deleting
+
+`!case edit` changes a case's reason or duration after the fact, useful for correcting a typo or extending a punishment. `!case delete` removes one permanently, `!case delete-all` wipes an entire user's history, both are one-way and don't undo the underlying sanction (a deleted ban case doesn't unban anyone).
+
+## Where this shows up
+
+<CardGroup cols={2}>
+  <Card title="Moderation" icon="shield-check" href="/moderation/moderation">
+    The commands that create and manage cases.
+  </Card>
+  <Card title="Warn Escalation" icon="stairs" href="/moderation/moderation#warn-escalation">
+    Cases feed the warn count that triggers escalation rules.
+  </Card>
+</CardGroup>
