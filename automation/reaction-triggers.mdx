@@ -1,0 +1,63 @@
+---
+title: "Reaction Triggers"
+description: "Automatically react to matching messages or every message in a channel."
+icon: "face-smile"
+---
+
+## Overview
+
+Reaction triggers add reactions automatically. They are configured with Petto's prefix commands and can also be managed from **Dashboard → Automation**.
+
+These are different from [Reaction Roles](/automation/reaction-roles): reaction triggers add an emoji to a message, while reaction roles change a member's roles when they react.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!reaction react <message_link> <emoji>
+!reaction add <emoji> <trigger>
+!reaction owner <trigger>
+!reaction remove <emoji> <trigger>
+!reaction removeall <trigger>
+!reaction list
+!reaction reset
+!reaction messages <channel> [emoji_1] [emoji_2] [emoji_3]
+!reaction messages_list
+```
+
+```javascript Example
+!reaction react https://discord.com/channels/123/456/789 👍
+!reaction add 🎉 "happy birthday"
+!reaction messages #selfies 😍 😐 🤮
+!reaction messages_list
+```
+
+</CodeGroup>
+
+`!react` is an alias for `!reaction`. These commands are prefix-only; Petto does not register them as slash commands.
+
+## Matching triggers
+
+`add` stores a case-insensitive word or phrase. Petto reacts when the phrase appears in a new message. Very common one-word triggers such as `hey`, `the`, `and`, or `you` are blocked to avoid making every message query an expensive automation.
+
+Use `owner` to see who created a trigger. `remove` deletes one emoji/phrase pair, `removeall` deletes every emoji for one phrase, and `reset` deletes all phrase triggers in the server.
+
+## Reacting to every message
+
+`messages` configures a channel with up to three emojis. New messages in that channel receive those reactions. Running it without emojis disables automatic reactions for that channel.
+
+```javascript
+!reaction messages #selfies
+```
+
+Use `messages_list` to see the configured channels. The bot needs permission to view the channel, read message history, and add reactions.
+
+## Dashboard
+
+The **Automation** page contains separate cards for:
+
+- Reaction triggers, including per-trigger removal and remove-all.
+- Channels that receive up to three reactions on every new message.
+
+Dashboard changes use the same database configuration as the prefix commands.

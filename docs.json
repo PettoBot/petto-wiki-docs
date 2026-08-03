@@ -52,6 +52,7 @@
         "group": "Automation",
         "pages": [
           "automation/reaction-roles",
+          "automation/reaction-triggers",
           "automation/custom-commands",
           "automation/autoresponder",
           "automation/sticky-messages",
