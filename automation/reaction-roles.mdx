@@ -1,32 +1,35 @@
 ---
 title: "Reaction Roles"
-description: "Bind a role to an emoji on any message."
+description: "Build reaction and button role menus on any message."
 icon: "face-smile"
 ---
 
 ## Overview
 
-Bind a role to an emoji on any message, members react to get the role.
+Build flexible role menus without slash commands. Petto supports classic emoji reactions and clickable buttons, with independent toggle, add-only, or remove-only behavior for every role binding.
 
 ## Commands
 
 <CodeGroup>
 
 ```javascript Syntax
-!reactionrole add <message_id> <emoji> <role> [channel] [mode]
-!reactionrole remove <message_id> <emoji>
-!reactionrole list <message_id>
-!reactionrole clear <message_id>
+!reactionrole add <message_id> <emoji> <role> [channel] [mode] [type] [label]
+!reactionrole remove <message_id> <emoji> [channel]
+!reactionrole list <message_id> [channel]
+!reactionrole clear <message_id> [channel]
 ```
 
 ```javascript Example
 !reactionrole add 123456789012345678 🎮 @Gamer #general toggle
 !reactionrole list 123456789012345678
+!reactionrole add 123456789012345678 :joystick: @Gamer #general toggle button Gamer
 ```
 
 </CodeGroup>
 
 `channel` defaults to the current channel. `emoji` accepts both custom and default emoji.
+
+`type` is `reaction` by default. Use `button` to turn the message into a clickable role menu; one message can contain up to 25 Petto buttons across five rows. `label` is the button text and defaults to the role name. Button mode cannot be added to a message that already has another component panel, such as a ticket or VoiceMaster panel.
 
 ## Modes
 
