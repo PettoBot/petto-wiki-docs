@@ -13,7 +13,8 @@ Counters create a channel whose name is refreshed automatically with live server
 <CodeGroup>
 
 ```javascript Syntax
-!counter add <option> <type>
+!counter add <option> <type> [name_template] [interval_seconds] [parent] [prefix] [suffix]
+!counter edit <channel> [name_template] [interval_seconds] [parent] [prefix] [suffix] [enabled]
 !counter remove <channel>
 !counter list
 ```
@@ -37,6 +38,8 @@ Petto supports:
 `members`, `users_only`, `bots_only`, `pending_members`, `all_channels`, `text_channels`, `voice_channels`, `categories`, `announcement_channels`, `staging_channels`, `boosts`, and `booster_count`.
 
 A 10-digit Unix timestamp creates a countdown. For example, `!counter add 1798765432 voice` displays the remaining time until that timestamp.
+
+Every counter is independent and configurable. Its name template supports `{option}`, `{value}`, and `{remaining}`. You can also set a prefix, suffix, parent category, update interval from 60 seconds to 24 hours, and temporarily disable updates without removing the counter.
 
 ## Channel types
 

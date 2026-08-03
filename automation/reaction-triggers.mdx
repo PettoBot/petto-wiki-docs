@@ -16,7 +16,8 @@ These are different from [Reaction Roles](/automation/reaction-roles): reaction 
 
 ```javascript Syntax
 !reaction react <message_link> <emoji>
-!reaction add <emoji> <trigger>
+!reaction add <emoji> <trigger> [mode] [case_sensitive] [channels] [roles] [cooldown_seconds]
+!reaction edit <id> [mode] [case_sensitive] [channels] [roles] [cooldown_seconds] [enabled]
 !reaction owner <trigger>
 !reaction remove <emoji> <trigger>
 !reaction removeall <trigger>
@@ -40,6 +41,16 @@ These are different from [Reaction Roles](/automation/reaction-roles): reaction 
 ## Matching triggers
 
 `add` stores a case-insensitive word or phrase. Petto reacts when the phrase appears in a new message. Very common one-word triggers such as `hey`, `the`, `and`, or `you` are blocked to avoid making every message query an expensive automation.
+
+Each trigger can be configured independently:
+
+- `contains`, `startsWith`, `endsWith`, or `exact` matching.
+- Case-sensitive or case-insensitive matching.
+- Channel and role scopes.
+- A per-member cooldown from 0 to 86400 seconds.
+- Enabled/disabled state without deleting the trigger.
+
+The dashboard exposes these settings with channel and role multi-selects. `!reaction edit` uses the trigger ID shown by `!reaction list`.
 
 Use `owner` to see who created a trigger. `remove` deletes one emoji/phrase pair, `removeall` deletes every emoji for one phrase, and `reset` deletes all phrase triggers in the server.
 
