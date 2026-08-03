@@ -75,6 +75,13 @@
         ]
       },
       {
+        "group": "Miscellaneous",
+        "pages": [
+          "miscellaneous/webhook",
+          "miscellaneous/counters"
+        ]
+      },
+      {
         "group": "Onboarding",
         "pages": [
           "onboarding/welcome",

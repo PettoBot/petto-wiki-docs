@@ -1,0 +1,47 @@
+---
+title: "Counters"
+description: "Show live server statistics in channel names."
+icon: "chart-line"
+---
+
+## Overview
+
+Counters create a channel whose name is refreshed automatically with live server information. Petto updates counters every minute.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!counter add <option> <type>
+!counter remove <channel>
+!counter list
+```
+
+```javascript Example
+!counter add members voice
+!counter add boosts text
+!counter add 1798765432 voice
+!counter remove #members-42
+!counter list
+```
+
+</CodeGroup>
+
+`!counters` is an alias for `!counter`. These commands are prefix-only. Removing a counter stops updates but does not delete the channel, so it can be reused or removed manually.
+
+## Counter options
+
+Petto supports:
+
+`members`, `users_only`, `bots_only`, `pending_members`, `all_channels`, `text_channels`, `voice_channels`, `categories`, `announcement_channels`, `staging_channels`, `boosts`, and `booster_count`.
+
+A 10-digit Unix timestamp creates a countdown. For example, `!counter add 1798765432 voice` displays the remaining time until that timestamp.
+
+## Channel types
+
+The channel type can be `voice`, `text`, `category`, `announce`, or `stage`. `voice` is recommended because it is compact in the server sidebar.
+
+## Dashboard
+
+The **Dashboard → Automation → Live counters** card provides the same options, creates the channel, lists active counters, and stops an update without deleting the channel.

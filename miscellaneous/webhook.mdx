@@ -1,0 +1,47 @@
+---
+title: "Webhook"
+description: "Create and send messages through managed webhooks."
+icon: "webhook"
+---
+
+## Overview
+
+Petto can create webhooks in a channel and send messages through them with a custom username or avatar. Webhooks created by Petto are managed per server and never expose their token in chat or the dashboard.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!webhook create <name>
+!webhook send <identifier> <message> [--add <embed_code>] [--username <name>] [--avatar_url <url>]
+!webhook edit <message_link> <new_message>
+!webhook delete <identifier>
+!webhook list
+```
+
+```javascript Example
+!webhook create announcements
+!webhook send 1 "The event starts in 10 minutes" --username Petto News
+!webhook send 1 hello --add "{embed}$v{title: Welcome}"
+!webhook edit https://discord.com/channels/123/456/789 "Updated announcement"
+!webhook delete 1
+```
+
+</CodeGroup>
+
+`!wh` is an alias for `!webhook`. The identifier can be the local number shown by `!webhook list` or the Discord webhook ID. These commands are prefix-only.
+
+## Permissions and dashboard
+
+You need **Manage Webhooks** to use the command. The webhook must also be created in a channel where Petto can manage webhooks.
+
+The **Dashboard → Automation → Managed webhooks** card can create, send, and delete managed webhooks. Tokens are kept server-side and are not rendered in the dashboard.
+
+## Embed additions
+
+`--add` accepts a compact embed code. Petto currently reads `title` and `description` values, for example:
+
+```javascript
+!webhook send 1 hello --add "{embed}$v{title: Hello}{description: This is an embed}"
+```
