@@ -1,0 +1,32 @@
+---
+title: "Command permissions"
+description: "Give groups custom Petto authorization levels without replacing Discord permissions."
+icon: "key"
+---
+
+Petto has two permission layers. Discord permissions and role hierarchy still decide whether an action is technically possible; this optional Petto layer decides which members may run a command. It is numeric, from **0 to 100**, and can be managed from the dashboard's **Permissions** page or with prefix commands.
+
+<Warning>
+  This does not bypass Discord. A member can have Petto level 100 and still fail if their Discord permissions or Petto's role hierarchy do not allow the action.
+</Warning>
+
+## Prefix commands
+
+The examples below use the default `!` prefix. Replace it with the prefix configured for your server. Petto does not use slash commands.
+
+```text
+!permission group create moderators 50
+!permission group add-role moderators @Moderators
+!permission command set ban 50
+!permission group list
+!permission command list
+!permission mylevel
+```
+
+Use `group view <name>` to inspect assignments, `group level <name> <0-100>` to adjust a group, and `group delete <name>` to remove one. Users can be assigned directly with `group add-user` as well.
+
+## How it is evaluated
+
+Petto uses the highest level from every group a member matches, including role-based and user-based groups. The server owner and members with Discord Administrator always bypass the custom Petto level. A command with no configured row is public to members who pass its normal Discord permission check.
+
+The dashboard also includes a simulation view so staff can test a role or user before applying a required level.

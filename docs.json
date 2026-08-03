@@ -97,6 +97,7 @@
         "group": "Setup",
         "pages": [
           "setup/prefix",
+          "setup/permissions",
           "setup/bot-appearance",
           "setup/config-export"
         ]

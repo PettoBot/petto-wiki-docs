@@ -6,7 +6,7 @@ icon: "sitemap"
 
 ## The rule that explains most permission issues
 
-Discord enforces one hard rule for every bot, Petto included: **a bot can never act on a member whose highest role sits above the bot's own role** in the server's role list, no permission or admin setting overrides this. This applies to `/ban`, `/kick`, `/mute`, `/role`, and anything else that touches a member directly.
+Discord enforces one hard rule for every bot, Petto included: **a bot can never act on a member whose highest role sits above the bot's own role** in the server's role list, no permission or admin setting overrides this. This applies to `!ban`, `!kick`, `!mute`, `!role`, and anything else that touches a member directly. Petto uses the server's prefix; `!` is only the default.
 
 <Warning>
   This means Petto also can't moderate members with a role positioned above its own, even if that member has no special permissions themselves, hierarchy is purely about role **position**, not what the role grants.
@@ -27,7 +27,13 @@ A command failing in exactly one channel but working everywhere else is almost a
 
 ## Command-level permission requirements
 
-Beyond what Petto itself needs, most config commands also require the **member running them** to have **Manage Guild** (or a more specific permission like Ban Members for `/ban`). This is Discord's own permission system, set on the command itself, Petto never needs to manually check who's allowed, Discord hides the command from members who can't use it.
+Beyond what Petto itself needs, most config commands also require the **member running them** to have **Manage Guild** (or a more specific permission like Ban Members for `!ban`). This is Discord's own permission system, checked by Petto for prefix commands.
+
+## Petto command levels
+
+The dashboard's **Permissions** page and `!permission` expose an additional optional layer. Create groups from level 0 to 100, assign users or roles, then set a required level on a command. The highest matching group level wins. This layer never replaces Discord permissions or hierarchy; it only adds a configurable staff gate.
+
+See [Command permissions](/setup/permissions) for the full prefix-only command reference.
 
 ## Where this shows up
 
