@@ -1,0 +1,50 @@
+---
+title: "Security Center"
+description: "Read-only security scans, permission previews, and configuration backups."
+icon: "shield-check"
+---
+
+## Security scan
+
+Petto can review the server without changing anything. It checks elevated roles, dangerous `@everyone` permissions, anti-nuke, anti-spam, anti-raid, verification, audit logs, and Petto's audit-log access.
+
+```text
+!security
+!security scan
+```
+
+The scan returns a score from 0 to 100 and explains the most important gaps. The score is a guide, not a guarantee. Discord permissions and the server's own rules still matter.
+
+## Permission simulator
+
+Preview the dangerous permissions on a role before changing it:
+
+```text
+!security role @Moderators
+```
+
+This only reads the role. It does not edit permissions or assign the role to anyone.
+
+## Configuration backups
+
+Backups contain server configuration such as roles, channel settings, permission overwrites, emojis, and general guild settings. They never contain bot tokens, access tokens, or message content.
+
+```text
+!backup create
+!backup create "Before changing roles"
+!backup list
+!backup export [id]
+```
+
+Only members with **Manage Server** can create or export backups. Exported backups are JSON files intended for review and recovery tooling. Petto does not silently delete or overwrite a live server during a backup.
+
+## Weekly summary
+
+`!summary` is a human-readable activity report, not a message archive:
+
+```text
+!summary
+!summary 30
+```
+
+It uses aggregated counters for messages, reactions, voice time, and active channels. Petto does not include message text in the report.

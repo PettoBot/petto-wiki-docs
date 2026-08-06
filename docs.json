@@ -45,6 +45,7 @@
           "moderation/moderation",
           "moderation/automod",
           "moderation/anti-nuke",
+          "moderation/security",
           "moderation/logging"
         ]
       },
