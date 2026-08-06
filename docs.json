@@ -27,6 +27,7 @@
         "group": "Guides",
         "pages": [
           "guides/first-server-setup",
+          "guides/petto-vault",
           "guides/ticket-system-setup",
           "guides/migrating-from-another-bot"
         ]

@@ -1,0 +1,62 @@
+---
+title: "Petto Vault"
+description: "Backups automáticos y auditoría de la configuración de tu servidor."
+---
+
+Petto Vault es un espacio privado para proteger la configuración de tu servidor. Guarda snapshots de roles, canales, permisos, emojis y ajustes básicos, sin almacenar mensajes, tokens ni contraseñas.
+
+## Comandos
+
+### Crear un backup
+
+```text
+!backup create [nombre]
+```
+
+Guarda un backup manual. También puedes usar `/backup create`.
+
+### Ver backups
+
+```text
+!backup list
+```
+
+### Exportar un backup
+
+```text
+!backup export [id]
+```
+
+Petto entrega un archivo JSON con la configuración capturada.
+
+### Activar backups automáticos
+
+```text
+!backup schedule <horas> [retención]
+```
+
+Ejemplo:
+
+```text
+!backup schedule 24 7
+```
+
+Esto crea un snapshot cada 24 horas y conserva los últimos 7 backups automáticos.
+
+Para desactivarlos:
+
+```text
+!backup unschedule
+```
+
+### Revisar auditoría
+
+```text
+!backup audit [límite]
+```
+
+Muestra quién creó o exportó backups y quién cambió la programación.
+
+## Base de datos dedicada
+
+Vault usa una conexión PostgreSQL separada mediante `PETTO_VAULT_DATABASE_URL`. La contraseña debe configurarse como variable privada en el host y nunca publicarse en el repositorio.
