@@ -82,23 +82,65 @@ Also live and public at [petto.sbs/status](https://petto.sbs/status), reported d
 
 `snowflake` decodes the creation timestamp embedded in any Discord ID (user, channel, role, message).
 
+## New utilities
+
+<CodeGroup>
+
+```javascript Syntax
+!calc <expression>
+!time [country_or_timezone]
+!wiki [query]
+```
+
+```javascript Example
+!calc (12 + 4) * 3
+!time Colombia
+!wiki leveling
+```
+
+</CodeGroup>
+
+`calc` accepts safe arithmetic with parentheses, powers, percentages, multiplication, division, addition, and subtraction. It never evaluates JavaScript. `time` accepts IANA zones such as `America/Bogota` and common country names. `wiki` searches the official [Petto Wiki](https://wiki.petto.sbs) and links straight to the matching guide.
+
+## Snipe
+
+<CodeGroup>
+
+```javascript Syntax
+!snipe [deleted|edited] [index]
+```
+
+```javascript Example
+!snipe
+!snipe edited 2
+```
+
+</CodeGroup>
+
+Staff with **Manage Messages** can view up to the ten most recent deleted or edited messages in the current channel. Human messages are cached when they arrive, so partial Discord delete events still preserve their author and content when possible. The cache is in memory and expires after 24 hours.
+
 ## Leveling
 
 <CodeGroup>
 
 ```javascript Syntax
 !rank [user]
-!top [page]
+!rank [user] [messages|voice]
+!top [page] [messages|voice]
 ```
 
 ```javascript Example
 !rank @Someone
 !top 2
+!rank @Someone voice
+!top 1 voice
 ```
 
 </CodeGroup>
 
 See [Leveling](/community/leveling) for configuration.
+
+`!rank` also accepts `!nivel` and `!lvl`. `!top` also accepts `!leaderboard`, `!lb`, and `!ranking`. Both commands can read message XP or voice XP independently.
 
 ## Emoji & sticker theft
 

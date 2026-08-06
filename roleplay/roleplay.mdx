@@ -1,0 +1,34 @@
+---
+title: "Roleplay"
+description: "Lighthearted image interactions for members and friends."
+icon: "heart"
+---
+
+## Overview
+
+Petto's roleplay commands are small, friendly interactions. They use the configured prefix and accept an optional member. If no member is supplied, the response describes the action as self-directed.
+
+<CodeGroup>
+
+```javascript Commands
+!airkiss  !angrystare  !bite  !bleh  !blush  !boop
+!brofist  !cry  !cuddle  !dance  !glomp  !handhold
+!happy  !highfive  !hug  !kill  !kiss  !lick
+!nom  !pat  !poke  !punch  !slap  !smile
+!smug  !tickle  !wave  !wink  !yeet
+```
+
+```javascript Examples
+!hug @Friend
+!boop @Someone
+!lick @Friend
+!dance
+```
+
+</CodeGroup>
+
+Each interaction returns a randomized image when the provider has one available. Petto uses safe, non-explicit wording in the message and falls back between image providers when a source is unavailable. Roleplay is separate from moderation, so names such as `kick` cannot replace moderation commands.
+
+## Notes
+
+Roleplay interactions are intended for normal server members and do not change roles, permissions, or moderation cases. A server can disable any command with the regular command-disable configuration if a particular interaction is not wanted.

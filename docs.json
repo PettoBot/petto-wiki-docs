@@ -75,6 +75,12 @@
         ]
       },
       {
+        "group": "Roleplay",
+        "pages": [
+          "roleplay/roleplay"
+        ]
+      },
+      {
         "group": "Miscellaneous",
         "pages": [
           "miscellaneous/webhook",

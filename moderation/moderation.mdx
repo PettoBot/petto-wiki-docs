@@ -8,6 +8,60 @@ icon: "shield-check"
 
 Moderation gives every sanction a permanent, searchable case instead of a message that gets deleted and forgotten. Arguments are positional and space-separated, wrap anything with spaces (like a reason) in "quotes".
 
+## Direct moderation commands
+
+The grouped commands below also have direct prefix commands. They use the same case history, hierarchy checks, confirmation cards, and Discord permission checks.
+
+<CodeGroup>
+
+```javascript Syntax
+!hardban <user> [reason]
+!tempban <user> <duration> [delete_message_days] [reason]
+!softban <user> [delete_message_days] [reason]
+!tempmute <user> <duration> [reason]
+!timeout <user> <duration> [reason]
+!unban <user> [reason]
+!unmute <user> [reason]
+```
+
+```javascript Example
+!hardban @Spammer "Raid cleanup"
+!tempban @Someone 7d 1 "Repeated warnings"
+!softban @Spammer 3 "Clean recent spam"
+!timeout @Someone 2h "Cooldown"
+!unban 492810293847162839 "Appeal accepted"
+```
+
+</CodeGroup>
+
+`hardban` bans the member and removes up to seven days of recent messages. `softban` bans and immediately unbans the member, keeping no lasting ban while cleaning recent messages. `tempmute` and `timeout` apply Discord's native timeout for up to 28 days. `unmute` also removes Petto's configured mute role when one is in use.
+
+## Administrator bulk actions
+
+These commands always require **Administrator** and ask for confirmation before changing several members at once.
+
+<CodeGroup>
+
+```javascript Syntax
+!massban <users> [reason]
+!masskick <users> [reason]
+!massmute <users> [reason]
+!massunmute <users> [reason]
+!masswarn <users> <reason>
+!massunban [reason]
+```
+
+```javascript Example
+!massban @UserOne @UserTwo "Raid accounts"
+!massmute @UserOne @UserTwo "Chat lockdown"
+!masswarn @UserOne @UserTwo "Rule 3"
+!massunban "Review completed"
+```
+
+</CodeGroup>
+
+Users can be supplied as mentions or IDs, separated by spaces or commas. Bulk actions create individual cases where applicable, and Discord permissions plus role hierarchy still apply to every target.
+
 ## Ban
 
 <CodeGroup>
@@ -176,6 +230,30 @@ Non-punitive staff notes, separate from case history.
 </CodeGroup>
 
 `roles` accepts several mentions/IDs/names at once, space or comma separated.
+
+## Moderation access by role
+
+Server managers can allow selected roles to use individual moderation actions without giving those roles Administrator. This does not bypass Discord permissions, Petto's role hierarchy, or the Administrator-only bulk rule.
+
+<CodeGroup>
+
+```javascript Syntax
+!moderation allow <action> <role>
+!moderation deny <action> <role>
+!moderation reset <action>
+!moderation list
+```
+
+```javascript Example
+!moderation allow ban @Moderators
+!moderation allow warn @Helpers
+!moderation deny ban @Helpers
+!moderation list
+```
+
+</CodeGroup>
+
+Individual actions can be `ban`, `kick`, `softban`, `unban`, `mute`, `unmute`, `warn`, `case`, `note`, `role`, `channel`, `voice`, or `nuke`. The `ban` action covers `!ban`, `!hardban`, and `!tempban`; the `mute` action covers `!mute`, `!tempmute`, and `!timeout`. The exact Discord permission for the action remains required.
 
 ## Channel
 
