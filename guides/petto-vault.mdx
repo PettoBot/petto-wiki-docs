@@ -60,3 +60,19 @@ Muestra quién creó o exportó backups y quién cambió la programación.
 ## Base de datos dedicada
 
 Vault usa una conexión PostgreSQL separada mediante `PETTO_VAULT_DATABASE_URL`. La contraseña debe configurarse como variable privada en el host y nunca publicarse en el repositorio.
+
+## Usarlo desde la dashboard
+
+La dashboard no se conecta directamente a PostgreSQL. Las acciones pasan por el servidor del bot, que comprueba en Discord que la persona tenga `Manage Server` o `Administrator` en ese servidor.
+
+Configura el mismo secreto privado en ambos servicios:
+
+```env
+# Bot
+PETTO_DASHBOARD_API_SECRET=un-secreto-largo-y-aleatorio
+
+# Dashboard
+PETTO_BOT_API_SECRET=un-secreto-largo-y-aleatorio
+```
+
+La dashboard aparecerá en la sección **Backups** del servidor. Desde ahí puedes crear, exportar, programar y revisar la auditoría sin exponer la base ni sus credenciales al navegador.
