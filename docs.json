@@ -3,14 +3,14 @@
   "theme": "mint",
   "name": "Petto",
   "colors": {
-    "primary": "#fde52f",
-    "light": "#9c7b00",
-    "dark": "#fde52f"
+    "primary": "#8399ff",
+    "light": "#5266d6",
+    "dark": "#8399ff"
   },
   "background": {
     "color": {
-      "light": "#faf8f3",
-      "dark": "#1e1d1b"
+      "light": "#ffffff",
+      "dark": "#111214"
     }
   },
   "favicon": "favicon.png",
@@ -155,11 +155,11 @@
   },
   "seo": {
     "metatags": {
-      "theme-color": "#fde52f",
+      "theme-color": "#111214",
       "og:site_name": "wiki.petto.sbs",
-      "og:title": "Petto Documentation",
-      "og:description": "Every command, module, and variable Petto supports, with real examples.",
-      "og:image": "/og-image.png",
+      "og:title": "Petto Wiki",
+      "og:description": "Commands, features, and setup guides for Petto, with real examples.",
+      "og:image": "/og-image.svg",
       "twitter:card": "summary_large_image"
     },
     "indexing": "navigable"

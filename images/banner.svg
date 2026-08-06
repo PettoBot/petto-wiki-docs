@@ -1,0 +1,16 @@
+<svg width="680" height="240" viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bannerGlow" cx="70%" cy="15%" r="90%">
+      <stop offset="0%" stop-color="#8399ff" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#8399ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="680" height="240" fill="#111214"/>
+  <rect width="680" height="240" fill="url(#bannerGlow)"/>
+  <rect x="38" y="38" width="88" height="88" rx="22" fill="#191b20" stroke="#8399ff" stroke-opacity="0.45" stroke-width="1.5"/>
+  <image x="52" y="52" width="60" height="60" href="https://wiki.petto.sbs/favicon.png"/>
+  <text x="38" y="166" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#f3f1ea">Petto <tspan fill="#8399ff">Wiki</tspan></text>
+  <text x="40" y="198" font-family="Arial, sans-serif" font-size="17" fill="#9c968a">Commands, setup, and features in one place.</text>
+  <rect x="40" y="216" width="600" height="2" rx="1" fill="#2a2d35"/>
+  <rect x="40" y="216" width="150" height="2" rx="1" fill="#8399ff"/>
+</svg>
