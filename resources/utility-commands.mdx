@@ -89,18 +89,20 @@ Also live and public at [petto.sbs/status](https://petto.sbs/status), reported d
 ```javascript Syntax
 !calc <expression>
 !time [country_or_timezone]
+!tz [country_or_timezone]
 !wiki [query]
 ```
 
 ```javascript Example
 !calc (12 + 4) * 3
 !time Colombia
+!tz Japon
 !wiki leveling
 ```
 
 </CodeGroup>
 
-`calc` accepts safe arithmetic with parentheses, powers, percentages, multiplication, division, addition, and subtraction. It never evaluates JavaScript. `time` accepts IANA zones such as `America/Bogota` and common country names. `wiki` searches the official [Petto Wiki](https://wiki.petto.sbs) and links straight to the matching guide.
+`calc` accepts safe arithmetic with parentheses, powers, percentages, multiplication, division, addition, and subtraction. It never evaluates JavaScript. `time` also responds to the aliases `!tz` and `!clock`, accepts country names in English or Spanish, and understands exact IANA zones such as `America/Bogota`. For countries with several time zones, a country name uses a representative main zone, so use the IANA zone when you need a specific city or region. `wiki` searches the official [Petto Wiki](https://wiki.petto.sbs) and links straight to the matching guide.
 
 ## Snipe
 
