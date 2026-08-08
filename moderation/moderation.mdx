@@ -260,11 +260,40 @@ Individual actions can be `ban`, `kick`, `softban`, `unban`, `mute`, `unmute`, `
 <CodeGroup>
 
 ```javascript Syntax
+!lock [channel] [role]
+!unlock [channel] [role]
+!slowmode <seconds> [channel]
+!clear <amount> [user]
+!hide [channel]
+!unhide [channel]
+!lockall
+!unlockall
+!moveall <destination>
+```
+
+The direct forms above are shortcuts for the grouped command. The grouped forms remain available:
+
+```javascript Syntax
 !channel lock [channel] [role]
 !channel unlock [channel] [role]
 !channel slowmode <seconds> [channel]
 !channel clear <amount> [user]
+!channel lock-all
+!channel unlock-all
+!channel hide [channel]
+!channel unhide [channel]
+!channel move-all <destination>
 ```
+
+```javascript Example
+!lock
+!slowmode 10
+!clear 50 @Spammer
+!lockall
+!moveall #AFK
+```
+
+Legacy spellings such as `!channel lockdown`, `!channel lock_all`, `!channel unlock_all`, and `!channel moveall` remain accepted.
 
 ```javascript Example
 !channel lock
