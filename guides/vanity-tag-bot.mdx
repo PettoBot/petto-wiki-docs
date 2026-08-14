@@ -61,6 +61,10 @@ The guided panel has four steps:
 
 Use `/config view` at any point to see which parts are ready. Every completed form is saved immediately. There is no separate hidden Save button.
 
+<Tip>
+  After setup, use `/logs test`, `/vanity test user:@Member`, and `/embed preview name:vanity_notify` to verify the three important paths: staff logs, role matching, and the member thank-you message.
+</Tip>
+
 ## Vanity rules
 
 Vanity means a rule based on a value from a member's Discord profile. The easiest and most useful source is **Custom Status**, which is the text a member writes in their profile status. It is not a Server Tag and it is not the member's username.
@@ -322,6 +326,8 @@ Check these in order:
 Run `/vanity notify` or `/guildtag notify` and confirm that a channel is configured. Then use `/embed preview name:vanity_notify` or `/embed preview name:guildtag_notify`.
 
 Notifications are transition-based. If the rule has already been evaluated as matching and you are testing the same unchanged member again, no duplicate thank-you message is expected. Change the source value, or create a new rule, to test a new match.
+
+If the member already has the configured role, the notification still appears when the rule becomes a new match. The role being present does not suppress the thank-you message; only an already-recorded, unchanged match prevents a duplicate.
 
 ### The Server Tag value looks empty or is delayed
 
