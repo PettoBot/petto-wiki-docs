@@ -1,0 +1,340 @@
+---
+title: "Vanity & Guild Tags"
+description: "Set up Custom Status rules, Discord Server Tag rules, role automation, logs, and thank-you messages."
+icon: "id-card"
+---
+
+Vanity & Guild Tags is the identity automation service for servers that want to give roles based on a member's Discord profile or Server Tag data.
+
+<Info>
+  This bot uses **slash commands only**. Start with `/setup`; you do not need to memorize command IDs, role IDs, or internal database names.
+</Info>
+
+## What it can do
+
+- Match a member's **Custom Status text** or profile name and manage a role.
+- Match Discord's **identity guild** and visible Server Tag data and manage a role.
+- Keep a shared role safe when both a Vanity rule and a Server Tag rule use it.
+- Send Petto-style audit cards to a staff log channel.
+- Send a separate thank-you message to the member when a rule starts matching.
+- Edit the thank-you embeds with a visual editor and preview them before sending.
+- Customize the bot's server nickname, avatar, banner, and bio.
+- Reconcile members manually with bounded sync commands.
+
+## First-time setup
+
+### 1. Invite and position the bot
+
+Give the bot these Discord permissions in every server where it should work:
+
+- **Manage Roles**;
+- **View Channels**;
+- **Send Messages**;
+- **Embed Links**;
+- **Read Message History**.
+
+Then open **Server Settings → Roles** and move the bot's role above every role it must add or remove. Discord will reject a role change if the bot's highest role is below that role.
+
+### 2. Enable Gateway intents
+
+In the Discord Developer Portal, open the bot application and enable:
+
+- **Server Members Intent**;
+- **Presence Intent**.
+
+Presence Intent is required for `Custom Status` rules. Without it, the bot cannot receive a member's status text when it changes.
+
+### 3. Open the guided setup
+
+Run:
+
+```text
+/setup
+```
+
+The guided panel has four steps:
+
+1. **Action logs**: choose the staff channel with `/logs setup`.
+2. **Matching rules**: create a Custom Status, profile-name, or Server Tag rule.
+3. **Bot profile**: customize the bot in this server.
+4. **Thank-you messages**: choose the channel, embed, and mention behavior.
+
+Use `/config view` at any point to see which parts are ready. Every completed form is saved immediately. There is no separate hidden Save button.
+
+## Vanity rules
+
+Vanity means a rule based on a value from a member's Discord profile. The easiest and most useful source is **Custom Status**, which is the text a member writes in their profile status. It is not a Server Tag and it is not the member's username.
+
+### Sources
+
+| Source shown in Discord | Internal value | What it reads |
+| --- | --- | --- |
+| Custom Status (profile text) | `custom_status` | The member's current Custom Status text |
+| Username | `username` | The Discord username |
+| Global name | `global_name` | The member's global display name |
+| Server nickname | `guild_nickname` | The nickname in this server |
+| Display name | `display_name` | Discord's resolved display name |
+
+### Create a rule
+
+The visual setup is recommended. For the full command, use:
+
+```text
+/vanity add
+```
+
+Then choose:
+
+- `name`: a unique internal name, such as `cinnamochi`;
+- `word`: the text or pattern to match;
+- `source`: what Discord value to read;
+- `comparison`: exact, contains, starts with, ends with, or regular expression;
+- `role`: the role Discord should manage;
+- `action`: add or remove the role.
+
+Example for a Custom Status containing `cinnamochi`:
+
+```text
+/vanity add name:cinnamochi word:cinnamochi source:custom_status comparison:contains role:@Rep action:add_role
+```
+
+For most servers, use `contains` and `add_role`. The options `case_fold`, `trim_space`, and `collapse_space` are enabled by default so normal capitalization and extra spaces do not break a match.
+
+### Test and synchronize
+
+Test one member without changing any roles:
+
+```text
+/vanity test user:@Member
+```
+
+Synchronize one member and allow role changes:
+
+```text
+/vanity sync user:@Member
+```
+
+Run `/vanity sync` without a user to perform a bounded manual server sync. It does not start an unlimited scan and it does not automatically scan the server on every restart.
+
+Other rule commands:
+
+```text
+/vanity list
+/vanity edit name:cinnamochi
+/vanity remove name:cinnamochi
+```
+
+`remove` soft-deletes the rule for auditability. It does not delete historical audit records.
+
+## Server Tag rules
+
+Server Tag rules read Discord identity data from a member's `primary_guild` object. They are separate from Custom Status rules.
+
+### Conditions
+
+| Condition shown in Discord | Value required | Meaning |
+| --- | --- | --- |
+| Identity guild is | Yes | The member belongs to the supplied identity guild ID |
+| Identity guild is not | Yes | The member does not belong to the supplied identity guild ID |
+| Server Tag is enabled | No | Discord reports the identity as enabled |
+| Server Tag is disabled | No | Discord reports the identity as disabled or unavailable |
+| Visible tag equals | Yes | The visible Server Tag text equals the value |
+| Visible tag is not | Yes | The visible Server Tag text differs from the value |
+
+Example that adds `@Partner` when the member's identity guild is a specific server:
+
+```text
+/guildtag add name:partner-server condition:is_guild_id value:707307527846625280 role:@Partner action:add_role
+```
+
+Test and synchronize it with:
+
+```text
+/guildtag test user:@Member
+/guildtag sync user:@Member
+/guildtag list
+```
+
+The Server Tag API and identity data are not guaranteed to produce a member event for every change. That is why `/guildtag sync` is an explicit, bounded recovery command. It does not run an automatic full-server scan after every restart.
+
+## Shared roles
+
+Vanity and Server Tag rules may safely use the same role.
+
+The bot stores a grant per rule and only removes a role when all active add-role sources have disappeared **and** the bot previously recorded that it owned the role. If a member already had the role manually, the bot leaves it alone.
+
+Example:
+
+```text
+Custom Status matches  → @Rep
+Identity guild matches → @Rep
+```
+
+If the Custom Status stops matching while the identity guild still matches, `@Rep` stays. It is removed only after both sources stop matching and the bot owns that role assignment.
+
+## Thank-you messages
+
+Thank-you messages are separate from staff logs. Configure them independently:
+
+```text
+/vanity notify channel:#vanity-notify embed:default ping:user
+/guildtag notify channel:#tag-notify embed:default ping:user
+```
+
+Options:
+
+- `channel`: where the member notification is sent;
+- `embed`: `default` or the name of a saved embed;
+- `ping`: `user` to mention the member, or `none` for no mention.
+
+The default embeds are `vanity_notify` and `guildtag_notify`.
+
+The bot sends the thank-you message when a rule starts matching. It also sends it when the member already has the role, so a role that was granted by another source or already existed does not suppress the notification. It does not repeat the message for every presence update, member event, or identical sync.
+
+View the current configuration by running the notify command without options:
+
+```text
+/vanity notify
+/guildtag notify
+```
+
+## Staff action logs
+
+Logs are for staff and are not the same as member notifications.
+
+Set the current channel as the audit channel:
+
+```text
+/logs setup
+```
+
+Or choose the channel and events directly:
+
+```text
+/logs set channel:#staff-log events:vanity_add,vanity_remove,tag_add,tag_remove,error
+```
+
+Available events:
+
+- `vanity_add`;
+- `vanity_remove`;
+- `tag_add`;
+- `tag_remove`;
+- `error`.
+
+Inspect or test the channel:
+
+```text
+/logs view
+/logs test event:vanity_add
+/logs test event:tag_add
+```
+
+Action cards contain the source, rule, role, member, matched value, reason, and result. `/logs` never selects the member thank-you embed.
+
+## Embeds
+
+For a new custom embed, create it and open the visual editor:
+
+```text
+/embed create name:my_vanity_message
+```
+
+For the automatic defaults, open the existing template directly with `/embed edit name:vanity_notify` or `/embed edit name:guildtag_notify` after configuring its notification.
+
+The visual editor lets you set title, description, message content, color, author, footer, thumbnail, image, timestamp, fields, and link buttons. Each submitted section saves immediately and the preview refreshes after the change.
+
+Useful commands:
+
+```text
+/embed edit name:vanity_notify
+/embed preview name:vanity_notify
+/embed list
+/embed delete name:old-template
+/embed variables
+```
+
+### Variables
+
+Use these variables in titles, descriptions, content, fields, authors, footers, and link labels:
+
+```text
+{user} {user.mention} {user.id} {user.name} {user.avatar} {user.display_name}
+{guild.name} {guild.id} {guild.icon} {server_name} {server_icon}
+{rule.name} {rule.source} {rule.value} {rule.condition} {rule.reason}
+{role} {role.id}
+{vanity.rule} {vanity.word} {vanity.source} {vanity.value} {vanity.role}
+{tag.rule} {tag.condition} {tag} {tag.rule_value} {tag.guild_id} {tag.enabled} {tag.badge} {tag.role}
+{action} {action.text} {result} {event} {event.title} {event.error} {event.matched_value}
+{identity.source} {identity.value} {timestamp} {newline} {separator} {date.utc_timestamp}
+```
+
+For a `custom_status` Vanity rule, `{vanity.value}` is the member's current Custom Status text. In a Guild Tag notification, `{tag}` is the visible tag text, not the identity guild ID.
+
+## Bot profile per server
+
+These commands change only the bot's profile in the current server:
+
+```text
+/set view
+/set nickname value:Petto
+/set avatar file:<upload>
+/set banner url:https://example.com/banner.png
+/set bio value:Identity automation
+/set reset
+```
+
+Avatar and banner accept a Discord upload or an allowed HTTPS URL. `reset` returns that server to the global bot profile. A failed Discord update keeps the previous saved profile.
+
+## Complete command map
+
+| Command | Purpose |
+| --- | --- |
+| `/cmds` | Open the private interactive help panel |
+| `/setup` | Start the guided setup |
+| `/config view` | Show which setup areas are configured |
+| `/config reset` | Remove this server's saved configuration |
+| `/set ...` | Customize the bot profile in this server |
+| `/vanity ...` | Manage profile and Custom Status rules |
+| `/guildtag ...` | Manage Server Tag identity rules |
+| `/identity status` | Inspect a member's primary guild and Custom Status |
+| `/identity sync` | Evaluate identity rules for one member or a bounded batch |
+| `/identity audit` | Show the audit storage behavior |
+| `/logs ...` | Configure and test staff action logs |
+| `/embed ...` | Create, edit, preview, and send embeds |
+
+## Troubleshooting
+
+### The bot does not add the role
+
+Check these in order:
+
+1. The bot has **Manage Roles**.
+2. The bot's role is above the target role.
+3. The correct source was selected. `Custom Status` is not the username.
+4. The text matches the chosen comparison.
+5. Presence Intent is enabled for Custom Status rules.
+6. Run `/vanity test user:@Member` or `/guildtag test user:@Member`.
+7. Run the corresponding `/sync` command after fixing the setting.
+
+### The notification does not arrive
+
+Run `/vanity notify` or `/guildtag notify` and confirm that a channel is configured. Then use `/embed preview name:vanity_notify` or `/embed preview name:guildtag_notify`.
+
+Notifications are transition-based. If the rule has already been evaluated as matching and you are testing the same unchanged member again, no duplicate thank-you message is expected. Change the source value, or create a new rule, to test a new match.
+
+### The Server Tag value looks empty or is delayed
+
+Discord may omit or delay `primary_guild` data. This is a Discord event/API limitation, not a reason to start an unlimited scan. Use `/identity status` to inspect the returned data and `/guildtag sync` for bounded manual recovery.
+
+### `/embed create` or `/embed edit` looks empty
+
+That is the visual editor's empty starting state. Press **Description**, **Title**, or **Message content**, submit the modal, and the preview will update. Use `/embed variables` for the exact tokens accepted by the renderer.
+
+### Resetting configuration
+
+`/config reset` removes this server's saved rules, notification settings, embeds, profile overrides, and log configuration. It does not automatically change Discord roles. Use it only when you intentionally want to start this server's configuration again.
+
+## Mobile presence indicator
+
+The bot identifies its Gateway session as Android so Discord can display the mobile phone indicator next to its online status. This is only a presence appearance detail; it does not affect Vanity, Server Tag, notifications, or role synchronization.
