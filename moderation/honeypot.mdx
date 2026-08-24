@@ -10,7 +10,9 @@ A Honeypot is a bait channel that looks like a normal member-visible channel but
 
 This is designed to catch compromised accounts and automated spam bots that blindly post while scanning a server. Petto ignores itself, but it checks other bot messages before the normal bot-message skip so spam bots can be caught too.
 
-All Honeypot commands require **Administrator**. The configured action can be:
+<Note>
+  All Honeypot commands require **Administrator**. The configured action can be:
+</Note>
 
 - `softban` — bans the user, removes their recent messages, and immediately unbans them.
 - `ban` — permanently bans the user and removes recent messages according to Discord's limits.
