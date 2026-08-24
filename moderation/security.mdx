@@ -29,7 +29,7 @@ This only reads the role. It does not edit permissions or assign the role to any
 
 Backups contain server configuration such as roles, channel settings, permission overwrites, emojis, and general guild settings. They never contain bot tokens, access tokens, or message content.
 
-```text
+```javascript
 !backup create
 !backup create "Before changing roles"
 !backup list
@@ -42,7 +42,7 @@ Only members with **Manage Server** can create or export backups. Exported backu
 
 `!summary` is a human-readable activity report, not a message archive:
 
-```text
+```javascript
 !summary
 !summary 30
 ```
