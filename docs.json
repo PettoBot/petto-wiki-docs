@@ -46,6 +46,7 @@
         "pages": [
           "moderation/moderation",
           "moderation/automod",
+          "moderation/honeypot",
           "moderation/anti-nuke",
           "moderation/security",
           "moderation/logging"

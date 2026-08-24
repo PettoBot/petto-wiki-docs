@@ -1,0 +1,127 @@
+---
+title: "Honeypot"
+description: "Catch spam bots and compromised accounts with a bait channel."
+icon: "jar"
+---
+
+## Overview
+
+A Honeypot is a bait channel that looks like a normal member-visible channel but is not intended for regular conversation. Petto watches the channel and automatically moderates members or bots that send a message there.
+
+This is designed to catch compromised accounts and automated spam bots that blindly post while scanning a server. Petto ignores itself, but it checks other bot messages before the normal bot-message skip so spam bots can be caught too.
+
+All Honeypot commands require **Administrator**. The configured action can be:
+
+- `softban` — bans the user, removes their recent messages, and immediately unbans them.
+- `ban` — permanently bans the user and removes recent messages according to Discord's limits.
+- `kick` — removes the user from the server without banning them.
+
+The default action is `softban`.
+
+## Adding a Honeypot
+
+Choose a text or announcement channel that members can see. Do not deny **View Channel** or prevent messages from reaching the channel, because Petto needs to receive a message there in order to detect it.
+
+<CodeGroup>
+
+```text Syntax
+!honeypot add <channel> [punishment]
+```
+
+```text Example
+!honeypot add #do-not-type-here softban
+```
+
+```text Result
+✅ Honeypot enabled in #do-not-type-here.
+Action: a softban for non-staff members who post there.
+```
+
+</CodeGroup>
+
+If the channel already has a Honeypot, running `add` again updates its configured action and refreshes the warning panel. The panel includes Petto's Honeypot artwork, a persistent trigger counter, and a counter button using `<:petto_honeypot:1541493688054841405>`.
+
+## Listing Honeypots
+
+View every active Honeypot in the current server, its configured punishment, and its persistent trigger count.
+
+```text
+!honeypot list
+```
+
+The counter is stored per server and channel. The panel button is informational only: clicking it does not disable the Honeypot or change its action; it replies privately with the current count.
+
+## Removing a Honeypot
+
+Remove a channel from the server's Honeypot configuration. Members will no longer be punished for sending messages there, and Petto removes the warning panel when it can access the message.
+
+<CodeGroup>
+
+```text Syntax
+!honeypot remove <channel>
+```
+
+```text Example
+!honeypot remove #do-not-type-here
+```
+
+</CodeGroup>
+
+## Exemptions and permissions
+
+The following are exempt from Honeypot actions:
+
+- The server owner.
+- Members with **Administrator**.
+- Members with **Manage Messages**.
+- Petto itself.
+
+Petto needs these permissions in the Honeypot channel to configure and maintain the panel:
+
+- **View Channel**
+- **Send Messages**
+- **Read Message History**
+- **Manage Messages**
+
+It also needs **Kick Members** or **Ban Members**, depending on the selected action. Its highest role must be above the target member's highest role. Discord's role hierarchy still applies; a Honeypot cannot punish an owner, a higher role, or another protected member.
+
+## What gets logged
+
+Every trigger deletes the message, increments the persistent counter, and attempts the configured action. A successful action creates a normal moderation case, so it appears in the `sanctions` log with a reason such as:
+
+```text
+Automod: Honeypot: sent a message in the honeypot channel.
+```
+
+The detection itself is also sent to the `automod` log category. To keep these separate, route them to different channels:
+
+```text
+!logs add #mod-log sanctions
+!logs add #automod-log automod
+```
+
+See [Logging](/moderation/logging) for all available event categories and routing options.
+
+## Troubleshooting
+
+### The panel does not appear
+
+Check that Petto can view and send messages in the selected channel and has **Manage Messages**. Run the `add` command again after fixing permissions to recreate or refresh the panel.
+
+### The message is detected but the action fails
+
+Check the matching **Kick Members** or **Ban Members** permission and move Petto's role above the target member's highest role. The trigger may still appear in the `automod` log even when Discord rejects the punishment.
+
+### Staff members are not punished
+
+That is intentional. The owner, Administrators, and members with **Manage Messages** are exempt so staff can inspect or maintain the bait channel safely.
+
+## Related
+
+<Card title="Automod" icon="shield-halved" href="/moderation/automod">
+  Configure content checks, anti-spam, anti-raid, anti-alt, and silent channels.
+</Card>
+
+<Card title="Logging" icon="notebook" href="/moderation/logging">
+  Route sanctions, automod detections, and other event categories to separate channels.
+</Card>
