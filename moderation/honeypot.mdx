@@ -10,7 +10,9 @@ A Honeypot is a bait channel that looks like a normal member-visible channel but
 
 This is designed to catch compromised accounts and automated spam bots that blindly post while scanning a server. Petto ignores itself, but it checks other bot messages before the normal bot-message skip so spam bots can be caught too.
 
-All Honeypot commands require **Administrator**. The configured action can be:
+<Note>
+  All Honeypot commands require **Administrator**. The configured action can be:
+</Note>
 
 - `softban` — bans the user, removes their recent messages, and immediately unbans them.
 - `ban` — permanently bans the user and removes recent messages according to Discord's limits.
@@ -24,11 +26,11 @@ Choose a text or announcement channel that members can see. Do not deny **View C
 
 <CodeGroup>
 
-```text Syntax
+```javascript Syntax
 !honeypot add <channel> [punishment]
 ```
 
-```text Example
+```javascript Example
 !honeypot add #do-not-type-here softban
 ```
 
@@ -45,7 +47,7 @@ If the channel already has a Honeypot, running `add` again updates its configure
 
 View every active Honeypot in the current server, its configured punishment, and its persistent trigger count.
 
-```text
+```javascript
 !honeypot list
 ```
 
@@ -57,11 +59,11 @@ Remove a channel from the server's Honeypot configuration. Members will no longe
 
 <CodeGroup>
 
-```text Syntax
+```javascript Syntax
 !honeypot remove <channel>
 ```
 
-```text Example
+```javascript Example
 !honeypot remove #do-not-type-here
 ```
 
@@ -89,13 +91,13 @@ It also needs **Kick Members** or **Ban Members**, depending on the selected act
 
 Every trigger deletes the message, increments the persistent counter, and attempts the configured action. A successful action creates a normal moderation case, so it appears in the `sanctions` log with a reason such as:
 
-```text
+```javascript
 Automod: Honeypot: sent a message in the honeypot channel.
 ```
 
 The detection itself is also sent to the `automod` log category. To keep these separate, route them to different channels:
 
-```text
+```javascript
 !logs add #mod-log sanctions
 !logs add #automod-log automod
 ```

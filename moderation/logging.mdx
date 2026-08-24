@@ -1,69 +1,50 @@
 ---
-title: "Logging"
-description: "Eleven independent event categories, each routed to its own channel."
-icon: "notebook"
+title: "Security Center"
+description: "Read-only security scans, permission previews, and configuration backups."
+icon: "shield-check"
 ---
 
-## Overview
+## Security scan
 
-Logging routes independent event categories to their own channels, so a mod-log channel isn't one unreadable firehose. Each category can go to a different channel, or be left off entirely.
+Petto can review the server without changing anything. It checks elevated roles, dangerous `@everyone` permissions, anti-nuke, anti-spam, anti-raid, verification, audit logs, and Petto's audit-log access.
 
-## The categories
-
-`messages` · `members` · `roles` · `channels` · `invites` · `emojis` · `voice` · `server` · `sanctions` · `verification` · `automod`
-
-## Commands
-
-<CodeGroup>
-
-```javascript Syntax
-!logs view
-!logs add <channel> <event>
-!logs remove <channel> [event]
+```javascript
+!security
+!security scan
 ```
 
-```javascript Example
-!logs add #mod-log sanctions
-!logs add #member-log members
-!logs remove #mod-log
+The scan returns a score from 0 to 100 and explains the most important gaps. The score is a guide, not a guarantee. Discord permissions and the server's own rules still matter.
+
+## Permission simulator
+
+Preview the dangerous permissions on a role before changing it:
+
+```javascript
+!security role @Moderators
 ```
 
-</CodeGroup>
+This only reads the role. It does not edit permissions or assign the role to anyone.
 
-Omitting `event` on `!logs remove` clears every category routed to that channel at once.
+## Configuration backups
 
-## Per-channel color override
+Backups contain server configuration such as roles, channel settings, permission overwrites, emojis, and general guild settings. They never contain bot tokens, access tokens, or message content.
 
-<CodeGroup>
-
-```javascript Syntax
-!logs color set <channel> <event> <color>
-!logs color list <channel>
+```javascript
+!backup create
+!backup create "Before changing roles"
+!backup list
+!backup export [id]
 ```
 
-```javascript Example
-!logs color set #mod-log sanctions #ff0000
+Only members with **Manage Server** can create or export backups. Exported backups are JSON files intended for review and recovery tooling. Petto does not silently delete or overwrite a live server during a backup.
+
+## Weekly summary
+
+`!summary` is a human-readable activity report, not a message archive:
+
+```javascript
+!summary
+!summary 30
 ```
 
-</CodeGroup>
-
-## Ignoring users or channels
-
-<CodeGroup>
-
-```javascript Syntax
-!logs ignore toggle [user] [channel]
-!logs ignore list
-```
-
-```javascript Example
-!logs ignore toggle @TrustedBot
-```
-
-</CodeGroup>
-
-<Tip>
-  A user or channel added to the ignore list is skipped by every logging category at once, not just one, useful for bots or a staff-only channel you don't want cluttering the log.
-</Tip>
-
-For word filters, anti-spam, and anti-raid, see [Automod](/moderation/automod).
+It uses aggregated counters for messages, reactions, voice time, and active channels. Petto does not include message text in the report.

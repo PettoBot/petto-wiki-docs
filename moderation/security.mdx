@@ -8,7 +8,7 @@ icon: "shield-check"
 
 Petto can review the server without changing anything. It checks elevated roles, dangerous `@everyone` permissions, anti-nuke, anti-spam, anti-raid, verification, audit logs, and Petto's audit-log access.
 
-```text
+```javascript Syntax
 !security
 !security scan
 ```
@@ -19,7 +19,7 @@ The scan returns a score from 0 to 100 and explains the most important gaps. The
 
 Preview the dangerous permissions on a role before changing it:
 
-```text
+```javascript Syntax
 !security role @Moderators
 ```
 
@@ -29,7 +29,7 @@ This only reads the role. It does not edit permissions or assign the role to any
 
 Backups contain server configuration such as roles, channel settings, permission overwrites, emojis, and general guild settings. They never contain bot tokens, access tokens, or message content.
 
-```text
+```javascript Syntax
 !backup create
 !backup create "Before changing roles"
 !backup list
@@ -42,7 +42,7 @@ Only members with **Manage Server** can create or export backups. Exported backu
 
 `!summary` is a human-readable activity report, not a message archive:
 
-```text
+```javascript Syntax
 !summary
 !summary 30
 ```
