@@ -16,6 +16,7 @@ Petto's roleplay commands are small, friendly interactions. They use the configu
 !happy  !highfive  !hug  !kill  !kiss  !lick
 !nom  !pat  !poke  !punch  !slap  !smile
 !smug  !tickle  !wave  !wink  !yeet
+!hi  !bye  !yes  !no  !laugh  !sad  !angry
 ```
 
 ```javascript Examples
@@ -23,11 +24,15 @@ Petto's roleplay commands are small, friendly interactions. They use the configu
 !boop @Someone
 !lick @Friend
 !dance
+!hi @Friend
+!yes @Friend
 ```
 
 </CodeGroup>
 
 Each interaction returns a randomized image when the provider has one available. Petto uses safe, non-explicit wording in the message and falls back between image providers when a source is unavailable. Roleplay is separate from moderation, so names such as `kick` cannot replace moderation commands.
+
+When an interaction targets another member, the embed includes **Respond** and **Reject** buttons. Only the mentioned member can use them, and the first response disables both buttons. **Respond** returns the same action to the sender; **Reject** replies with a `slap` interaction. The response is counted per server, user, and action and appears in the embed as `Times hugged: N`, `Times kissed: N`, or `Times slapped: N`. The counters are atomic and require the current roleplay tables/functions from `src/db/schema.sql` to be applied.
 
 ## Notes
 
