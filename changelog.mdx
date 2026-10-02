@@ -6,23 +6,56 @@ mode: "wide"
 ---
 
 <Update label="2026-10-02">
-  **v0.6.1.** A big release.
+  **v0.6.1.** The biggest release so far. Every command below is a prefix command.
 
-  **Leveling v2.** `!rank` answers with a rank card, the improved embed, or both. Anti-abuse rules (`!level rules`), XP events (`!level event`), a daily bonus with streaks, and weekly and monthly rankings (`!top 1 messages week`). See [Leveling](/community/leveling).
+  **Leveling v2** ([Leveling](/community/leveling))
+  - `!rank` answers with a rank card (a picture with the avatar, name, level, position and a progress bar), the improved embed, or both, chosen with `!level rank-style`. The embed shows the position out of all ranked members, the XP missing for the next level, messages or time in voice, the streak and the position this week.
+  - Anti-abuse rules with `!level rules`: minimum message length, repeated text, a minimum number of people in voice, and no voice XP while muted. New servers start with 3 characters, repeat protection and 2 people in voice.
+  - XP events with `!level event add|remove|list`: a multiplier for hours or days, for all XP, messages or voice, started now or later.
+  - Daily bonus and streaks, shown in `!rank`.
+  - Weekly and monthly rankings with `!top 1 messages week` and `!top 1 messages month`.
+  - Level-up messages can carry an image card, with `!level notify` and `!level voice-notify`.
+  - New variables: `{level_next}`, `{level_progress}`, `{level_xp_current}`, `{level_xp_to_next}`, `{level_rank_total}`, `{level_streak}`, `{level_messages}`, `{level_voice_minutes}` and `{level_type}`.
+  - The dashboard has a Leveling page to design the rank card, set the rules and XP events, and preview the result.
 
-  **[Image cards](/resources/image-cards).** Pictures drawn for welcome, leave, boost, tickets, giveaways, level-up messages and more, with a progress bar layer. The basic editor is free, the layer editor and extra fonts are Premium.
+  **[Image cards](/resources/image-cards)**
+  - Pictures drawn for welcome, leave and boost messages, tickets, giveaways, level-up messages, autoresponders and `!embed send`.
+  - The basic editor (four layouts, colors, a background image, free fonts) is free. The layer editor and the extra fonts are Premium, and a card keeps working with its basic settings if Premium ends.
+  - The advanced card is drawn in the browser while you edit, so layers follow the pointer, and rank cards have a progress bar layer.
 
-  **[Saved embeds everywhere](/guides/saved-embeds-everywhere).** Sanctions (`!sanctionmessage`), the starboard, giveaway messages, verification DMs and bump messages can use a saved embed. New variables: `{case.*}`, `{star.*}`, `{verify.link}` and the leveling variables `{level_next}`, `{level_progress}`, `{level_xp_current}`, `{level_xp_to_next}`, `{level_rank_total}`, `{level_streak}`, `{level_messages}`, `{level_voice_minutes}`, `{level_type}`.
+  **[Saved embeds everywhere](/guides/saved-embeds-everywhere)**
+  - Sanctions (the DM, the reply and the log entry, per type, with `!sanctionmessage`), starboard reposts (`!starboard message`), giveaway messages (`!giveaway message-template`), verification DMs (`!verify template`) and bump messages (`!bumpreminder template`) can use a saved embed. A missing or broken design sends the usual message.
+  - New variables: `{case.*}`, `{star.*}`, `{verify.link}` and `{nextBump}`.
+  - Everything can also be chosen in the dashboard: Sanction messages under Moderation, the repost design in Automation, a design under each giveaway message, and the verification and bump designs in Onboarding.
 
-  **[Embed code](/resources/scripting/embeds#creating-from-one-code).** `!embed create name code:` builds a whole embed, up to 10, from one code.
+  **[Embed code](/resources/scripting/embeds#creating-from-one-code)**
+  - `!embed create name code:` builds a whole embed, up to 10, from one code and saves it at once. The Embed code generator on the website builds a message and copies it as a one-line code.
 
-  **Moderation.** [Jail](/moderation/jail), `!purge`, `!history`, and jail as a warn escalation action. [Reports](/community/reports) are numbered, with Claim, Resolve, Dismiss and Reopen buttons, categories, cooldowns, blocking, a reason on closing, threads and **Report User** menus.
+  **Moderation** ([Moderation](/moderation/moderation))
+  - [Jail](/moderation/jail): `!jail` and `!unjail`. Timed jails end by themselves, roles come back on release, and jail is an action of warn escalation.
+  - `!purge` deletes recent messages by member, kind or text, and `!history` shows everything moderation knows about a member.
+  - [Reports](/community/reports): numbered reports with Claim, Resolve, Dismiss, Reopen and Release buttons, categories, cooldown, daily limit, blocking, a reason when closing, a thread that follows the report, Invite reporter, Notify on claim, a settings panel and **Report User** menus.
 
-  **[Fun](/miscellaneous/fun) and utility.** `!roll`, `!choose`, `!8ball`, `!ship`, `!rps`, `!remind 2h text`, a `!setup` status panel, and info commands and `!case list` redesigned as cards. Premium adds a [name style](/setup/bot-appearance) for the bot per server. Live counters update again.
+  **[Fun](/miscellaneous/fun) and utility**
+  - `!roll`, `!choose`, `!8ball`, `!ship` with a picture and `!rps`.
+  - `!remind 2h text` without `add`, and a `!setup` status panel with a pre-filled quick setup.
+  - Info commands and `!case list` redesigned as cards, and roleplay answers that reply to the original message.
+
+  **Customize and Premium**
+  - A [name style](/setup/bot-appearance) for Petto in your server, with a gradient, neon or glow, set in the Customize page. It is cleared when Premium ends.
+  - The Premium page lists image cards and the new limits, the plans are equal and only differ in the number of servers, and the Free to Premium table is clearer.
+
+  **Dashboard and website**
+  - Data loads faster, logging out works in the Spanish and Portuguese dashboards, and menu icons no longer disappear when you change section.
+  - Every version of the website's changelog has its own page you can share. The bot's code is public on GitHub under the AGPL-3.0 license and the footer links to it.
+
+  **Fixes**
+  - Live counters update again and count the whole member list.
+  - Bot commands no longer set off autoresponders, and hints show the prefix that was typed.
 </Update>
 
 <Update label="2026-09-30">
-  **v0.6.0.** The dashboard now speaks Spanish and Brazilian Portuguese (`/es/dash` and `/pt-br/dash`), previews messages like Discord, can send a message to the Embed Builder with a share code and open Embed Builder messages back in the dashboard, and loads faster. Added the full list of embed variables to the dashboard, and [Petto Vanity](/guides/vanity-tag-bot) can now be managed from it, with a public status page. Fixed a crash when an embed command was used without a name.
+  **v0.6.0.** The dashboard now speaks Spanish and Brazilian Portuguese (at petto.sbs/es/dash and petto.sbs/pt-br/dash), previews messages like Discord, can send a message to the Embed Builder with a share code and open Embed Builder messages back in the dashboard, and loads faster. Added the full list of embed variables to the dashboard, and [Petto Vanity](/guides/vanity-tag-bot) can now be managed from it, with a public status page. Fixed a crash when an embed command was used without a name.
 </Update>
 
 <Update label="2026-09-24">
