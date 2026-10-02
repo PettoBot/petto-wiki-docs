@@ -113,7 +113,9 @@ Flags or kicks accounts younger than `min_age_days` (default 7) on join. `action
 
 </CodeGroup>
 
-A one-off manual check, not a passive filter, runs a URL through Google Safe Browsing for phishing/malware.
+A manual check runs a URL through Google Safe Browsing for phishing and malware.
+
+Links found this way are remembered. A known malicious link is not checked again with the outside service every time it appears: it is recognized from Petto's own storage and the message is removed automatically, and the Petto team is alerted the first time a new malicious link is found.
 
 ## Immune roles
 

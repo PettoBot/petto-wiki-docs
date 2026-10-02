@@ -141,13 +141,38 @@ These variables are available in welcome, leave, boost, level-up messages, autor
     | --- | --- |
     | `{gw.prize}` | The prize |
     | `{gw.winners}` | Number of winners |
+    | `{gw.entries}` | Current number of entries |
     | `{gw.host}` | Mentions whoever started it |
+    | `{gw.host_name}` | The host's username |
+    | `{gw.host_avatar}` | The host's avatar image URL |
     | `{gw.duration}` | End time, as a raw unix timestamp |
     | `{gw.timestamp}` | End time, as a relative Discord timestamp |
+    | `{gw.ends}` | End time as a relative Discord timestamp |
     | `{gw.claim_time}` | How long winners have to claim |
     | `{gw.reaction}` | The entry emoji, if using reaction mode |
     | `{gw.entry_mode}` | "react with" or "click on", matches entry mode |
+    | `{gw.entry_text}` | Entry instruction, based on the selected method |
+    | `{gw.winner_text}` | Winner-count text used by the giveaway |
+    | `{gw.status}` | Active or Ended |
     | `{gw.preset}` | The bonus-entry roles list, if a preset is used |
+  </Tab>
+  <Tab title="Custom commands">
+    <Info>
+      Only available in [custom commands](/automation/custom-commands), including the saved embeds they send.
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{args}` | All text after the command name |
+    | `{arguments}` | Same as `{args}` |
+    | `{args_raw}` | Same as `{args}`, keeps the full argument text |
+    | `{arg1}` to `{arg10}` | The first to the tenth argument |
+    | `{args_from:N}` | All arguments starting at position N, for example `{args_from:2}` |
+    | `{arg_count}` | How many arguments were given |
+    | `{command_name}` | The command name that was used |
+    | `{prefix}` | The prefix that was used |
+
+    Text in quotes counts as one argument, so `!hello "big world" now` has two. Mentions typed by the user inside an argument never ping anyone.
   </Tab>
   <Tab title="Bump">
     <Info>
@@ -168,6 +193,7 @@ These variables are available in welcome, leave, boost, level-up messages, autor
     | `{date.utc_timestamp}` | Current unix timestamp |
     | `{choose:a\|b\|c}` | Random choice from the list |
     | `{range:1-100}` | Random number between 1 and 100 |
+    | `{reactreply:emoji}` | Reacts to the message the bot sends with that emoji. Repeat it for more reactions. If the response is only this flag, it reacts to the message that triggered it |
     | `{newline}` | Line break |
     | `{separator}` | Decorative line |
   </Tab>
