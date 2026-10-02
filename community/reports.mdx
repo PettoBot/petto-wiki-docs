@@ -1,31 +1,81 @@
 ---
 title: "Reports"
-description: "Let members flag a message or user to staff."
+description: "Let members flag a message or user to staff, and manage every report."
 icon: "flag"
 ---
 
 ## Overview
 
-`!report` and the "Report Message" right-click context-menu action both send to the same destination channel.
+Members report a user or a message, and staff handle each report from a card with buttons. Every report is numbered and stored.
 
-## Commands
+## Reporting
 
 <CodeGroup>
 
 ```javascript Syntax
-!report send <user> <reason>
-!report config <channel> [enabled]
+!report send <user> [reason] [category] [ping] [anonymous]
 ```
 
 ```javascript Example
-!report send @Someone "Spamming DMs"
-!report config #reports true
+!report send @Someone Spamming DMs
+!report send @Someone Spamming DMs spam --anonymous
 ```
 
 </CodeGroup>
 
-`config` is staff-only, sets the destination channel and turns the whole system on or off.
+The reason can have several words without quotes. The category (`spam`, `harassment`, `hate`, `nsfw`, `scam`, `threats`, `impersonation`, `other`), `--ping` and `--anonymous` go after it. Anonymous reports stay anonymous in every view.
 
-## Reporting a message directly
+Right-click a message, **Apps**, **Report Message** to report a message, or right-click a member, **Apps**, **Report User**. Right-click a message, **Apps**, **Report User** to report the person who wrote it.
 
-Right-click any message → **Apps** → **Report Message**, no need to type `!report` and describe which message you mean.
+## The report card
+
+Each report is posted with buttons:
+
+| Button | What it does |
+| --- | --- |
+| **Claim** | Take the report. **Release** gives it back. |
+| **Resolve** | Close it as handled. Asks for a reason. |
+| **Dismiss** | Close it as not valid. Asks for a reason. |
+| **Reopen** | Open a closed report again. Asks for a reason. |
+| **Invite reporter** | Adds the reporter to the report's thread (not for anonymous reports). |
+
+A closing reason is shown on the card, written in the report thread and sent to the reporter in a DM. When the report is resolved or dismissed the thread is locked and archived, and it opens again if the report is reopened.
+
+## Staff commands
+
+<CodeGroup>
+
+```javascript Syntax
+/report config
+!report disable
+!report list [status] [user]
+!report view <number>
+!report stats
+!report block <user> [reason]
+!report unblock <user>
+!report blocklist
+```
+
+```javascript Example
+!report list open
+!report view 12
+!report block @Someone "Fake reports"
+```
+
+</CodeGroup>
+
+`/report config` (a slash command only) opens a settings panel with selects, switches, a limits form and a **Send test report** button that also checks Petto can post in the channel. `status` is `open`, `claimed`, `resolved`, `dismissed` or `all`.
+
+## Settings
+
+| Setting | What it does |
+| --- | --- |
+| Channel | Where reports are posted. |
+| Cooldown and daily limit | How often a member can report. |
+| Required reason | Reports must have a reason. |
+| Ping role and urgent role | A role pinged on every report. |
+| Thread | A discussion thread for each report. |
+| DM the reporter | Tell the reporter when the report is closed. |
+| Notify on claim | DM the reporter when staff claim the report. |
+
+Blocked members cannot send reports. A member who reported someone shows up in that member's `!history`.

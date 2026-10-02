@@ -16,6 +16,7 @@ Reminds the server to `!bump` again once Disboard's 2-hour cooldown ends, with a
 !bumpreminder channel <channel>
 !bumpreminder message <text>
 !bumpreminder thankyou <text>
+!bumpreminder template <which> <template>
 !bumpreminder pingable <enabled>
 !bumpreminder autolock <enabled>
 !bumpreminder autoclean <enabled>
@@ -23,6 +24,7 @@ Reminds the server to `!bump` again once Disboard's 2-hour cooldown ends, with a
 ```
 
 ```javascript Example
+!bumpreminder template thankyou bump-thanks
 !bumpreminder channel #bump
 !bumpreminder message "Time to /bump the server!"
 !bumpreminder thankyou "{user.mention} bumped! Next bump {nextBump}."

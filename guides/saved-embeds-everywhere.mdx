@@ -1,0 +1,78 @@
+---
+title: "Saved Embeds Everywhere"
+description: "Use your own saved embed for sanctions, the starboard, giveaways, verification and bump messages."
+icon: "palette"
+---
+
+## The idea
+
+Make a design once on the dashboard's **Embeds** page (or with `!embed`), then tell Petto to use it instead of the usual message. A saved embed can carry an [image card](/resources/image-cards) too. If a design is missing or broken, Petto sends the usual message and never skips the action.
+
+Every setting below is also on the dashboard, on the page of each feature.
+
+## Where it works
+
+| Message | Command | Variables |
+| --- | --- | --- |
+| Sanctions (DM, reply, log) | `!sanctionmessage set <type> <slot> <template>` | `{case.*}` |
+| Starboard repost | `!starboard message <template>` | `{star.*}` |
+| Giveaway messages | `!giveaway message-template <message> <template>` | `{gw.*}` |
+| Verification DMs | `!verify template <which> <template>` | `{verify.link}` |
+| Bump reminder and thank-you | `!bumpreminder template <which> <template>` | `{nextBump}` |
+
+Use `none` instead of a template name to go back to the usual message.
+
+## Sanctions
+
+See [Sanction messages](/moderation/moderation#sanction-messages). There are three slots per type, and `default` covers every type without its own.
+
+## Starboard
+
+<CodeGroup>
+
+```javascript Example
+!starboard message star-repost
+!starboard message none
+```
+
+</CodeGroup>
+
+A design can use `{star.count}`, `{star.emoji}`, `{star.channel}`, `{star.link}`, `{star.content}`, `{star.image}`, `{star.attachments}`, `{star.author}` and the other `{star.*}` variables.
+
+## Giveaways
+
+`message` is `winner`, `deny`, `claim_time`, `claim_time_over`, `accept` or `no_entries`.
+
+<CodeGroup>
+
+```javascript Example
+!giveaway message-template winner gw-winner
+!giveaway message-template no_entries none
+```
+
+</CodeGroup>
+
+## Verification
+
+`which` is `prompt` (the DM with the link) or `verified` (the DM after passing). Put `{verify.link}` where the link goes in the `prompt` design.
+
+<CodeGroup>
+
+```javascript Example
+!verify template prompt verify-dm
+!verify template verified welcome-in
+```
+
+</CodeGroup>
+
+## Bump reminders
+
+`which` is `reminder` or `thankyou`. `{nextBump}` is the relative time until the next bump.
+
+<CodeGroup>
+
+```javascript Example
+!bumpreminder template thankyou bump-thanks
+```
+
+</CodeGroup>

@@ -1,0 +1,81 @@
+---
+title: "Fun"
+description: "Dice, choices, the 8-ball, ship and rock paper scissors."
+icon: "dice"
+---
+
+## Dice
+
+<CodeGroup>
+
+```javascript Syntax
+!roll <dice>
+```
+
+```javascript Example
+!roll 2d6+3
+!roll d20
+!roll 4d6kh3
+```
+
+</CodeGroup>
+
+Roll dice with modifiers. `kh3` keeps the highest three, `kl3` the lowest three.
+
+## Choose
+
+<CodeGroup>
+
+```javascript Syntax
+!choose <options>
+```
+
+```javascript Example
+!choose pizza, tacos, sushi
+```
+
+</CodeGroup>
+
+Petto picks one of the options. Separate them with commas or with ` or `, and give at least two.
+
+## 8-ball
+
+<CodeGroup>
+
+```javascript Syntax
+!8ball <question>
+```
+
+</CodeGroup>
+
+## Ship
+
+<CodeGroup>
+
+```javascript Syntax
+!ship <first> [second]
+```
+
+```javascript Example
+!ship @Someone @SomeoneElse
+```
+
+</CodeGroup>
+
+Shows how compatible two members are, with a picture of both avatars over a pink roses background, a heart with the score and a bar. The same pair always gets the same result. If the picture cannot be drawn the result is sent as text.
+
+## Rock paper scissors
+
+<CodeGroup>
+
+```javascript Syntax
+!rps <choice>
+```
+
+```javascript Example
+!rps rock
+```
+
+</CodeGroup>
+
+`choice` is `rock`, `paper` or `scissors`. All these commands answer with a plain message.

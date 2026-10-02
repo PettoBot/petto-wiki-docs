@@ -1,0 +1,48 @@
+---
+title: "Jail"
+description: "Keep a member out of the server and in a room with staff."
+icon: "lock"
+---
+
+## Overview
+
+A jailed member loses their roles and can only see the jail channel, where they can talk to staff. Roles are saved before anything changes and given back on release.
+
+## Setup
+
+<CodeGroup>
+
+```javascript Syntax
+!jail setup
+```
+
+</CodeGroup>
+
+Creates the **Jailed** role and the **#jail** channel and hides every other channel from the role. Run it again to repair them. New channels are hidden automatically. Petto needs **Manage Roles** and **Manage Channels**.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!jail user <user> [duration] [reason]
+!jail remove <user> [reason]
+!jail list
+!unjail <user> [reason]
+```
+
+```javascript Example
+!jail user @Someone 2h "Arguing in chat"
+!jail remove @Someone "Calmed down"
+!unjail @Someone
+```
+
+</CodeGroup>
+
+With a `duration` the jail ends by itself and the roles come back. `jail list` shows who is jailed now. Every jail and release creates a [case](/concepts/cases).
+
+## Good to know
+
+- A jailed member who leaves and rejoins is jailed again.
+- A role handed to a jailed member by another bot is taken off again and kept for release.
+- `jail` can be the action of a [warn escalation](/moderation/moderation#warn-escalation) rule.

@@ -122,7 +122,7 @@ These variables are available in welcome, leave, boost, level-up messages, autor
   </Tab>
   <Tab title="Leveling">
     <Info>
-      These variables are only available in the level-up notification message.
+      These variables are available in the level-up notification message and in rank cards.
     </Info>
 
     | Variable | Output |
@@ -131,6 +131,15 @@ These variables are available in welcome, leave, boost, level-up messages, autor
     | `{level_xp}` | Total XP |
     | `{level_xp_needed}` | XP needed for the next level |
     | `{level_rank}` | Leaderboard rank |
+    | `{level_rank_total}` | Members on the leaderboard |
+    | `{level_next}` | The next level |
+    | `{level_xp_current}` | XP earned in the current level |
+    | `{level_xp_to_next}` | XP still missing for the next level |
+    | `{level_progress}` | Progress to the next level, 0 to 100 |
+    | `{level_streak}` | Days in a row with activity |
+    | `{level_messages}` | Messages counted |
+    | `{level_voice_minutes}` | Minutes in voice counted |
+    | `{level_type}` | `text` or `voice` |
   </Tab>
   <Tab title="Giveaway">
     <Info>
@@ -174,9 +183,65 @@ These variables are available in welcome, leave, boost, level-up messages, autor
 
     Text in quotes counts as one argument, so `!hello "big world" now` has two. Mentions typed by the user inside an argument never ping anyone.
   </Tab>
+  <Tab title="Sanctions">
+    <Info>
+      Only available in [sanction messages](/moderation/moderation#sanction-messages).
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{case.id}` | The case number (not in the message sent to the member before a ban, kick or similar) |
+    | `{case.type}` | `ban`, `tempban`, `softban`, `unban`, `kick`, `mute`, `tempmute`, `unmute`, `warn`, `jail` or `unjail` |
+    | `{case.action}` | The action in words, such as "banned from" or "warned in" |
+    | `{case.emoji}` | The icon of the action |
+    | `{case.reason}` | The reason |
+    | `{case.duration}` | How long it lasts, or Permanent |
+    | `{case.expires}` | When it ends, as a relative time, or Never |
+    | `{case.expires_at}` | When it ends, as a date and time, or Never |
+    | `{case.source}` | Who applied it: a moderator, automod, the honeypot, warn escalation or an automatic expiry |
+    | `{case.moderator}` | Mentions the moderator |
+    | `{case.moderator_name}` | Name of the moderator |
+    | `{case.moderator_id}` | ID of the moderator |
+    | `{case.moderator_avatar}` | Avatar of the moderator |
+    | `{case.user}` | Mentions the sanctioned member |
+    | `{case.user_name}` | Name of the sanctioned member |
+    | `{case.user_id}` | ID of the sanctioned member |
+    | `{case.user_avatar}` | Avatar of the sanctioned member |
+  </Tab>
+  <Tab title="Starboard">
+    <Info>
+      Only available in the starboard repost design (`!starboard message`).
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{star.count}` | Number of stars |
+    | `{star.emoji}` | The starboard emoji |
+    | `{star.channel}` | Mentions the channel of the message |
+    | `{star.channel_name}` | Name of that channel |
+    | `{star.link}` | Link to the starred message |
+    | `{star.message_id}` | ID of the starred message |
+    | `{star.author}` | Mentions the author of the message |
+    | `{star.author_name}` | Name of the author |
+    | `{star.author_id}` | ID of the author |
+    | `{star.author_avatar}` | Avatar of the author |
+    | `{star.content}` | Text of the message |
+    | `{star.image}` | Link of the first image of the message, empty if none |
+    | `{star.attachments}` | Links to the other files of the message |
+    | `{star.time}` | When the message was sent |
+  </Tab>
+  <Tab title="Verification">
+    <Info>
+      Only available in the verification DM design (`!verify template prompt`).
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{verify.link}` | The link the member opens to verify |
+  </Tab>
   <Tab title="Bump">
     <Info>
-      Only available in the bump reminder channel's messages.
+      Only available in bump messages.
     </Info>
 
     | Variable | Output |

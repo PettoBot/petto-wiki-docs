@@ -87,6 +87,15 @@ Every stage has its own configurable message, all support `{gw.*}` and `{user}` 
 
 </CodeGroup>
 
+Each message can also be a saved [embed](/resources/scripting/embeds) instead of text:
+
+```javascript Example
+!giveaway message-template winner gw-winner
+!giveaway message-template claim_time_over none
+```
+
+`message` is `winner`, `deny`, `claim_time`, `claim_time_over`, `accept` or `no_entries`, and `none` goes back to the text. See [Saved Embeds Everywhere](/guides/saved-embeds-everywhere).
+
 `deny-message` fires when a winner denies their prize, `no-entries-message` fires when the giveaway ends with nobody entered, distinct from each other.
 
 ## Templates

@@ -27,6 +27,7 @@
         "group": "Guides",
         "pages": [
           "guides/first-server-setup",
+          "guides/saved-embeds-everywhere",
           "guides/vanity-tag-bot",
           "guides/petto-vault",
           "guides/ticket-system-setup",
@@ -45,6 +46,7 @@
         "group": "Moderation",
         "pages": [
           "moderation/moderation",
+          "moderation/jail",
           "moderation/automod",
           "moderation/honeypot",
           "moderation/anti-nuke",
@@ -88,7 +90,8 @@
         "group": "Miscellaneous",
         "pages": [
           "miscellaneous/webhook",
-          "miscellaneous/counters"
+          "miscellaneous/counters",
+          "miscellaneous/fun"
         ]
       },
       {
@@ -123,6 +126,7 @@
               "resources/scripting/embeds"
             ]
           },
+          "resources/image-cards",
           "resources/utility-commands"
         ]
       },
