@@ -9,7 +9,7 @@ icon: "folder-open"
 Every sanction Petto takes (`ban`, `kick`, `mute`, `warn`, and their variants) creates a **case**: a permanent, numbered record stored server-side, independent of Discord's own audit log (which expires and can't be edited or searched by user).
 
 <Info>
-  Case numbers are sequential per server, starting at 1, they never get reused even if a case is deleted.
+  Case numbers are sequential per server, starting at 1, they never get reused even if a case is deleted. Every sanction shares the same sequence, whether a moderator, AutoMod, warn escalation or an expiring tempban created it, and one server's numbers never affect another's.
 </Info>
 
 ## What's on a case

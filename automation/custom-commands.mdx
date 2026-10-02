@@ -27,6 +27,18 @@ Create a command that replies with saved text or a saved [embed](/resources/scri
 
 </CodeGroup>
 
+## Arguments
+
+Whatever the member types after the command can be used in the reply:
+
+```javascript Example
+!customcommand add hug "{user} hugs {arg1}! ({arg_count} argument)"
+!customcommand add say "{args}"
+!customcommand add rest "{args_from:2}"
+```
+
+`{args}` is everything after the command name, `{arg1}` to `{arg10}` are single arguments, `{args_from:N}` is everything from position N, and `{arg_count}`, `{command_name}` and `{prefix}` describe how the command was used. Text in quotes stays together as one argument. Saved embeds can use all of them too, and arguments typed by members cannot create mass mentions. The full list is on the [Variables](/resources/scripting/variables) page.
+
 ## Plain text or embed
 
-If `embed_template` is set, it takes priority over `response`, the saved embed is sent instead of plain text. Manage embed templates on the [dashboard](https://petto.sbs/dash)'s Embeds page or with `!embed`.
+If `embed_template` is set, it takes priority over `response`, the saved embed is sent instead of plain text. Manage embed templates on the [dashboard](https://petto.sbs/dash)'s Embeds page or with `!embed`. A custom command can use an embed template alone, with no text. Editing a command keeps the fields you leave out.

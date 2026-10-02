@@ -28,7 +28,7 @@ Nickname/avatar/banner changes from the Customize page are real, applied directl
 
 ## The embed preview looks different from what actually sends
 
-The dashboard's [Embeds](/resources/scripting/embeds) preview (and `!embed preview`) both show **raw, unresolved** `{variable}` tokens on purpose, they don't have a real member/event to pull data from at preview time. That's expected, not a bug, see [How Variables Resolve](/concepts/variables-engine).
+The dashboard's [Embeds](/resources/scripting/embeds) preview draws the message like Discord does, with markdown, links, mentions, emojis and timestamps, using sample data for `{variable}` tokens because it has no real member or event at preview time. `!embed preview` shows the raw tokens. The real values appear once the bot sends the message, see [How Variables Resolve](/concepts/variables-engine).
 
 ## Still stuck
 
