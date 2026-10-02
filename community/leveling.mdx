@@ -61,7 +61,8 @@ Defaults: `a=1`, `b=50`, `c=100`, `difficulty=2.5`, `rounding=50`.
 <CodeGroup>
 
 ```javascript Syntax
-!level notify <mode> [channel] [embed] [every] [message]
+!level notify <mode> [channel] [embed] [embed_template] [every] [message] [card]
+!level voice-notify <mode> [channel] [embed] [embed_template] [every] [message] [card]
 ```
 
 ```javascript Example
@@ -71,7 +72,82 @@ Defaults: `a=1`, `b=50`, `c=100`, `difficulty=2.5`, `rounding=50`.
 
 </CodeGroup>
 
-`mode` is `off`, `reply` (in the channel they leveled up in), `channel` (fixed), or `dm`. `every` limits announcements to every N levels instead of every single one. `message` supports `{user}`, `{level}`, `{level_xp}`, `{level_rank}`, and every [variable](/resources/scripting/variables).
+`mode` is `off`, `reply` (in the channel they leveled up in), `channel` (fixed), or `dm` (voice level-ups have no `reply`). `every` limits announcements to every N levels instead of every single one. `message` supports `{user}`, `{level}`, `{level_xp}`, `{level_rank}`, and every [variable](/resources/scripting/variables). `embed_template` sends a saved embed instead, and `card` attaches an [image card](/resources/image-cards) to the announcement.
+
+## Rank and rankings
+
+<CodeGroup>
+
+```javascript Syntax
+!rank [user] [type]
+!top [page] [type] [period]
+!level rank-style <style> [card]
+```
+
+```javascript Example
+!rank @Someone voice
+!top 1 messages week
+!level rank-style both myrank
+```
+
+</CodeGroup>
+
+`!rank` answers with a **card** (a picture with the avatar, name, level, position and a progress bar), the **embed**, or **both**, depending on `!level rank-style`. The embed shows the position out of all ranked members, the XP missing for the next level, messages or time in voice, the streak and the position this week. `card` names the [image card](/resources/image-cards) to use; a server without one gets a default card, with its own color for voice.
+
+`!top` shows the leaderboard for `messages` or `voice`. `period` is `all` (default), `week` or `month`, and the weekly and monthly rankings start empty by themselves each week and month.
+
+## Anti-abuse rules
+
+<CodeGroup>
+
+```javascript Syntax
+!level rules [setting] [value]
+```
+
+```javascript Example
+!level rules
+!level rules min_chars 5
+!level rules anti_repeat on
+```
+
+</CodeGroup>
+
+With no options it shows the current values. The settings are:
+
+| Setting | What it does |
+| --- | --- |
+| `min_chars` | Messages shorter than this earn no XP. `0` turns it off. Links and mentions do not count toward the length. |
+| `anti_repeat` | `on` or `off`. The same text again within a minute earns no XP. |
+| `voice_min_members` | People needed in the voice channel for voice XP (1 to 20). |
+| `voice_ignore_muted` | `on` or `off`. No voice XP while muted. |
+| `daily_bonus` | XP for the first activity of each day. `0` turns it off. |
+| `streak_bonus` | Extra XP for each earlier day in a row. |
+| `streak_max_days` | Days after which the streak bonus stops growing. |
+
+New servers start with 3 characters, repeat protection on, and 2 people needed in voice.
+
+## XP events
+
+<CodeGroup>
+
+```javascript Syntax
+!level event add <name> <multiplier> <duration> [applies_to] [starts_in]
+!level event list
+!level event remove <id>
+```
+
+```javascript Example
+!level event add weekend 2 2d all
+!level event add voicenight 1.5 6h voice 1d
+```
+
+</CodeGroup>
+
+An event multiplies the XP earned for a number of hours or days. `applies_to` is `all`, `text` or `voice`, and `starts_in` schedules it for later instead of starting it now.
+
+## Daily bonus and streaks
+
+Set `daily_bonus` and `streak_bonus` with `!level rules` to give extra XP for the first activity of the day, plus an extra amount for each earlier day in a row, up to `streak_max_days`. The streak shows in `!rank`.
 
 ## Ignored channels
 

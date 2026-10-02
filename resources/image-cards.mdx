@@ -1,0 +1,41 @@
+---
+title: "Image Cards"
+description: "A picture drawn for a message, with the member's name and avatar."
+icon: "image"
+---
+
+## Overview
+
+An image card is a picture Petto draws for a message: the member's avatar and name, the server's member count, a progress bar, or any other [variable](/resources/scripting/variables). Make cards in the [dashboard](https://petto.sbs/dash) under **Image cards**, then point a saved [embed](/resources/scripting/embeds) at one.
+
+## Where cards are sent
+
+A saved embed that has a card sends it with:
+
+- Welcome, leave and boost messages
+- Tickets
+- Giveaway messages
+- Level-up messages (`card` option of `!level notify`)
+- Autoresponders
+- `!embed send`
+- Sanctions, starboard, verification and bump messages that use a [saved embed](/guides/saved-embeds-everywhere)
+
+Rank cards for `!rank` are set with `!level rank-style <style> [card]`.
+
+## Kinds
+
+Every card is either a **welcome** card or a **rank** card. Rank cards can use the **progress bar** layer, which fills with the member's progress to the next level.
+
+## Free and Premium
+
+| | Free | Premium |
+| --- | --- | --- |
+| Four basic layouts, colors, a background image, free fonts | Yes | Yes |
+| Layer editor (place and style every element) | No | Yes |
+| Extra fonts | No | Yes |
+
+A card that used Premium features keeps working with its basic settings if Premium ends.
+
+## Pictures
+
+A background or any picture can come from an `https` link or be uploaded in the dashboard. Links are only fetched from the public internet.

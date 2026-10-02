@@ -16,6 +16,7 @@ A join-gate backed by an actual Cloudflare Turnstile captcha, not a reaction or 
 !verify setup <enabled> [verified_role]
 !verify status
 !verify send <user>
+!verify template <which> <template>
 ```
 
 ```javascript Example
@@ -25,7 +26,7 @@ A join-gate backed by an actual Cloudflare Turnstile captcha, not a reaction or 
 
 </CodeGroup>
 
-`verified_role` is optional, granted once someone passes the captcha. `send` manually (re)sends a verification link to a member, useful if their original link expired.
+`template` uses a saved [embed](/resources/scripting/embeds) for the DMs: `which` is `prompt` (the link, use `{verify.link}`) or `verified`, and `none` goes back to the usual message. `verified_role` is optional, granted once someone passes the captcha. `send` manually (re)sends a verification link to a member, useful if their original link expired.
 
 ## How it works
 

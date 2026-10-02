@@ -149,6 +149,61 @@ Reason: Raid bot
   Reason is **required** for warnings, unlike bans, kicks, and mutes where it's optional.
 </Tip>
 
+### Purge
+
+<CodeGroup>
+
+```javascript Syntax
+!purge <amount> [user] [filter] [text]
+```
+
+```javascript Example
+!purge 100
+!purge 50 @Someone
+!purge 200 all links
+!purge 100 humans images
+```
+
+</CodeGroup>
+
+Scans the last 1 to 500 messages of the channel and deletes the ones that match a member, a `filter` (`all`, `bots`, `humans`, `links`, `invites`, `attachments`, `images`, `embeds`, `mentions`) and some text. Pinned messages are kept.
+
+### History
+
+<CodeGroup>
+
+```javascript Syntax
+!history [user]
+```
+
+</CodeGroup>
+
+Everything moderation knows about a member in one card: status (banned, in jail, timed out, muted), totals by kind, active warnings, staff notes, reports about them and the latest cases.
+
+### Jail
+
+`!jail` keeps a member in a channel with staff only. See [Jail](/moderation/jail).
+
+### Sanction messages
+
+<CodeGroup>
+
+```javascript Syntax
+!sanctionmessage set <type> <slot> <template>
+!sanctionmessage clear <type> [slot]
+!sanctionmessage list
+```
+
+```javascript Example
+!sanctionmessage set ban dm ban-dm
+!sanctionmessage set default log case-log
+!sanctionmessage clear ban dm
+```
+
+</CodeGroup>
+
+Use a saved [embed](/resources/scripting/embeds) for what a sanction sends. `type` is `default`, `ban`, `tempban`, `softban`, `unban`, `kick`, `mute`, `tempmute`, `unmute`, `warn`, `jail` or `unjail`. `slot` is `dm` (what the member receives), `reply` (what is posted where the command was used) or `log` (the sanctions log entry). A type without its own message uses `default`. The variables start with `{case.…}`, see [Variables](/resources/scripting/variables). The case number is not known yet in the DM of a ban or kick, because the case is created after it is sent. It also works for sanctions applied by AutoMod, warn escalation, the honeypot and automatic expiry. The dashboard has the same settings under Moderation, Sanction messages.
+
 ### Warn escalation
 
 Automatic consequences once a member reaches a warning threshold, no manual follow-up needed.

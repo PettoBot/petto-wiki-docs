@@ -28,6 +28,18 @@ Info commands are public lookups, nobody needs staff permissions to run them.
 
 Everything defaults to yourself if `user` is omitted.
 
+## Setup status
+
+<CodeGroup>
+
+```javascript Syntax
+!setup
+```
+
+</CodeGroup>
+
+Opens a status panel at once: what is configured, which permissions Petto is missing, and a **Quick setup** form that is pre-filled with the current settings, so running it again never resets anything. Submitting the form runs its steps together and reports each one separately, so one failing step does not stop the rest.
+
 ## Server
 
 <CodeGroup>
