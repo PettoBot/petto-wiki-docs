@@ -5,6 +5,31 @@ icon: "clock-rotate-left"
 mode: "wide"
 ---
 
+<Update label="2026-10-03">
+  **v0.7.0.** Custom commands in code, Quest alerts, Embeds V2 and global stats.
+
+  **[Petto Code](/automation/petto-code)** (in testing)
+  - Custom commands can be written in code: a small language of text and `{{ }}` actions with variables, `if`, loops, about 70 functions, embeds, mentions and time. `!customcommand code`, `codeshow`, `codetest` (runs it without sending anything), `template`, `export` and `import`.
+  - Buttons and menus that run code, forms that pop up (modals) and reactions that run code. One command holds the whole system.
+  - Commands can remember things (counters, points, rankings, cooldowns, lists), per server or per member, and can start on their own prefix or words with `!customcommand trigger`.
+  - Embeds can show the avatar next to the author. Ready-made templates: vote, request, claim, suggest, report, profile, role button and role by reaction.
+  - A real editor in the dashboard (Automation → Commands in code) that checks the code while you write. Full documentation at [code.petto.sbs](https://code.petto.sbs).
+
+  **[Quest alerts](/automation/quests)**
+  - `!quests` posts in a channel when Discord has a new Quest, with the picture, reward, tasks, platforms, dates and limits. Add a role, filter by reward or task, and get a warning before it ends. `!quests list` is for everyone.
+
+  **[Embeds V2](/resources/scripting/embeds#embeds-v2)**
+  - A V2 editor in the dashboard: containers, text, pictures, sections, dividers and link buttons. Use the designs in Quest alerts, sanctions, the starboard, verification and bump messages, `!embed send` and `!embed preview`. Shared with the Embed Builder with a `p2.` code.
+
+  **[Global stats](/miscellaneous/global-stats)**
+  - A public Stats page (`petto.sbs/stats`) with the messages, voice hours and reactions of all servers, a top 3 of servers and a top 10 of members. A server hides in the dashboard (General), a member with `!globalranking off`.
+
+  **Dashboard and website**
+  - The menu has every section in its own group (Moderation, Security, Leveling, Automation, Community...) and is a drawer at the side on a phone.
+  - `!help` points to the dashboard, the support server and the Petto Code docs.
+  - Fixes: the Cloudflare tunnel no longer writes its token in the logs, and dashboard errors that asked for data that does not exist are fixed.
+</Update>
+
 <Update label="2026-10-02">
   **v0.6.1.** The biggest release so far. Every command below is a prefix command.
 

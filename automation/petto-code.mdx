@@ -1,0 +1,68 @@
+---
+title: "Petto Code"
+description: "Custom commands written in code: embeds, buttons, forms, reactions, saved data and your own prefixes."
+icon: "code"
+---
+
+## Overview
+
+**Petto Code** is a small language for custom commands. You write normal text and put what changes inside `{{ }}`: variables, `if`, loops, about 70 functions, embeds, mentions and time. One command can hold a whole system: a message with buttons, a form that pops up, something that happens when someone reacts, and data that is remembered.
+
+<Note>
+Custom commands in code are **in testing**. For now only Petto's team can write them, and they will open to more servers. The full documentation, in English, Spanish and Portuguese, is at **[code.petto.sbs](https://code.petto.sbs)**.
+</Note>
+
+```text Example
+{{ sendMessage nil (cembed
+  "author" (or .Member.DisplayName .User.Username)
+  "authorIcon" .User.Avatar
+  "description" (printf "Welcome to **%s**!" .Guild.Name)
+  "color" "#ff91c2") }}
+```
+
+## What it can do
+
+- **Embeds and messages** with fields, colors, images and the avatar next to the author.
+- **Buttons and menus** that run code (votes, role buttons, shops).
+- **Forms** that pop up (modals) with text fields.
+- **Reactions** that run code: a message with reactions that change the message, give or take a role, or answer in the channel.
+- **Stored data**: counters, points, rankings, cooldowns and lists, for the server or for each member.
+- **Your own prefix or words**: start a command with `?hello`, `hey bot` or `good morning`.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!customcommand code <name> <code>
+!customcommand codeshow <name>
+!customcommand codetest <code>
+!customcommand template [id] [name]
+!customcommand export <name>
+!customcommand import <share code> [name]
+!customcommand trigger <name> <type> [text]
+```
+
+```javascript Example
+!customcommand code hello Hello {{ .User.Username }}!
+!customcommand template vote
+!customcommand trigger hello prefix ?
+```
+
+</CodeGroup>
+
+- The code is **checked before it is saved**. A mistake says the line and the column, and nothing is saved.
+- `codetest` runs the code as if you had used the command and shows what it would print and do. **Nothing is sent or saved.**
+- `template` lists ready-made commands (vote, request, claim, suggest, report, profile, role button, role by reaction and more) and installs one.
+- `export` gives a share code that works in any server, and `import` uses one.
+- Triggers: `prefix`, `startswith`, `exact`, `contains` or `command` (the prefix of Petto). A server can have up to 25 commands with a trigger of their own.
+
+## Dashboard editor
+
+In the [dashboard](https://petto.sbs/dash), **Automation** → **Commands in code** is a real editor: it checks your code while you write, has the templates and every function, and a test button. Saving follows the same rules as Discord.
+
+## Limits and safety
+
+The code never talks to Discord by itself. It asks for actions, and Petto does only the ones the person who wrote the code could do: a role with moderation permissions is never given, `@everyone` and `@here` never ping, and a message to another channel needs permission to write there. There are limits of 10,000 characters, 10,000 steps, 250 ms of running time, 25 reads and writes of stored data per use and 500 stored values per server.
+
+See [Custom commands](/automation/custom-commands) for plain text and embed commands.

@@ -60,6 +60,8 @@
           "automation/reaction-roles",
           "automation/reaction-triggers",
           "automation/custom-commands",
+          "automation/petto-code",
+          "automation/quests",
           "automation/autoresponder",
           "automation/sticky-messages",
           "automation/disable-commands"
@@ -91,7 +93,8 @@
         "pages": [
           "miscellaneous/webhook",
           "miscellaneous/counters",
-          "miscellaneous/fun"
+          "miscellaneous/fun",
+          "miscellaneous/global-stats"
         ]
       },
       {

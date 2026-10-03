@@ -1,0 +1,32 @@
+---
+title: "Global Stats"
+description: "The public Stats page: messages, voice hours and reactions of every server."
+icon: "chart-line"
+---
+
+## Overview
+
+Petto has a public **Stats** page at [petto.sbs/stats](https://petto.sbs/stats). It shows the messages, voice hours and reactions of every server Petto is in, with the total, today and this week. The numbers move by themselves and refresh every 30 seconds (click one to refresh it at once).
+
+It also has a **top 3 of servers** and a **top 10 of members**, by messages, voice and reactions (members only by messages and voice).
+
+## Hide yourself
+
+Everyone is in the ranking by default.
+
+- **A member** can hide with `!globalranking off` and come back with `!globalranking on`. `!globalranking` alone says if you are in it.
+- **A server** can hide in the [dashboard](https://petto.sbs/dash), in **General**.
+
+It can take some minutes for a change to show on the page.
+
+<CodeGroup>
+
+```javascript Syntax
+!globalranking <on|off|status>
+```
+
+```javascript Example
+!globalranking off
+```
+
+</CodeGroup>

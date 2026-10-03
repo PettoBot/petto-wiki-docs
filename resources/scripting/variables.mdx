@@ -249,6 +249,37 @@ These variables are available in welcome, leave, boost, level-up messages, autor
     | `{user.mention}` | Mentions whoever bumped |
     | `{nextBump}` | Relative time until the next bump is allowed |
   </Tab>
+  <Tab title="Quests">
+    <Info>
+      Only available in the saved embeds sent by [Quest alerts](/automation/quests).
+    </Info>
+
+    | Variable | Output |
+    | --- | --- |
+    | `{quest.name}` | Name of the quest |
+    | `{quest.game}` | The game or brand |
+    | `{quest.publisher}` | Who published it |
+    | `{quest.id}` | ID of the quest |
+    | `{quest.url}` | Link to accept the quest in Discord |
+    | `{quest.link}` | Link to the game or brand page, empty if none |
+    | `{quest.image}` | Banner picture of the quest, empty if none |
+    | `{quest.logo}` | Logo of the game, empty if none |
+    | `{quest.color}` | Main color of the quest as hex |
+    | `{quest.reward}` | The rewards, with their type |
+    | `{quest.reward_type}` | Type of the first reward: Orbs, Collectible, Code... |
+    | `{quest.reward_amount}` | Number of Orbs, empty if the reward is not Orbs |
+    | `{quest.reward_image}` | Picture of the first reward, empty if none |
+    | `{quest.task}` | The first task, such as Watch a video |
+    | `{quest.task_minutes}` | Minutes the first task takes |
+    | `{quest.tasks}` | All the tasks with their time |
+    | `{quest.platforms}` | Where it can be done: Desktop, Mobile, Xbox... |
+    | `{quest.starts}` / `{quest.starts_at}` | When it starts, as a relative time / as a date and time |
+    | `{quest.expires}` / `{quest.expires_at}` | When it ends, as a relative time / as a date and time |
+    | `{quest.limits}` | Region and age limits, or None |
+    | `{quest.age_gate}` | 18+ when it has an age limit, otherwise empty |
+    | `{quest.status}` | New quest, or Ending soon |
+    | `{quest.source}` | discordquest.com |
+  </Tab>
   <Tab title="Date & Functions">
     | Variable | Output |
     | --- | --- |

@@ -1,0 +1,62 @@
+---
+title: "Quest Alerts"
+description: "Petto posts in a channel when Discord has a new Quest."
+icon: "trophy"
+---
+
+## Overview
+
+Petto can post a message in a channel when Discord has a **new Quest**. The card shows the picture, the reward (Orbs, or the avatar decoration), the tasks, the platforms, the dates and any limits by country or 18+.
+
+<Note>
+`!quests list` can be used by everyone. The settings need the **Manage Server** permission. The data comes from `discordquest.com` and from `aamiaa/discord-api-diff`, and every alert credits both.
+</Note>
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!quests enable <channel> [role]
+!quests disable
+!quests role [role]
+!quests style <card|template> [saved embed]
+!quests rewards [kinds]
+!quests tasks [kinds]
+!quests card <hide|show|reset> [section]
+!quests color [hex]
+!quests expiring <hours>
+!quests list [page]
+!quests test
+!quests status
+```
+
+```javascript Example
+!quests enable #quests @Quest hunters
+!quests rewards orbs, decoration
+!quests expiring 12
+!quests list
+```
+
+</CodeGroup>
+
+## What each one does
+
+| Command | What it does |
+| --- | --- |
+| `enable` | Turns the alerts on in a channel, with an optional role to ping |
+| `rewards` | Only alert for some rewards: `orbs`, `decoration`, `code`, `ingame`, `nitro`. Empty for all |
+| `tasks` | Only alert for some tasks: `video`, `play`, `stream`, `activity`. Empty for all |
+| `expiring` | Also alert this many hours before a Quest ends. `0` turns it off |
+| `style` | The card, or one of your [saved embeds](/resources/scripting/embeds) (including V2 designs) |
+| `card` | Choose which parts the card shows |
+| `color` | A color for the card. Empty uses the color of each Quest |
+| `list` | The Quests that are active now, with a menu to see each one complete |
+| `test` | Sends the newest active Quest here, to see how the alert looks |
+| `status` | The settings and the state of the Quests data |
+
+## Dashboard
+
+The **Quests** page of the dashboard has the same settings and a live preview, and can create a V2 design that starts as the card Petto sends.
+
+For saved embeds, the variables `{quest.*}` are available. See [Variables](/resources/scripting/variables).

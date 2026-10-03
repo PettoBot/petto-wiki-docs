@@ -129,6 +129,12 @@ Up to 25 fields per embed. `position` is 1-based, from the order shown in `!embe
 
 A message made in the dashboard can be sent to the Embed Builder with a share code, and a message sent from the Embed Builder can be opened in the dashboard to keep editing it. The dashboard can also send a test message to a channel before you save it.
 
+## Embeds V2
+
+The dashboard's Embeds page also has a **V2 editor** for Discord's Components V2 messages: containers, text, pictures, sections, dividers and rows of link buttons. A V2 design is saved like any other embed and can be used in Quest alerts, sanctions, the starboard, verification and bump messages, and with `!embed send` and `!embed preview`. Its texts and links use the usual variables. Anything Discord would refuse is cleaned before it is sent.
+
+A V2 design is shared with the Embed Builder with a code that starts with `p2.`.
+
 ## Variables inside embeds
 
 Every field (title, description, fields, author, footer, button labels) supports the full [variable](/resources/scripting/variables) list. `!embed preview` and the dashboard's live preview both show the raw, unresolved tokens, variables only resolve once the embed is actually sent by the bot.
