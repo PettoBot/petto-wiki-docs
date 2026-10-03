@@ -6,9 +6,27 @@ mode: "wide"
 ---
 
 <Update label="2026-10-03">
+  **v0.7.1.** Partners, uploads, requests, reviews and profiles, buttons and panels with no code, and saved embeds for sticky messages.
+
+  **[Partners](/community/partners)**
+  - A Partner Manager posts the invite of another server in a partner channel and, if it passes the requirements (minimum members, minimum age, a cooldown, a blacklist), it is counted and answered. `!partnerconfig` sets it up and `!partner stats` and `!partner leaderboard` show the numbers. The 8 replies take text or a saved embed. Free 6 channels, Premium 25.
+
+  **[Buttons and panels](/automation/button-responders)**
+  - `!responder add` makes a button or a menu choice that answers in private and gives, takes or toggles roles. `!panel` shows them as buttons or one menu, posts the message and updates it in place. Free 20 responders and 10 panels, Premium 250 and 50.
+  - [Sticky messages](/automation/sticky-messages) can be a saved embed (a V2 design too) and can be edited in the dashboard.
+
+  **[Uploads](/community/uploads), [requests](/community/requests) and [reviews](/community/reviews-profiles)**
+  - Uploads are counted per member with a welcome and a role at the first one. Requests are cards with Claim, Done, Unclaim and Cancel buttons for the staff, and with Premium a claimed request goes back to open if it is not finished in time. `!review give` rates a member from 1 to 5 stars and `!profile` shows the rating with their numbers.
+
+  **Quest alerts and dashboard**
+  - [Quest alerts](/automation/quests) read four sources, so a new Quest is seen minutes after it starts, and one published before it started is announced when it starts.
+  - New dashboard pages for Partners, Buttons and panels, Uploads, Requests, and Reviews and profiles.
+</Update>
+
+<Update label="2026-10-03">
   **v0.7.0.** Custom commands in code, Quest alerts, Embeds V2 and global stats.
 
-  **[Petto Code](/automation/petto-code)** (in testing)
+  **[Petto Code](/automation/petto-code)**
   - Custom commands can be written in code: a small language of text and `{{ }}` actions with variables, `if`, loops, about 70 functions, embeds, mentions and time. `!customcommand code`, `codeshow`, `codetest` (runs it without sending anything), `template`, `export` and `import`.
   - Buttons and menus that run code, forms that pop up (modals) and reactions that run code. One command holds the whole system.
   - Commands can remember things (counters, points, rankings, cooldowns, lists), per server or per member, and can start on their own prefix or words with `!customcommand trigger`.

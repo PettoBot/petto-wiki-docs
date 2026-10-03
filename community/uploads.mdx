@@ -1,0 +1,44 @@
+---
+title: "Uploads"
+description: "Count the files posted in upload channels, with a ranking and a welcome."
+icon: "cloud-arrow-up"
+---
+
+## Overview
+
+Petto counts the messages with **files** posted in the channels you choose, for each member. The first upload of a member gives the uploader role and sends a welcome.
+
+<Note>
+The settings need the **Manage Server** permission. `!uploads stats` and `!uploads leaderboard` can be used by everyone. Free servers can have 20 upload channels, Premium 100.
+</Note>
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!uploadconfig view
+!uploadconfig enable <true|false>
+!uploadconfig addchannel <channel>
+!uploadconfig removechannel <channel>
+!uploadconfig role [role]
+!uploadconfig welcome [text] [template]
+!uploads stats [user]
+!uploads leaderboard [today|week|all]
+```
+
+```javascript Example
+!uploadconfig enable true
+!uploadconfig addchannel #uploads
+!uploadconfig role @Uploader
+!uploadconfig welcome "Thanks for your first upload, {user.mention}!"
+!uploads leaderboard week
+```
+
+</CodeGroup>
+
+A message counts once, with the number of files it has. The welcome can be text or one of your [saved embeds](/resources/scripting/embeds), and `reset` or `none` goes back to the default.
+
+## Dashboard
+
+The **Uploads** page has the same settings and the ranking of the week.

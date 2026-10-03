@@ -1,0 +1,71 @@
+---
+title: "Buttons and Panels"
+description: "Buttons and menus that answer in private and give roles, with no code."
+icon: "hand-pointer"
+---
+
+## Overview
+
+A **button responder** is a button, or a choice of a menu, that answers in private and can **give, take or toggle roles**. A **panel** is the message that shows some of them, as buttons or as one dropdown menu.
+
+<Note>
+The settings need the **Manage Server** permission. Free servers can have 20 responders and 10 panels, Premium 250 and 50. Petto can only give roles that are below its own role.
+</Note>
+
+## Button responders
+
+<CodeGroup>
+
+```javascript Syntax
+!responder add <name> [--label text] [--reply text] [--give role] [--take role] [--require role] [--style style] [--emoji emoji] [--template name] [--toggle true]
+!responder edit <name> [same options] [--clear what]
+!responder delete <name>
+!responder list
+```
+
+```javascript Example
+!responder add vip --label "VIP" --give @VIP --toggle true --reply "Welcome, {user.mention}!"
+!responder edit vip --require @Booster
+```
+
+</CodeGroup>
+
+| Option | What it does |
+| --- | --- |
+| `give` / `take` | A role to give, a role to take |
+| `require` | A role the member needs to use it |
+| `toggle` | Clicking again takes the given roles back |
+| `reply` / `template` | The private answer: a text with [variables](/resources/scripting/variables), or one of your [saved embeds](/resources/scripting/embeds). Empty says what changed |
+| `style` | `primary`, `secondary`, `success` or `danger` |
+| `clear` | Empties one thing: `reply`, `template`, `emoji`, `give`, `take` or `require` |
+
+Several roles per responder are set in the dashboard.
+
+## Panels
+
+<CodeGroup>
+
+```javascript Syntax
+!panel create <name> <buttons|select> [--content text] [--template name] [--placeholder text] [--exclusive true]
+!panel add <name> <responder>
+!panel remove <name> <responder>
+!panel send <name> [channel]
+!panel edit <name> [options]
+!panel delete <name>
+!panel list
+```
+
+```javascript Example
+!panel create colours select --content "Pick a colour" --exclusive true
+!panel add colours red
+!panel add colours blue
+!panel send colours #roles
+```
+
+</CodeGroup>
+
+A panel shows up to 25 responders: 5 buttons to a row, or one menu. In an **exclusive** menu, choosing one takes back the roles that the other choices give. `!panel send` posts the panel, and sending it again to the same channel **updates** the message that is already there.
+
+## Dashboard
+
+The **Buttons and panels** page has the same settings. To post a panel, use `!panel send` in Discord.

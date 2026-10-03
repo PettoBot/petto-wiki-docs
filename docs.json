@@ -64,6 +64,7 @@
           "automation/quests",
           "automation/autoresponder",
           "automation/sticky-messages",
+          "automation/button-responders",
           "automation/disable-commands"
         ]
       },
@@ -75,6 +76,10 @@
           "community/leveling-rewards",
           "community/giveaways",
           "community/giveaway-presets",
+          "community/partners",
+          "community/uploads",
+          "community/requests",
+          "community/reviews-profiles",
           "community/reminders",
           "community/invites",
           "community/afk",
