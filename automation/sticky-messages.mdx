@@ -13,18 +13,21 @@ Keeps a message always at the bottom of a channel, Petto reposts it every time n
 <CodeGroup>
 
 ```javascript Syntax
-!stickymessage set <channel> <content>
+!stickymessage set <channel> <content> [template]
 !stickymessage remove <channel>
 !stickymessage list
 ```
 
 ```javascript Example
 !stickymessage set #rules "Read the rules before posting!{newline}Full rules: {channel_name}"
+!stickymessage set #rules - rules-card
 ```
 
 </CodeGroup>
 
 Content supports `{newline}` and `{separator}`, along with every other [variable](/resources/scripting/variables).
+
+A sticky message can also be one of your [saved embeds](/resources/scripting/embeds), a V2 design too: give its name as `template` (write `-` as the content to use only the embed). If the embed is missing, the text is sent. The **Sticky messages** section of the dashboard can edit a sticky in place and choose its embed.
 
 <Tip>
   Useful for rules reminders, an invite link, or a "read this first" note in an active channel.

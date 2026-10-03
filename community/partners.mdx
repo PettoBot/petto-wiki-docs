@@ -1,0 +1,80 @@
+---
+title: "Partners"
+description: "Count partnerships, with requirements, a ranking and replies you can change."
+icon: "handshake"
+---
+
+## Overview
+
+A **Partner Manager** posts the invite of another server in a partner channel. Petto reads the invite, checks the requirements of your server and, if it passes, counts it and answers.
+
+Requirements are checked in this order:
+
+1. It is not the invite of your own server.
+2. The server is not on your blacklist.
+3. The server has the minimum number of members.
+4. The server is at least the minimum number of days old.
+5. You did not partner with that server within the cooldown.
+
+<Note>
+The settings need the **Manage Server** permission. `!partner stats` and `!partner leaderboard` can be used by everyone. The member count of the other server is the approximate number that Discord gives with an invite.
+</Note>
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!partnerconfig view
+!partnerconfig enable <true|false>
+!partnerconfig addchannel <channel>
+!partnerconfig removechannel <channel>
+!partnerconfig manager [role]
+!partnerconfig requirements [members] [age_days] [cooldown_days] [keep_original] [reaction]
+!partnerconfig blacklist <add|remove|list> [server id] [note]
+!partnerconfig response <reply> [text] [template]
+!partnerconfig welcome <user>
+!partner stats [user]
+!partner leaderboard [today|week|all]
+```
+
+```javascript Example
+!partnerconfig enable true
+!partnerconfig addchannel #partners
+!partnerconfig manager @Partner Manager
+!partnerconfig requirements 100 14 7
+!partnerconfig response completed "Thanks for partnering with {partner.name}!"
+!partner leaderboard week
+```
+
+</CodeGroup>
+
+## What each one does
+
+| Command | What it does |
+| --- | --- |
+| `addchannel` / `removechannel` | The channels where invites are counted. Free servers can have 6, Premium 25 |
+| `manager` | The role of the Partner Managers. Empty counts anyone who posts in a partner channel |
+| `requirements` | Minimum members, minimum age of the server in days, cooldown in days (`0` for none), whether a refused message is kept, and an emoji to react with when it counts (`none` removes it) |
+| `blacklist` | Servers that can never be a partner, by their ID |
+| `response` | Changes one of the replies, with text or one of your [saved embeds](/resources/scripting/embeds). `reset` goes back to the default |
+| `welcome` | Gives the manager role to a member and sends the welcome |
+
+## The replies
+
+Each reply can be plain text with [variables](/resources/scripting/variables) or a saved embed (a V2 design too). A missing or broken one sends the default text.
+
+| Reply | When it is sent |
+| --- | --- |
+| `completed` | The partnership is counted |
+| `cooldown` | You partnered with that server too recently |
+| `invalid_invite` | The invite is not valid or has expired |
+| `member_requirement` | The server has fewer members than needed |
+| `blacklisted` | The server is on the blacklist |
+| `self_partner` | The invite is for your own server |
+| `age_requirement` | The server is too new |
+| `manager_welcome` | `!partnerconfig welcome` |
+
+## Dashboard
+
+The **Partners** page of the dashboard has the same settings, the 8 replies, the blacklist and the numbers of the week and of all time.

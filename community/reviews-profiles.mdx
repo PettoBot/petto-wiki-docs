@@ -1,0 +1,40 @@
+---
+title: "Reviews and Profiles"
+description: "Rate members from 1 to 5 stars and see their profile."
+icon: "star"
+---
+
+## Overview
+
+Members can **rate each other** from 1 to 5 stars, with an optional comment. A member can review another once, and sending it again changes the review. You can not review yourself or a bot.
+
+`!profile` shows when a member joined, their rating, and the numbers of the modules the server uses: [uploads](/community/uploads), [requests](/community/requests) and [partnerships](/community/partners).
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!review give <user> <stars> [comment]
+!review show [user]
+!review remove <user>
+!profile [user]
+!profileconfig view
+!profileconfig reviews <true|false>
+!profileconfig channel [channel]
+```
+
+```javascript Example
+!review give @Mia 5 "Fast and kind"
+!review show @Mia
+!profile @Mia
+!profileconfig channel #reviews
+```
+
+</CodeGroup>
+
+The stars can be written as `4`, `4/5` or `4 stars`. With `!profileconfig channel`, every new review is shown in that channel. `!profileconfig reviews false` turns reviews off, and the profile stops showing the rating.
+
+## Dashboard
+
+The **Reviews and profiles** page has the same settings.

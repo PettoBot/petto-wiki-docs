@@ -1,0 +1,54 @@
+---
+title: "Requests"
+description: "Members ask for something and the staff claims and finishes it."
+icon: "inbox"
+---
+
+## Overview
+
+A member asks for something with `!request make`. Petto posts a **card** in the channel you choose, with buttons for the staff:
+
+| Button | Who can press it |
+| --- | --- |
+| **Claim** | The staff |
+| **Done** | Who claimed it, or the staff |
+| **Unclaim** | Who claimed it, or who manages the server |
+| **Cancel** | The author, or the staff |
+
+The staff is the role you choose, or, if there is none, whoever can manage messages. Who manages the server is always staff. When a request is done, Petto tells the author in the same channel.
+
+<Note>
+With **Premium**, a claimed request that is not finished within the hours you set goes back to open by itself, and the staff is told.
+</Note>
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+!request make <text>
+!request list [mine]
+!requestconfig view
+!requestconfig enable <true|false>
+!requestconfig channel <channel>
+!requestconfig staff [role]
+!requestconfig ping [role]
+!requestconfig limit <1-25>
+!requestconfig timeout <hours>
+!requestconfig reply [text] [template]
+```
+
+```javascript Example
+!requestconfig enable true
+!requestconfig channel #requests
+!requestconfig staff @Designers
+!request make A banner for my server, pink and blue
+```
+
+</CodeGroup>
+
+The answer to who makes a request can be text or one of your [saved embeds](/resources/scripting/embeds), with the `{request.*}` [variables](/resources/scripting/variables). `limit` is how many open requests a member can have at once.
+
+## Dashboard
+
+The **Requests** page has the same settings and the open requests.
